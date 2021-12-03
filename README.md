@@ -18,3 +18,9 @@ Made with PDF version 6
 [Making Linux Shell in C](https://www.geeksforgeeks.org/making-linux-shell-c/)
 
 [Building a shell in 10 min](https://www.youtube.com/watch?v=k6TTj4C0LF0)
+
+[Write a Shell](https://brennan.io/2015/01/16/write-a-shell-in-c/)
+
+[Harm Smiths](https://harm-smits.github.io/42docs/projects/minishell)
+
+[Minishell Ex](https://github.com/parismart/minishell)
