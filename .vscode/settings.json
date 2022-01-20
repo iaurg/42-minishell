@@ -1,0 +1,16 @@
+{
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.comments.insertSpace": false,
+	"editor.renderWhitespace": "all",
+	"editor.tabSize": 4,
+	"editor.rulers": [80],
+	"editor.wordWrap": "wordWrapColumn",
+	"files.trimTrailingWhitespace": true,
+	"editor.formatOnSave": false,
+	"files.insertFinalNewline": true,
+	"files.eol": "\n",
+	"workbench.colorCustomizations": {
+			"editorWhitespace.foreground": "#6273a47b"
+	}
+}
