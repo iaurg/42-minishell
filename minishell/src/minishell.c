@@ -6,18 +6,38 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/01/19 23:07:34 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/01/20 22:28:13 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdio.h"
+# include "../includes/minishell.h"
+
+int take_input(char *input_text)
+{
+	char *buffer;
+
+	buffer = readline("🐚~");
+	if (buffer)
+	{
+		add_history(buffer);
+		printf("%s\n", buffer);
+		ft_strlcpy(input_text, buffer, ft_strlen(buffer) + 1);
+		// ft_str(input_text, buffer);
+		return (0);
+	}
+	else
+	{
+		return (1);
+	}
+}
 
 int	main(void)
 {
-	printf("Hello, world!\n");
-	if(1)
+	char buffer[1024];
+	while (1)
 	{
-		printf("test\n");
+		take_input(buffer);
 	}
-	return 1;
+
+	return (0);
 }

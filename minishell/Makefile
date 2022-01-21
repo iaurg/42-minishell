@@ -6,7 +6,7 @@
 #    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/01/19 23:08:13 by itaureli         ###   ########.fr        #
+#    Updated: 2022/01/20 08:17:51 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ MSG2 = @echo "Cleaned ✔︎"
 .c.o:
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
-all:			$(NAME)
+all: $(NAME)
 
 $(NAME): $(LBFT_LIB) $(OBJECTS) $(MINI_HEADER)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LBFT_LIB) -o $(NAME)
