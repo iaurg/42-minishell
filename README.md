@@ -25,6 +25,30 @@ Made with PDF version 6
 
 [Minishell Ex](https://github.com/parismart/minishell)
 
+[Bash reference](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#What-is-Bash_003f)
+
+[Creating a Lexer & Parse](https://www.youtube.com/watch?v=70NVv0nVLlE&ab_channel=LambdaShow)
+
+[Parse lecture](https://www.youtube.com/watch?v=4m7ubrdbWQU&ab_channel=DmitrySoshnikov)
+
+## How shell interpret a input
+
+1. shell has analyzed input in the following way:
+
+2. The shell reads its input from a file, from a string or from the user's terminal.
+
+3. Input is broken up into words and operators, obeying the quoting rules, see Chapter 3. These tokens are separated by metacharacters. Alias expansion is performed.
+
+4. The shell parses (analyzes and substitutes) the tokens into simple and compound commands.
+
+5. Bash performs various shell expansions, breaking the expanded tokens into lists of filenames and commands and arguments.
+
+6. Redirection is performed if necessary, redirection operators and their operands are removed from the argument list.
+
+7. Commands are executed.
+
+8. Optionally the shell waits for the command to complete and collects its exit status.
+
 ## Resume of allowed functions
 
 [readline](https://man7.org/linux/man-pages/man3/readline.3.html): readline from terminal and return it

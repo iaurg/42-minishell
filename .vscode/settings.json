@@ -12,5 +12,8 @@
 	"files.eol": "\n",
 	"workbench.colorCustomizations": {
 			"editorWhitespace.foreground": "#6273a47b"
+	},
+	"files.associations": {
+		"libft.h": "c"
 	}
 }
