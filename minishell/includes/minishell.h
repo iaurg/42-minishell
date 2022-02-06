@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/01/22 16:31:44 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/02/06 14:55:30 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,22 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../libs/libft/libft.h"
+/* DELIMITERS */
+# define CHAR_WHITESPACE = ' '
+# define CHAR_TAB = '\t'
+# define CHAR_NEWLINE = '\n'
+
+# define CHAR_PIPE = '|'
+# define CHAR_DOLAR = '$'
+# define CHAR_SINGLE_QT = '\''
+# define CHAR_DOUBLE_QT = '\"'
+# define CHAR_GREATER = '>'
+# define CHAR_DBL_GREATER = '>>'
+# define CHAR_LESSER = '<'
+# define CHAR_DBL_LESSER = '<'
+# define CHAR_NULL = 0
 
 char	**parse_input(char *input_text);
 int		take_input(char *input_text);
+char	**scanner(char *input_text);
 #endif

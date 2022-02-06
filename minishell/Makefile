@@ -6,11 +6,11 @@
 #    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/01/22 16:32:02 by itaureli         ###   ########.fr        #
+#    Updated: 2022/02/06 14:57:56 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		=	src/minishell.c src/parse.c src/readline.c
+SRC		=	src/minishell.c src/parse.c src/readline.c src/lexer.c
 
 OBJECTS		=	${SRC:.c=.o}
 
