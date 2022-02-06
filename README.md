@@ -31,6 +31,8 @@ Made with PDF version 6
 
 [Parse lecture](https://www.youtube.com/watch?v=4m7ubrdbWQU&ab_channel=DmitrySoshnikov)
 
+[Nice Resources](https://github.com/Hamzaelkhatri/minishell)
+
 ## How shell interpret a input
 
 1. shell has analyzed input in the following way:
