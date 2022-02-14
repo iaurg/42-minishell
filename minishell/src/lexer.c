@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 22:26:51 by itaureli          #+#    #+#             */
-/*   Updated: 2022/02/12 20:10:13 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/02/13 22:30:59 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	len_token(char *str)
 
 	while (*str
 	&& *str != CHAR_WHITESPACE
-	&& *str != CHAR_SEMI && *str != CHAR_PIPE && *str != CHAR_LESSER
+	&& *str != CHAR_PIPE && *str != CHAR_LESSER
 	&& *str != CHAR_GREATER && *str != CHAR_DOUBLE_QT && *str != CHAR_SINGLE_QT && *str != CHAR_EQUAL)
 	{
 		len++;
@@ -31,16 +31,87 @@ int	len_token(char *str)
 	return (len);
 }
 
-char **scanner(char *input_text)
+// function to count tokens
+int	count_tokens(char *str)
 {
-	char *a[0];
-	a[0] = "xx";
+	int		count;
+	int		i;
+	int		len;
 
-	int i;
+	count = 0;
 	i = 0;
+	while (str[i])
+	{
+		len = len_token(&str[i]);
+		if (len > 0)
+		{
+			count++;
+			i += len;
+		}
+		else
+			i++;
+	}
+	return (count);
+}
 
-	printf("%d\n", len_token(input_text));
 
+char	*ft_strncpy(char *dst, const char *src, size_t len)
+{
+	if (len == 0 || src == 0)
+		return (dst);
+	*dst = *src;
+	if (*src != 0)
+		ft_strncpy(dst + 1, ++src, --len);
+	else if (*src == 0)
+		ft_strncpy(dst + 1, src, --len);
+	return (dst);
+}
 
-	return (a);
+// split input in tokens parsing quotes
+char	**parse_input(char *input_text)
+{
+	char	**final_array;
+	int		i;
+	int		j;
+	int		len;
+
+	i = 0;
+	j = 0;
+	final_array = (char **)malloc(sizeof(char *) * (count_tokens(input_text) + 1));
+	while (input_text[i])
+	{
+		len = len_token(&input_text[i]);
+		if (len > 0)
+		{
+			final_array[j] = (char *)malloc(sizeof(char) * (len + 1));
+			ft_strncpy(final_array[j], &input_text[i], len);
+			final_array[j][len] = '\0';
+			i += len;
+			j++;
+		}
+		else
+		{
+			if (input_text[i] == CHAR_SINGLE_QT)
+			{
+				while (input_text[++i] != CHAR_SINGLE_QT)
+					;
+				i++;
+			}
+			else if (input_text[i] == CHAR_DOUBLE_QT)
+			{
+				while (input_text[++i] != CHAR_DOUBLE_QT)
+					;
+				i++;
+			}
+			else
+				i++;
+		}
+	}
+	final_array[j] = NULL;
+	// print all tokens
+	for (int i = 0; final_array[i]; i++)
+	{
+	 	printf("token: %s\n", final_array[i]);
+	}
+	return (final_array);
 }
