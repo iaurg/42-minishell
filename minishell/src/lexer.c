@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 22:26:51 by itaureli          #+#    #+#             */
-/*   Updated: 2022/02/13 22:30:59 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/02/16 23:35:39 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ char	**parse_input(char *input_text)
 	i = 0;
 	j = 0;
 	final_array = (char **)malloc(sizeof(char *) * (count_tokens(input_text) + 1));
+	printf("lentoken: %d\n", len_token_quote(input_text));
 	while (input_text[i])
 	{
 		len = len_token(&input_text[i]);
@@ -91,17 +92,17 @@ char	**parse_input(char *input_text)
 		}
 		else
 		{
-			if (input_text[i] == CHAR_SINGLE_QT)
+			if (input_text[i] == CHAR_DOUBLE_QT)
 			{
-				while (input_text[++i] != CHAR_SINGLE_QT)
-					;
-				i++;
-			}
-			else if (input_text[i] == CHAR_DOUBLE_QT)
-			{
-				while (input_text[++i] != CHAR_DOUBLE_QT)
-					;
-				i++;
+				len = 0;
+				while (input_text[++i] != CHAR_DOUBLE_QT){
+					len++;
+				}
+				final_array[j] = (char *)malloc(sizeof(char) * (len + 1));
+				ft_strncpy(final_array[j], &input_text[i - len], len);
+				final_array[j][len] = '\0';
+				i += len;
+				j++;
 			}
 			else
 				i++;
