@@ -33,6 +33,8 @@ Made with PDF version 6
 
 [Nice Resources](https://github.com/Hamzaelkhatri/minishell)
 
+[mini wiki](https://github.com/jmartini89/42_minishell/wiki)
+
 ## How shell interpret a input
 
 1. shell has analyzed input in the following way:
