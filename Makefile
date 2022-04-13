@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/04/13 19:25:24 by vwildner         ###   ########.fr        #
+#    Updated: 2022/04/13 19:31:42 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		=	src/minishell.c src/parse.c src/readline.c src/lexer.c
+SRC		=	src/minishell.c src/readline.c src/lexer.c
 SRC		+=	src/print_error.c src/builtins/pwd.c
 
 OBJECTS		=	${SRC:.c=.o}
