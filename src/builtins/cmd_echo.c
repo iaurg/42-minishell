@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   cmd_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/22 16:30:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/02/13 22:22:53 by itaureli         ###   ########.fr       */
+/*   Created: 2022/01/16 13:35:08 by itaureli          #+#    #+#             */
+/*   Updated: 2022/04/13 09:16:18 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/minishell.h"
-
-void test()
+int	cmd_echo(void)
 {
-	int i;
-	i = 0;
-	return;
+	return (0);
 }

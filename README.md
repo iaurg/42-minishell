@@ -7,7 +7,7 @@ little bash or zsh. You will learn a lot about processes and file descriptors.
 
 ## Requirements
 
-- Readline developer package: `readline-dev` | `readline-devel`
+- Readline developer package: `libreadline-dev` | `readline-devel`
 
 ## Material
 

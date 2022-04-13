@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/04/13 08:38:11 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/04/13 19:35:29 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/minishell.h"
+#include "../includes/minishell.h"
 
 static void	shell_prefix_handler(int signal)
 {
-	char cwd[1025];
+	char	cwd[1025];
 
 	if (signal == SIGINT)
 	{
@@ -30,7 +30,7 @@ static void	shell_prefix_handler(int signal)
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	char buffer[1024];
+	char	buffer[1024];
 
 	if (argc > 1 && argv)
 	{
@@ -41,7 +41,7 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		signal(SIGINT, shell_prefix_handler);
 		if (take_input(buffer))
-			break;
+			break ;
 		parse_input(buffer);
 	}
 	return (0);

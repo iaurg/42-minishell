@@ -6,22 +6,22 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 22:26:51 by itaureli          #+#    #+#             */
-/*   Updated: 2022/02/17 22:44:19 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/04/13 19:38:46 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// return token into an array
-# include "../includes/minishell.h"
+#include "../includes/minishell.h"
 
 int	len_token(char *str)
 {
 	int	len;
-	len = 0;
 
+	len = 0;
 	while (*str
-	&& *str != CHAR_WHITESPACE
-	&& *str != CHAR_PIPE && *str != CHAR_LESSER
-	&& *str != CHAR_GREATER && *str != CHAR_DOUBLE_QT && *str != CHAR_SINGLE_QT && *str != CHAR_EQUAL)
+		&& *str != CHAR_WHITESPACE
+		&& *str != CHAR_PIPE && *str != CHAR_LESSER
+		&& *str != CHAR_GREATER && *str != CHAR_DOUBLE_QT
+		&& *str != CHAR_SINGLE_QT && *str != CHAR_EQUAL)
 	{
 		len++;
 		str++;
@@ -31,12 +31,11 @@ int	len_token(char *str)
 	return (len);
 }
 
-// function to count tokens
 int	count_tokens(char *str)
 {
-	int		count;
-	int		i;
-	int		len;
+	int	count;
+	int	i;
+	int	len;
 
 	count = 0;
 	i = 0;
@@ -54,7 +53,6 @@ int	count_tokens(char *str)
 	return (count);
 }
 
-
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
 	if (len == 0 || src == 0)
@@ -67,7 +65,6 @@ char	*ft_strncpy(char *dst, const char *src, size_t len)
 	return (dst);
 }
 
-// split input in tokens parsing quotes
 char	**parse_input(char *input_text)
 {
 	char	**final_array;
@@ -108,10 +105,5 @@ char	**parse_input(char *input_text)
 		}
 	}
 	final_array[j] = NULL;
-	// print all tokens
-	for (int i = 0; final_array[i]; i++)
-	{
-	 	printf("token: %s\n", final_array[i]);
-	}
 	return (final_array);
 }

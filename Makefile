@@ -6,11 +6,11 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/04/13 08:34:29 by vwildner         ###   ########.fr        #
+#    Updated: 2022/04/13 20:24:19 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		=	src/minishell.c src/parse.c src/readline.c src/lexer.c
+SRC		=	src/minishell.c src/readline.c src/wip_lexer.c
 SRC		+=	src/print_error.c src/builtins/pwd.c
 
 OBJECTS		=	${SRC:.c=.o}
@@ -27,11 +27,20 @@ CFLAGS	=	-Wall -Wextra -Werror -lreadline
 
 RM		=	rm -rf
 
-CC		=	gcc
+CC		=	clang
 
 MSG1 = @echo "Compiled ✔︎"
 
 MSG2 = @echo "Cleaned ✔︎"
+
+# Minunit Tests
+TEST_NAME = test
+
+TEST_FILES = minunit_example.c
+
+TEST_PATH = ./tests
+
+TESTS = $(addprefix $(TEST_PATH)/,$(TEST_FILES))
 
 .c.o:
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
@@ -45,6 +54,10 @@ $(NAME): $(LBFT_LIB) $(OBJECTS) $(MINI_HEADER)
 ${LBFT_LIB}:
 	@${MAKE} -C ${LBFT_DIR}
 
+test: $(NAME)
+	@$(CC) $(TESTS) -lrt -lm -o $(TEST_NAME)
+	./$(TEST_NAME)
+
 clean:
 	$(RM) $(OBJECTS)
 	@${MAKE} fclean -C ${LBFT_DIR}
@@ -52,6 +65,7 @@ clean:
 
 fclean: clean
 	${RM} ${NAME} ${NAME_BONUS}
+	${RM} ${TEST_NAME}
 	@${MAKE} fclean -C ${LBFT_DIR}
 
 run:

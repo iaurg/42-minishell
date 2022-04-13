@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   readline.c                                         :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/02/04 22:18:21 by itaureli         ###   ########.fr       */
+/*   Created: 2022/02/06 19:50:02 by itaureli          #+#    #+#             */
+/*   Updated: 2022/04/13 19:33:47 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/minishell.h"
+#include "../includes/minishell.h"
 
-static void	save_history(char *input)
+void	print_error(char *error_msg)
 {
-	if (input && *input)
-		add_history(input);
-}
-
-int	take_input(char *input_text)
-{
-	char *buffer;
-
-	buffer = readline("🐚~");
-	if (buffer)
-	{
-		save_history(buffer);
-		ft_strlcpy(input_text, buffer, ft_strlen(buffer) + 1);
-		return (0);
-	}
-	return (1);
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(error_msg, 2);
+	ft_putstr_fd(": ", 2);
 }
