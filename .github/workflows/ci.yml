@@ -15,7 +15,7 @@ jobs:
         run: |
           pip install -U pip
           pip install norminette
-          norminette sources/ includes/
+          norminette src/ includes/
   build:
     runs-on: ubuntu-latest
     steps:
