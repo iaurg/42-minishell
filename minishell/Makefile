@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/02/06 20:01:18 by itaureli         ###   ########.fr        #
+#    Updated: 2022/04/13 08:34:29 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC		=	src/minishell.c src/parse.c src/readline.c src/lexer.c
-SRC		+=	src/print_error.c
+SRC		+=	src/print_error.c src/builtins/pwd.c
 
 OBJECTS		=	${SRC:.c=.o}
 
@@ -27,7 +27,7 @@ CFLAGS	=	-Wall -Wextra -Werror -lreadline
 
 RM		=	rm -rf
 
-CC		=	clang
+CC		=	gcc
 
 MSG1 = @echo "Compiled ✔︎"
 
