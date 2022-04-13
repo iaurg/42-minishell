@@ -3,9 +3,11 @@
 The objective of this project is for you to create a simple shell. Yes, your
 little bash or zsh. You will learn a lot about processes and file descriptors.
 
-Made with PDF version 6
-
 > Think about architecture and how to implement it.
+
+## Requirements
+
+- Readline developer package: `readline-dev` | `readline-devel`
 
 ## Material
 
