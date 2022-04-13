@@ -13,6 +13,7 @@ SOURCES += ft_substr.c ft_strjoin.c ft_strtrim.c
 SOURCES += ft_split.c ft_putchar_fd.c ft_putstr_fd.c
 SOURCES += ft_putendl_fd.c ft_putnbr_fd.c ft_strmapi.c
 SOURCES += ft_striteri.c ft_itoa.c get_next_line.c
+SOURCES += ft_getenv.c
 
 # Use same files from sources, but change .c to .o
 OBJECTS = ${SOURCES:.c=.o}
@@ -20,7 +21,7 @@ OBJECTS = ${SOURCES:.c=.o}
 # @ supress commands to show in terminal
 RM = @rm -f
 
-CC = @clang
+CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 MSG1 = @echo "Compiled ✔︎"
