@@ -24,12 +24,12 @@ jobs:
         run: |
           sudo apt-get install -y libreadline-dev
           make
-  test_basic_execution:
+  unit_tests:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Test simple algorithm
+      - name: Run unit tests
         run: |
           sudo apt-get install -y libreadline-dev
           make test
