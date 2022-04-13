@@ -6,7 +6,7 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/04/13 08:34:29 by vwildner         ###   ########.fr        #
+#    Updated: 2022/04/13 19:25:24 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CFLAGS	=	-Wall -Wextra -Werror -lreadline
 
 RM		=	rm -rf
 
-CC		=	gcc
+CC		=	clang
 
 MSG1 = @echo "Compiled ✔︎"
 

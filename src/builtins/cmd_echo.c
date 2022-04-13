@@ -3,11 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 13:35:08 by itaureli          #+#    #+#             */
-/*   Updated: 2022/01/16 14:06:46 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/04/13 09:16:18 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	cmd_echo()
+int	cmd_echo(void)
+{
+	return (0);
+}

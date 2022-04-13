@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/02/04 22:18:21 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/04/13 09:15:44 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/minishell.h"
+#include "../includes/minishell.h"
 
 static void	save_history(char *input)
 {
@@ -20,7 +20,7 @@ static void	save_history(char *input)
 
 int	take_input(char *input_text)
 {
-	char *buffer;
+	char	*buffer;
 
 	buffer = readline("🐚~");
 	if (buffer)
