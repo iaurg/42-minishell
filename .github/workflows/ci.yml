@@ -1,0 +1,39 @@
+name: complete-checking
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run linting
+        run: |
+          pip install -U pip
+          pip install norminette
+          norminette sources/ includes/
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compile the program
+        run: make
+  #test_basic_execution:
+  #  needs: [build]
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #    - name: Test simple algorithm
+  #      run: |
+  #        make test
+  #test_integration_tests:
+  #  needs: [build]
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #    - name: Test cli
+  #      run: python -m unittest tests.test_cli -c
