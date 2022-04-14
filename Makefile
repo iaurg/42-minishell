@@ -6,7 +6,7 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/04/13 20:24:19 by vwildner         ###   ########.fr        #
+#    Updated: 2022/04/14 19:49:21 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CFLAGS	=	-Wall -Wextra -Werror -lreadline
 
 RM		=	rm -rf
 
-CC		=	clang
+CC := $(shell ./set_compiler.sh)
 
 MSG1 = @echo "Compiled ✔︎"
 
@@ -55,7 +55,7 @@ ${LBFT_LIB}:
 	@${MAKE} -C ${LBFT_DIR}
 
 test: $(NAME)
-	@$(CC) $(TESTS) -lrt -lm -o $(TEST_NAME)
+	$(CC) $(TESTS) -lrt -lm -o $(TEST_NAME)
 	./$(TEST_NAME)
 
 clean:
