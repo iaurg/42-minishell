@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/04/16 19:04:07 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/04/16 19:12:00 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int argc, char *argv[], char *envp[])
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
-		// signal(SIGINT, signal_handler);
 		if (take_input(buffer))
 			break ;
 		parse_input(buffer);
