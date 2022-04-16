@@ -26,5 +26,9 @@ int builtins_echo(t_command *cmd);
 int builtins_pwd(t_command *cmd);
 int builtins_export(t_command *cmd);
 
+/* executors */
+
+int run(t_command *cmd);
+
 
 #endif
