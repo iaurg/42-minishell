@@ -21,7 +21,6 @@ OBJECTS = ${SOURCES:.c=.o}
 # @ supress commands to show in terminal
 RM = @rm -f
 
-CFLAGS = -Wall -Wextra -Werror
 MSG1 = @echo "Compiled ✔︎"
 MSG2 = @echo "Cleaned ✔︎"
 
