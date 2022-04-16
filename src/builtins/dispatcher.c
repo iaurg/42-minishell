@@ -1,6 +1,6 @@
 #include "../../includes/builtins.h"
 
-t_dispatcher *run_cmd(t_builtin number)
+static t_dispatcher *run_cmd(t_builtin number)
 {
 	static t_dispatcher	*execute[SIZE];
 
