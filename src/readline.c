@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/04/13 09:15:44 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/04/16 18:44:39 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	take_input(char *input_text)
 {
 	char	*buffer;
 
-	buffer = readline("🐚~");
+	buffer = readline("\r\033[1;31muser@minishell\033[0;0m");
 	if (buffer)
 	{
 		save_history(buffer);
