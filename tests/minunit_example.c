@@ -1,4 +1,5 @@
 #include "minunit.h"
+#include "../includes/minishell.h"
 
 MU_TEST(test_check) {
 	mu_check(5 == 5);
