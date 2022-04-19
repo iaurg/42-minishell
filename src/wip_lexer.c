@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   wip_lexer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 22:26:51 by itaureli          #+#    #+#             */
-/*   Updated: 2022/04/13 19:38:46 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/04/18 22:41:02 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ char	**parse_input(char *input_text)
 				}
 				final_array[j] = (char *)malloc(sizeof(char) * (len + 1));
 				ft_strncpy(final_array[j], &input_text[i - len], len);
-				final_array[j][len] = '\0';
 				i += len;
 				j++;
 			}
