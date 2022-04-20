@@ -5,7 +5,7 @@ static t_dispatcher *run_cmd(t_builtin number)
 	static t_dispatcher	*execute[SIZE];
 
 	execute[EXPORT] = builtins_export;
-	execute[PWD] = builtins_pwd;
+	execute[ENV] = builtins_env;
 	execute[ECHO] = builtins_echo;
 
 	return (execute[number]);
