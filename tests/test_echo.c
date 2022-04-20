@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_echo.c                                         :+:      :+:    :+:   */
+/*   test_echo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/16 13:35:08 by itaureli          #+#    #+#             */
-/*   Updated: 2022/04/13 09:16:18 by vwildner         ###   ########.fr       */
+/*   Created: 2022/04/20 04:57:19 by itaureli          #+#    #+#             */
+/*   Updated: 2022/04/20 05:07:42 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	cmd_echo(void)
+#include "../includes/builtins.h"
+
+int	main(void)
 {
+	builtins_echo(NULL);
 	return (0);
 }
