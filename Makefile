@@ -6,7 +6,7 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/04/18 22:47:23 by vwildner         ###   ########.fr        #
+#    Updated: 2022/04/19 23:39:01 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,11 +49,11 @@ TESTS = $(addprefix $(TEST_PATH)/,$(TEST_FILES))
 
 # Builtins library
 
-BUILTINS_NAME = builtins
+BUILTINS_NAME = builtins.a
 
-BUILTINS_SOURCES_FILES		= builtins.c cmd_echo.c dispatcher.c export.c pwd.c
+BUILTINS_SOURCES_FILES		= builtins.c cmd_echo.c dispatcher.c env.c export.c
 
-BUILTINS_SOURCES_PATH = ./src/builtins
+BUILTINS_SOURCES_PATH = ./libs/builtins
 
 BUILTINS_SOURCES = $(addprefix $(BUILTINS_SOURCES_PATH)/,$(BUILTINS_SOURCES_FILES))
 
@@ -87,12 +87,16 @@ libft: $(LBFT_LIB)
 ${LBFT_LIB}:
 	@${MAKE} -C ${LBFT_DIR}
 
-$(BUILTINS_NAME): $(BUILTINS_OBJECTS) $(NAME)
-	$(ARCHIVE) $(BUILTINS_NAME).a $(BUILTINS_OBJECTS) $(BUILTINS_NAME).a
+builtins: $(BUILTINS_NAME)
+	@cp ./$(BUILTINS_NAME) ./archives
+	@rm $(BUILTINS_NAME)
+
+$(BUILTINS_NAME): $(BUILTINS_OBJECTS)
+	$(ARCHIVE) $@ $^
 
 $(BUILTINS_OBJECTS_PATH)/%.o: $(BUILTINS_SOURCES_PATH)/%.c $(BUILTINS_HEADER)
 	@$(SAFE_MKDIR) $(BUILTINS_OBJECTS_PATH)
-	@$(CC) $(CFLAGS) -g -I $(INCLUDES_PATH) -L $(LBFT_LIB) -o $@ -c $< $(EXTERNAL_LIBS)
+	@$(CC) $(CFLAGS) -g -I $(INCLUDES_PATH) -L ./archives/libft.a -o $@ -c $< $(EXTERNAL_LIBS)
 
 test: $(NAME)
 	$(CC) $(TESTS) -lrt -lm -o $(TEST_NAME)
