@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/04/19 23:49:17 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/04/19 23:50:48 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include <unistd.h>
 # include <stdio.h>
-#include <stdlib.h>
+# include <stdlib.h>
 # include "../libs/libft/libft.h"
 
 typedef enum builtin {
@@ -48,6 +48,6 @@ int			builtins_env(t_command *cmd);
 
 /* executors */
 
-int	run(t_command *cmd);
+int			run(t_command *cmd);
 
 #endif
