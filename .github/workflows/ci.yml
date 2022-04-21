@@ -33,10 +33,11 @@ jobs:
         run: |
           sudo apt-get install -y libreadline-dev
           make test
-  #test_integration_tests:
-  #  needs: [build]
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - uses: actions/checkout@v2
-  #    - name: Test cli
-  #      run: python -m unittest tests.test_cli -c
+  builtins_tests:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test builtins module
+        run: |
+          make test_builtins
