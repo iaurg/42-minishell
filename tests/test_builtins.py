@@ -5,6 +5,7 @@ from glob import glob
 
 class TestBuilder(unittest.TestCase):
     test_name = None
+
     @classmethod
     def setUpClass(cls):
         builtins_files = glob("./libs/builtins/*.c")
@@ -17,7 +18,7 @@ class TestBuilder(unittest.TestCase):
             cls.test_name,
             f"./tests/test_{cls.test_name}.c",
             *builtins_files,
-            *libft_files
+            *libft_files,
         ]
         subprocess.call(command)
 
@@ -37,7 +38,9 @@ class TestEnv(TestBuilder):
 
         # The bash equivalent
         bash_emulated_command = ["env"]
-        expected_result = subprocess.run(bash_emulated_command, capture_output=True).stdout
+        expected_result = subprocess.run(
+            bash_emulated_command, capture_output=True
+        ).stdout
 
         self.assertEqual(result, expected_result)
 
@@ -53,9 +56,12 @@ class TestEcho(TestBuilder):
 
         # The bash equivalent
         bash_emulated_command = ["echo", "Hello World"]
-        expected_result = subprocess.run(bash_emulated_command, capture_output=True).stdout
+        expected_result = subprocess.run(
+            bash_emulated_command, capture_output=True
+        ).stdout
 
         self.assertEqual(result, expected_result)
+
 
 if __name__ == "__main__":
     unittest.main()
