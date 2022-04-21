@@ -55,6 +55,7 @@ class TestEcho(TestBuilder):
 
         # The bash equivalent
         bash_emulated_command = ["echo", "-n", "test", "test2", "test3", "-n"]
+
         expected_result = subprocess.run(
             bash_emulated_command, capture_output=True
         ).stdout
