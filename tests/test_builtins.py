@@ -45,17 +45,16 @@ class TestEnv(TestBuilder):
         self.assertEqual(result, expected_result)
 
 
-@unittest.skip("Not implemented yet")
 class TestEcho(TestBuilder):
     test_name = "echo"
 
     def test_command(self):
         # The command under test
-        command = [f"./{self.test_name}", "Hello World"]
+        command = [f"./{self.test_name}", "-n", "test", "test2", "test3", "-n"]
         result = subprocess.run(command, capture_output=True).stdout
 
         # The bash equivalent
-        bash_emulated_command = ["echo", "Hello World"]
+        bash_emulated_command = ["echo", "-n", "test", "test2", "test3", "-n"]
         expected_result = subprocess.run(
             bash_emulated_command, capture_output=True
         ).stdout

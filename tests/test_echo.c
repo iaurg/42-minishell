@@ -1,19 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   test_echo.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 04:57:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/04/20 05:07:42 by itaureli         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/builtins.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	builtins_echo(NULL);
+	char *args[] = {
+		"-n",
+		"test",
+		"test2",
+		"test3",
+		"-n",
+		NULL
+	};
+
+	echo(&argv[1], 1);
 	return (0);
 }

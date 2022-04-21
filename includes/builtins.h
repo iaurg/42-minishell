@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/04/19 23:50:48 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/04/21 13:26:55 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef int	t_dispatcher(t_command *cmd);
 
 /* internal functions */
 int			env(void);
+int			echo(char **args, int fd);
 
 /* public interface */
 int			builtins_echo(t_command *cmd);
