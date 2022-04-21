@@ -6,7 +6,7 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/04/19 23:39:01 by vwildner         ###   ########.fr        #
+#    Updated: 2022/04/20 21:13:55 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,9 @@ $(BUILTINS_OBJECTS_PATH)/%.o: $(BUILTINS_SOURCES_PATH)/%.c $(BUILTINS_HEADER)
 test: $(NAME)
 	$(CC) $(TESTS) -lrt -lm -o $(TEST_NAME)
 	./$(TEST_NAME)
+
+test_builtins:
+	python3 -m unittest tests.test_builtins -c
 
 clean:
 	$(RM) $(OBJECTS)
