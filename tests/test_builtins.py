@@ -1,31 +1,6 @@
 import unittest
 import subprocess
-from glob import glob
-
-
-class TestBuilder(unittest.TestCase):
-    test_name = None
-
-    @classmethod
-    def setUpClass(cls):
-        builtins_files = glob("./libs/builtins/*.c")
-        libft_files = glob("./libs/libft/*.c")
-        command = [
-            "gcc",
-            "-Wall",
-            "-Wextra",
-            "-o",
-            cls.test_name,
-            f"./tests/test_{cls.test_name}.c",
-            *builtins_files,
-            *libft_files,
-        ]
-        subprocess.call(command)
-
-    @classmethod
-    def tearDownClass(cls):
-        command = ["rm", cls.test_name]
-        subprocess.call(command)
+from tests.utils.setup import TestBuilder, TestBuilderAlt
 
 
 class TestEnv(TestBuilder):
@@ -58,6 +33,35 @@ class TestEcho(TestBuilder):
         bash_emulated_command = ["echo", "Hello World"]
         expected_result = subprocess.run(
             bash_emulated_command, capture_output=True
+        ).stdout
+
+        self.assertEqual(result, expected_result)
+
+
+class TestExport(TestBuilder):
+    test_name = "export"
+
+    def test_command_successful(self):
+        command = [f"./{self.test_name}", "FOO=bar"]
+        result = subprocess.run(command, capture_output=True).stdout
+
+        bash_emulated_command = "export FOO=bar; echo $FOO"
+        expected_result = subprocess.run(
+            bash_emulated_command, shell=True, capture_output=True
+        ).stdout
+
+        self.assertEqual(result, expected_result)
+
+class TestExportAlt(TestBuilderAlt):
+    test_name = "export"
+    def test_command_successful(self):
+        # This setup will capture argv[1] as argv[0]
+        command = [f"./{self.test_name}", "FOO=bar"]
+        result = subprocess.run(command, capture_output=True).stdout
+
+        bash_emulated_command = "FOO=bar; echo $FOO"
+        expected_result = subprocess.run(
+            bash_emulated_command, shell=True, capture_output=True
         ).stdout
 
         self.assertEqual(result, expected_result)
