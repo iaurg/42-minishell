@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 04:54:03 by itaureli          #+#    #+#             */
-/*   Updated: 2022/04/23 05:42:13 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/04/23 05:46:16 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,8 @@ int	echo(char **args, int fd)
 			write(fd, " ", 1);
 		i++;
 	}
-	if(!has_n)
+	if(has_n)
 		write(fd, "\n", 1);
 	return (0);
 }
 
-int	main(void)
-{
-	char *args[] = {
-		"echo",
-		"-n",
-		"test",
-		"test2",
-		"test3",
-		"-n",
-		NULL
-	};
-
-	echo(args, 1);
-	return (0);
-}
