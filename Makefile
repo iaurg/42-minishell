@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/04/20 21:13:55 by vwildner         ###   ########.fr        #
+#    Updated: 2022/04/23 14:54:58 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ TESTS = $(addprefix $(TEST_PATH)/,$(TEST_FILES))
 BUILTINS_NAME = builtins.a
 
 BUILTINS_SOURCES_FILES		= builtins.c cmd_echo.c dispatcher.c env.c export.c
+BUILTINS_SOURCES_FILES		+= cd.c
 
 BUILTINS_SOURCES_PATH = ./libs/builtins
 

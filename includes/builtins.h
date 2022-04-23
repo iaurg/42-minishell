@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/04/21 15:57:03 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/04/23 14:55:13 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int			builtins_echo(t_command *cmd);
 int			builtins_pwd(t_command *cmd);
 int			builtins_export(t_command *cmd);
 int			builtins_env(t_command *cmd);
+int			builtins_cd(t_command *cmd);
 
 /* executors */
 
