@@ -6,7 +6,7 @@
 #    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/04/20 05:03:08 by itaureli         ###   ########.fr        #
+#    Updated: 2022/04/23 05:16:10 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,9 @@ $(BUILTINS_OBJECTS_PATH)/%.o: $(BUILTINS_SOURCES_PATH)/%.c $(BUILTINS_HEADER)
 test: $(NAME)
 	$(CC) $(TESTS) -lrt -lm -o $(TEST_NAME)
 	./$(TEST_NAME)
+
+test_builtins:
+	python3 -m unittest tests.test_builtins -c
 
 clean:
 	$(RM) $(OBJECTS)

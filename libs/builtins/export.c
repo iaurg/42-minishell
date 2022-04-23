@@ -1,5 +1,13 @@
-int export(char *args[])
+#include "../../includes/builtins.h"
+
+int	export(char *arg, char *envp[])
 {
-	//__environ[args[0]] = args[1];
+	unsigned int	i;
+
+	i = 0;
+	while (envp[i])
+		i++;
+	envp[i] = ft_strdup(arg);
+	envp[i + 1] = NULL;
 	return (0);
 }
