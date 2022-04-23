@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/04/23 05:41:50 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/04/23 07:09:30 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef int	t_dispatcher(t_command *cmd);
 /* internal functions */
 int			env(void);
 int			export(char *arg, char *envp[]);
+int			echo(char **args, int fd);
 
 /* public interface */
 int			builtins_echo(t_command *cmd);
