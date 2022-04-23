@@ -2,7 +2,6 @@ import unittest
 import subprocess
 from tests.utils.setup import TestBuilder, TestBuilderAlt
 
-
 class TestEnv(TestBuilder):
     test_name = "env"
 
@@ -18,7 +17,6 @@ class TestEnv(TestBuilder):
         ).stdout
 
         self.assertEqual(result, expected_result)
-
 
 class TestEcho(TestBuilder):
     test_name = "echo"
@@ -36,7 +34,39 @@ class TestEcho(TestBuilder):
         ).stdout
 
         self.assertEqual(result, expected_result)
+class TestEcho2(TestBuilder):
+    test_name = "echo"
 
+    def test_command(self):
+        # The command under test
+        command = [f"./{self.test_name}", "test", "test2", "test3", "-n"]
+        result = subprocess.run(command, capture_output=True).stdout
+
+        # The bash equivalent
+        bash_emulated_command = ["echo", "test", "test2", "test3", "-n"]
+
+        expected_result = subprocess.run(
+            bash_emulated_command, capture_output=True
+        ).stdout
+
+        self.assertEqual(result, expected_result)
+
+class TestEcho3(TestBuilder):
+    test_name = "echo"
+
+    def test_command(self):
+        # The command under test
+        command = [f"./{self.test_name}"]
+        result = subprocess.run(command, capture_output=True).stdout
+
+        # The bash equivalent
+        bash_emulated_command = ["echo"]
+
+        expected_result = subprocess.run(
+            bash_emulated_command, capture_output=True
+        ).stdout
+
+        self.assertEqual(result, expected_result)
 
 class TestExport(TestBuilder):
     test_name = "export"
