@@ -6,7 +6,7 @@
 #    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/04/23 05:41:49 by itaureli         ###   ########.fr        #
+#    Updated: 2022/04/23 07:32:23 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,10 @@ test: $(NAME)
 
 test_builtins:
 	python3 -m unittest tests.test_builtins -c
+
+# https://github.com/CleanCut/green
+test_builtins_color:
+	green tests/test_builtins.py
 
 clean:
 	$(RM) $(OBJECTS)
