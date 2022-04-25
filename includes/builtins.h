@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
 /*   Updated: 2022/04/25 19:21:39 by vwildner         ###   ########.fr       */
@@ -42,6 +42,7 @@ typedef int	t_dispatcher(t_command *cmd);
 /* internal functions */
 int			env(char *envp[]);
 int			export(char *arg, char *envp[]);
+int			echo(char **args, int fd);
 
 /* public interface */
 int			builtins_echo(t_command *cmd);

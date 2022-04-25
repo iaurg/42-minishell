@@ -2,7 +2,12 @@
 
 int builtins_echo(t_command *cmd)
 {
-	printf("echo!\n");
+	if (cmd->argc <= 1)
+	{
+		write(STDOUT_FILENO, "\n", 1);
+		return (0);
+	}
+	echo(cmd->argv, 1);
 	return (0);
 }
 

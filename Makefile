@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/04/20 21:13:55 by vwildner         ###   ########.fr        #
+#    Updated: 2022/04/23 07:32:23 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ TESTS = $(addprefix $(TEST_PATH)/,$(TEST_FILES))
 
 BUILTINS_NAME = builtins.a
 
-BUILTINS_SOURCES_FILES		= builtins.c cmd_echo.c dispatcher.c env.c export.c
+BUILTINS_SOURCES_FILES		= builtins.c echo.c dispatcher.c env.c export.c
 
 BUILTINS_SOURCES_PATH = ./libs/builtins
 
@@ -104,6 +104,10 @@ test: $(NAME)
 
 test_builtins:
 	python3 -m unittest tests.test_builtins -c
+
+# https://github.com/CleanCut/green
+test_builtins_color:
+	green tests/test_builtins.py
 
 clean:
 	$(RM) $(OBJECTS)
