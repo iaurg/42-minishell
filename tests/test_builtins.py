@@ -34,10 +34,8 @@ class TestEcho(TestBuilder):
         ).stdout
 
         self.assertEqual(result, expected_result)
-class TestEcho2(TestBuilder):
-    test_name = "echo"
 
-    def test_command(self):
+    def test_command2(self):
         # The command under test
         command = [f"./{self.test_name}", "test", "test2", "test3", "-n"]
         result = subprocess.run(command, capture_output=True).stdout
@@ -51,10 +49,7 @@ class TestEcho2(TestBuilder):
 
         self.assertEqual(result, expected_result)
 
-class TestEcho3(TestBuilder):
-    test_name = "echo"
-
-    def test_command(self):
+    def test_command3(self):
         # The command under test
         command = [f"./{self.test_name}"]
         result = subprocess.run(command, capture_output=True).stdout
