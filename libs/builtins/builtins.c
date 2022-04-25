@@ -8,6 +8,6 @@ int builtins_echo(t_command *cmd)
 
 int builtins_env(t_command *cmd)
 {
-	env();
+	env(cmd->envp);
 	return (0);
 }

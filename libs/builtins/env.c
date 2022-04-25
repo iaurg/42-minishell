@@ -1,13 +1,13 @@
 #include "../../includes/builtins.h"
 
-int	env(void)
+int	env(char *envp[])
 {
 	int	i;
 
 	i = -1;
-	while (__environ[++i])
+	while (envp[++i])
 	{
-		write(STDOUT_FILENO, __environ[i], ft_strlen(__environ[i]));
+		write(STDOUT_FILENO, envp[i], ft_strlen(envp[i]));
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	return (0);
