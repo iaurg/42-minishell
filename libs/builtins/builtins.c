@@ -13,7 +13,6 @@ int builtins_echo(t_command *cmd)
 
 int builtins_env(t_command *cmd)
 {
-	printf("env! %s\n", cmd->argv[0]);
-	env();
+	env(cmd->envp);
 	return (0);
 }
