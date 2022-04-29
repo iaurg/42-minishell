@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtins_export.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/28 23:02:52 by vwildner          #+#    #+#             */
+/*   Updated: 2022/04/28 23:58:28 by vwildner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/builtins.h"
 
 static int	first_char_is_equal(const char *first)
@@ -16,7 +28,7 @@ static int	has_equals(const char *first)
 
 static int	print_export_err(const char *arg, int errnum)
 {
-	printf("bash: export: `%s': not a valid identifier\n", arg);
+	fprintf(stderr, "bash: export: `%s': not a valid identifier\n", arg);
 	return (errnum);
 }
 
@@ -29,14 +41,26 @@ static int	handle_key_value(t_command *cmd)
 
 int	builtins_export(t_command *cmd)
 {
+	char	*tmp;
+	int		status;
+
 	if (has_equals(cmd->argv[0]))
 		return (handle_key_value(cmd));
 	if (first_char_is_equal(cmd->argv[1]))
 		return (print_export_err(cmd->argv[1], 1));
-	if (!has_equals(cmd->argv[1]) && has_equals(cmd->argv[2]))
+	if ((!has_equals(cmd->argv[1])) && (cmd->argv[2] == NULL))
+	{
+		tmp = ft_strjoin(cmd->argv[1], "=");
+		status = export(tmp, cmd->envp);
+		free(tmp);
+		return (status);
+	}
+	if ((!has_equals(cmd->argv[1])) && (has_equals(cmd->argv[2])))
 		return (print_export_err(cmd->argv[2], 2));
 	if (has_equals(cmd->argv[1]))
 		return (export(cmd->argv[1], cmd->envp));
+	if ((cmd->argv[1] == NULL))
+		return (env(cmd->envp));
 	perror("Unknown error");
 	return (-1);
 }
