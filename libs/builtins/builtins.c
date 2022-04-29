@@ -2,13 +2,18 @@
 
 int builtins_echo(t_command *cmd)
 {
-	printf("echo!\n");
+	if (cmd->argc <= 1)
+	{
+		write(STDOUT_FILENO, "\n", 1);
+		return (0);
+	}
+	echo(cmd->argv, 1);
 	return (0);
 }
 
 int builtins_env(t_command *cmd)
 {
-	env();
+	env(cmd->envp);
 	return (0);
 }
 

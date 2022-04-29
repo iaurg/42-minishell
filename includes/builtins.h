@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/04/23 14:55:13 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/04/29 20:26:19 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ typedef struct s_command {
 typedef int	t_dispatcher(t_command *cmd);
 
 /* internal functions */
-int			env(void);
+int			env(char *envp[]);
 int			export(char *arg, char *envp[]);
+int			echo(char **args, int fd);
 
 /* public interface */
 int			builtins_echo(t_command *cmd);

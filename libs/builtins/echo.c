@@ -1,16 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_echo.c                                         :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/16 13:35:08 by itaureli          #+#    #+#             */
-/*   Updated: 2022/04/13 09:16:18 by vwildner         ###   ########.fr       */
+/*   Created: 2022/04/20 04:54:03 by itaureli          #+#    #+#             */
+/*   Updated: 2022/04/25 19:57:53 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	cmd_echo(void)
+#include "../../includes/builtins.h"
+
+static int	check_flag_n(char *args)
 {
+	if (ft_strncmp(args, "-n", 1) == 0)
+		return (1);
+	return (0);
+}
+
+int	echo(char **args, int fd)
+{
+	int i;
+	int has_n;
+
+	i = 0;
+	has_n = check_flag_n(args[0]);
+
+	if (has_n)
+		i++;
+	while (args[i])
+	{
+		write(fd, args[i], ft_strlen(args[i]));
+		if (args[i + 1])
+			write(fd, " ", 1);
+		i++;
+	}
+	if (has_n)
+		return (0);
+	write(fd, "\n", 1);
 	return (0);
 }

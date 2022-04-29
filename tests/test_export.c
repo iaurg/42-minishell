@@ -17,7 +17,7 @@ int main(int argc, char *argv[], char *envp[])
 	char *token;
 	char *delim = "=";
 	token = strtok(cmd.argv[1], delim);
-	printf(getenv(token));
+	printf("%s", getenv(token));
 	printf("\n");
 	return (0);
 }
