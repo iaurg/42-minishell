@@ -130,31 +130,34 @@ MU_TEST(token_with_empty_expression) {
 	char **parsed = parse_input(test_string);
 	mu_assert_string_eq("ls", parsed[0]);
 	mu_assert_string_eq("-la", parsed[1]);
-	mu_assert_string_eq("$(", parsed[2]);
-	mu_assert_string_eq(")", parsed[3]);
-	mu_assert_string_eq(NULL, parsed[4]);
+	mu_assert_string_eq("$", parsed[2]);
+	mu_assert_string_eq("(", parsed[3]);
+	mu_assert_string_eq(")", parsed[4]);
+	mu_assert_string_eq(NULL, parsed[5]);
 }
 
 MU_TEST(token_with_precedent_expression_a) {
 	char *test_string = "echo $(echo hello)";
 	char **parsed = parse_input(test_string);
 	mu_assert_string_eq("echo", parsed[0]);
-	mu_assert_string_eq("$(", parsed[1]);
-	mu_assert_string_eq("echo", parsed[2]);
-	mu_assert_string_eq("hello", parsed[3]);
-	mu_assert_string_eq(")", parsed[4]);
-	mu_assert_string_eq(NULL, parsed[5]);
+	mu_assert_string_eq("$", parsed[1]);
+	mu_assert_string_eq("(", parsed[2]);
+	mu_assert_string_eq("echo", parsed[3]);
+	mu_assert_string_eq("hello", parsed[4]);
+	mu_assert_string_eq(")", parsed[5]);
+	mu_assert_string_eq(NULL, parsed[6]);
 }
 
 MU_TEST(token_with_precedent_expression_b) {
 	char *test_string = "ls $(echo -la)";
 	char **parsed = parse_input(test_string);
 	mu_assert_string_eq("ls", parsed[0]);
-	mu_assert_string_eq("$(", parsed[1]);
-	mu_assert_string_eq("echo", parsed[2]);
-	mu_assert_string_eq("-la", parsed[3]);
-	mu_assert_string_eq(")", parsed[4]);
-	mu_assert_string_eq(NULL, parsed[5]);
+	mu_assert_string_eq("$", parsed[1]);
+	mu_assert_string_eq("(", parsed[2]);
+	mu_assert_string_eq("echo", parsed[3]);
+	mu_assert_string_eq("-la", parsed[4]);
+	mu_assert_string_eq(")", parsed[5]);
+	mu_assert_string_eq(NULL, parsed[6]);
 }
 
 MU_TEST_SUITE(test_suite) {
@@ -173,8 +176,8 @@ MU_TEST_SUITE(test_suite) {
 	MU_RUN_TEST(token_with_empty_expression);
 	MU_RUN_TEST(token_with_backslash);
 	MU_RUN_TEST(token_with_backslash_and_newline);
-	//MU_RUN_TEST(token_with_precedent_expression_a);
-	//MU_RUN_TEST(token_with_precedent_expression_b);
+	MU_RUN_TEST(token_with_precedent_expression_a);
+	MU_RUN_TEST(token_with_precedent_expression_b);
 }
 
 int main(int argc, char *argv[])

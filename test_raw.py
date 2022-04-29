@@ -1,8 +1,12 @@
-import unittest
+#!/usr/bin/env python
 import subprocess
 import glob
+import sys
 
-TEST_NAME = "echo"
+# Compiles builtins tests for you
+# Usage: ./test_raw.py <command name>
+
+TEST_NAME = sys.argv[1]
 
 builtins = glob.glob("./libs/builtins/*.c")
 libft = glob.glob("./libs/libft/*.c")

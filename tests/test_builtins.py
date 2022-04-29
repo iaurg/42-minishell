@@ -77,6 +77,19 @@ class TestExport(TestBuilder):
 
         self.assertEqual(result, expected_result)
 
+    @unittest.skip("This test is system dependent")
+    def test_equals_in_first_argument(self):
+        command = [f"./{self.test_name}", "="]
+        result = subprocess.run(command, capture_output=True).stderr
+
+        bash_emulated_command = "export ="
+        expected_result = subprocess.run(
+            bash_emulated_command, shell=True, capture_output=True
+        ).stderr
+
+        # `[6:]` and `[17:]` strip the executable path from both shells
+        self.assertEqual(result[6:], expected_result[17:])
+
 class TestExportAlt(TestBuilderAlt):
     test_name = "export"
     def test_command_successful(self):
@@ -91,6 +104,11 @@ class TestExportAlt(TestBuilderAlt):
 
         self.assertEqual(result, expected_result)
 
+    def test_argument_with_no_equals(self):
+        command = [f"./{self.test_name}", "export", "FOO"]
+        result = subprocess.run(command, capture_output=True).stdout
+
+        self.assertEqual(result, b"(null)\n")
 
 if __name__ == "__main__":
     unittest.main()
