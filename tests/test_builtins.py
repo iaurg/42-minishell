@@ -77,6 +77,7 @@ class TestExport(TestBuilder):
 
         self.assertEqual(result, expected_result)
 
+    @unittest.skip("This test is system dependent")
     def test_equals_in_first_argument(self):
         command = [f"./{self.test_name}", "="]
         result = subprocess.run(command, capture_output=True).stderr
