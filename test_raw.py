@@ -17,7 +17,7 @@ command = [
     "-Wextra",
     "-o",
     TEST_NAME,
-    f"./tests/test_{TEST_NAME}_alt.c",
+    f"./tests/test_{TEST_NAME}.c",
     *builtins,
     *libft,
 ]
