@@ -1,8 +1,12 @@
-import unittest
+#!/usr/bin/env python
 import subprocess
 import glob
+import sys
 
-TEST_NAME = "echo"
+# Compiles builtins tests for you
+# Usage: ./test_raw.py <command name>
+
+TEST_NAME = sys.argv[1]
 
 builtins = glob.glob("./libs/builtins/*.c")
 libft = glob.glob("./libs/libft/*.c")
@@ -13,7 +17,7 @@ command = [
     "-Wextra",
     "-o",
     TEST_NAME,
-    f"./tests/test_{TEST_NAME}.c",
+    f"./tests/test_{TEST_NAME}_alt.c",
     *builtins,
     *libft,
 ]
