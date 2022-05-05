@@ -13,7 +13,7 @@ SOURCES += ft_substr.c ft_strjoin.c ft_strtrim.c
 SOURCES += ft_split.c ft_putchar_fd.c ft_putstr_fd.c
 SOURCES += ft_putendl_fd.c ft_putnbr_fd.c ft_strmapi.c
 SOURCES += ft_striteri.c ft_itoa.c get_next_line.c
-SOURCES += ft_getenv.c
+SOURCES += ft_getenv.c ft_strtok.c
 
 # Use same files from sources, but change .c to .o
 OBJECTS = ${SOURCES:.c=.o}
