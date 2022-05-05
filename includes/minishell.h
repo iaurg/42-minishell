@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/04/18 22:46:56 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/04 17:59:47 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ int		take_input(char *input_text);
 char	**parse_input(char *input_text);
 int		pwd(void);
 void	signal_handler(int signal_number);
+
+int		execute(char *args[], char *envp[]);
 
 #endif

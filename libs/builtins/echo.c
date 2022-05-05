@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 04:54:03 by itaureli          #+#    #+#             */
-/*   Updated: 2022/04/25 19:57:53 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/04 22:54:40 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	check_flag_n(char *args)
 {
-	if (ft_strncmp(args, "-n", 1) == 0)
+	if (ft_strncmp(args, "-n", 2) == 0)
 		return (1);
 	return (0);
 }
@@ -24,9 +24,9 @@ int	echo(char **args, int fd)
 	int i;
 	int has_n;
 
-	i = 0;
-	has_n = check_flag_n(args[0]);
-
+	//setbuffer(stdout, NULL, 0);
+	i = 1;
+	has_n = check_flag_n(args[i]);
 	if (has_n)
 		i++;
 	while (args[i])
@@ -37,7 +37,10 @@ int	echo(char **args, int fd)
 		i++;
 	}
 	if (has_n)
+	{
+		//fflush(stdout);
 		return (0);
+	}
 	write(fd, "\n", 1);
 	return (0);
 }

@@ -6,38 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/03 22:48:51 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/04 21:48:11 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int	execute(char *args[], char *envp[])
-{
-	pid_t		pid;
-	pid_t		wpid;
-	int			status;
-
-	pid = fork();
-	if (pid == 0)
-	{
-		if (execvp(args[0], args) == -1)
-			perror("Command not found");
-		exit(EXIT_FAILURE);
-	}
-	else if (pid < 0)
-	{
-		perror("Error forking");
-		return (0);
-	}
-	else
-	{
-		wpid = waitpid(pid, &status, WUNTRACED);
-		while (!WIFEXITED(status) && !WIFSIGNALED(status))
-			wpid = waitpid(pid, &status, WUNTRACED);
-	}
-	return (1);
-}
 
 //void	handle_inner_arg(char *args)
 //{
@@ -55,6 +28,9 @@ int	execute(char *args[], char *envp[])
 
 void	handle_dollar_sign(char **args, char *tmp, int i)
 {
+	size_t	len;
+
+	len = ft_strlen(args[i]);
 	if (args[i][0] == '$')
 	{
 		tmp = getenv(&args[i][1]);
@@ -63,6 +39,13 @@ void	handle_dollar_sign(char **args, char *tmp, int i)
 			free(args[i]);
 			args[i] = tmp;
 		}
+		else if (len == 1)
+			return ;
+		else
+		{
+			free(args[i]);
+			args[i] = ft_strdup("");
+		}
 	}
 }
 
@@ -70,6 +53,7 @@ void	expand_args(char *args[], char *envp[])
 {
 	int		i;
 	char	*tmp;
+	size_t	len;
 
 	i = -1;
 	tmp = NULL;
@@ -79,11 +63,13 @@ void	expand_args(char *args[], char *envp[])
 		if (args[i][0] == '~')
 		{
 			tmp = getenv("HOME");
-			if (tmp)
-			{
-				free(args[i]);
+			printf("tmp: %s\n", tmp);
+			len = ft_strlen(args[i]);
+			free(args[i]);
+			if (len > 1)
 				args[i] = ft_strjoin(tmp, &args[i][1]);
-			}
+			else
+				args[i] = ft_strdup(tmp);
 		}
 	}
 }
