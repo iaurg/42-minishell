@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 07:38:35 by itaureli          #+#    #+#             */
-/*   Updated: 2022/04/13 08:01:25 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/05 20:45:43 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,6 @@ void		ft_striteri(char *s, void (*f)(unsigned int, char *));
 char		*ft_itoa(int n);
 char		**ft_split(char const *s, char c);
 char		*ft_getenv(const char *env);
+char	*ft_strtok(char *str, char *delim);
+
 #endif
