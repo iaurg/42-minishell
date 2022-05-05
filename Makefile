@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/04/23 07:32:23 by itaureli         ###   ########.fr        #
+#    Updated: 2022/05/04 23:26:11 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		=	minishell.c readline.c wip_lexer.c print_error.c
+SRC		=	minishell.c readline.c wip_lexer.c print_error.c execute.c
 
 SRC_PATH = ./src
 
@@ -49,9 +49,9 @@ TESTS = $(addprefix $(TEST_PATH)/,$(TEST_FILES))
 
 # Builtins library
 
-BUILTINS_NAME = builtins.a
+BUILTINS_NAME = libbuiltins.a
 
-BUILTINS_SOURCES_FILES		= builtins.c echo.c dispatcher.c env.c export.c
+BUILTINS_SOURCES_FILES		= builtins.c echo.c dispatcher.c env.c export.c builtins_export.c
 
 BUILTINS_SOURCES_PATH = ./libs/builtins
 
@@ -64,11 +64,13 @@ BUILTINS_OBJECTS = $(addprefix $(BUILTINS_OBJECTS_PATH)/,$(subst .c,.o,$(BUILTIN
 BUILTINS_HEADER_FILE = builtins.h
 
 EXTERNAL_LIBS = -lreadline
+INTERNAL_LIBS = -lbuiltins -lft
 
 INCLUDES_PATH = ./includes
 
 BUILTINS_HEADER = $(addprefix $(INCLUDES_PATH)/,$(BUILTINS_HEADER_FILE))
 
+ARCHIVES_PATH = ./archives
 ARCHIVE = @ar -rc
 
 SAFE_MKDIR = mkdir -p
@@ -79,8 +81,13 @@ SAFE_MKDIR = mkdir -p
 all: $(NAME)
 
 $(NAME): $(LBFT_LIB) $(OBJECTS) $(MINI_HEADER)
-	$(CC) $(CFLAGS) $(OBJECTS) $(LBFT_LIB) -o $(NAME)
-	${MSG1}
+	gcc -g -Wall -Wextra -o minishell ./src/*.c ./libs/builtins/*.c ./libs/libft/*.c -C -lreadline
+
+#$(NAME): $(LBFT_LIB) $(OBJECTS) $(MINI_HEADER)
+#	$(CC) $(CFLAGS) -w -g $(OBJECTS) $(LBFT_LIB) -o $(NAME) -L $(ARCHIVES_PATH) $(EXTERNAL_LIBS) $(INTERNAL_LIBS)
+#	${MSG1}
+
+#$(CC) $(CFLAGS) $(OBJECTS) $(LBFT_LIB) -o $(NAME)
 
 libft: $(LBFT_LIB)
 

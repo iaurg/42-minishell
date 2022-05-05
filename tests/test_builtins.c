@@ -7,7 +7,7 @@ int main(void)
 	t_command cmd;
 
 	cmd = (t_command) {
-		.builtin = EXPORT,
+		.builtin = BUILTINS_EXPORT,
 		.argc = 0,
 		.argv = NULL,
 	};
