@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:58:19 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/04 21:52:58 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/05 19:59:13 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,13 @@ int	execute(char *args[], char *envp[])
 	pid_t		pid;
 	int			status;
 
+	if (try_builtins_exec(args, envp) == 0)
+		return (1);
 	pid = fork();
 	if (pid == 0)
 	{
-		if (try_builtins_exec(args, envp) != 0)
-		{
-			if (execvp(args[0], args) == -1)
-				perror("Command not found");
-		}
+		if (execvp(args[0], args) == -1)
+			perror("Command not found");
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
