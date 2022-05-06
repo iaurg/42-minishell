@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/05 22:05:34 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/05 22:13:23 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ms_getenv(char *envp[], char *key)
 		{
 			free(envp_key);
 			final = ft_strchr(envp[i], '=');
-			return(++final);
+			return (++final);
 		}
 		free(envp_key);
 		i++;
