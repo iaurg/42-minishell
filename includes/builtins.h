@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/04 20:26:32 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/05 23:55:56 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef int	t_dispatcher(t_command *cmd);
 int			env(char *envp[]);
 int			export(char *arg, char *envp[]);
 int			echo(char **args, int fd);
+int			unset(char *envp[], char *argv[]);
 
 /* public interface */
 int			builtins_echo(t_command *cmd);
