@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/04 21:48:11 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/05 22:05:34 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,36 @@
 //	}
 //}
 
-void	handle_dollar_sign(char **args, char *tmp, int i)
+char	*ms_getenv(char *envp[], char *key)
+{
+	char			*envp_key;
+	char			*final;
+	unsigned int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		envp_key = ft_strtok(envp[i], "=");
+		if (ft_strncmp(envp_key, key, ft_strlen(key)) == 0)
+		{
+			free(envp_key);
+			final = ft_strchr(envp[i], '=');
+			return(++final);
+		}
+		free(envp_key);
+		i++;
+	}
+	return (NULL);
+}
+
+void	handle_dollar_sign(char *envp[], char **args, char *tmp, int i)
 {
 	size_t	len;
 
 	len = ft_strlen(args[i]);
 	if (args[i][0] == '$')
 	{
-		tmp = getenv(&args[i][1]);
+		tmp = ms_getenv(envp, &args[i][1]);
 		if (tmp)
 		{
 			free(args[i]);
@@ -59,7 +81,7 @@ void	expand_args(char *args[], char *envp[])
 	tmp = NULL;
 	while (args[++i])
 	{
-		handle_dollar_sign(args, tmp, i);
+		handle_dollar_sign(envp, args, tmp, i);
 		if (args[i][0] == '~')
 		{
 			tmp = getenv("HOME");
