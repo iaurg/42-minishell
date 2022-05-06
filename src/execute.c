@@ -6,12 +6,21 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:58:19 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/05 19:59:13 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/05 22:07:00 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 #include "../includes/builtins.h"
+
+static t_command	*get_command(void)
+{
+	static t_command	*cmd;
+
+	if (!cmd)
+		cmd = (t_command *)malloc(sizeof(t_command));
+	return (cmd);
+}
 
 static t_builtin	translate_builtin(char *name)
 {
@@ -38,7 +47,7 @@ static t_command	*init_builtins(char *args[], char *envp[])
 
 	argc = 0;
 	builtin = translate_builtin(args[0]);
-	cmd = (t_command *)malloc(sizeof(t_command));
+	cmd = get_command();
 	while (args[argc])
 		argc++;
 	cmd->argc = argc;
