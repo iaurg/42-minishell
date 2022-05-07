@@ -4,15 +4,31 @@
 #include <stdlib.h>
 #include "../libs/libft/libft.h"
 
-t_list	*to_linked_list(char **envp)
+t_list	*ft_lstnew2(char *content)
 {
-	t_list	*list;
-	int i;
+	t_list	*element;
+	char	**splitted;
+
+	splitted = ft_split(content, '=');
+	element = (t_list *)malloc(sizeof(t_list));
+	if (element == NULL)
+		return (NULL);
+	element->key = splitted[0];
+	element->value = splitted[1];
+	element->content = content;
+	element->next = NULL;
+	return (element);
+}
+
+t_list	**to_linked_list(char **envp)
+{
+	t_list	**list;
+	int		i;
 
 	i = -1;
-	list = NULL;
+	list = (t_list **)malloc(sizeof(t_list *));
 	while (envp[++i])
-		ft_lstpush(&list, ft_lstnew(envp[i]));
+		ft_lstpush(list, ft_lstnew(envp[i]));
 	return (list);
 }
 
@@ -74,15 +90,15 @@ int	lst_del_node(t_list **list, char *key)
 
 int main(int argc, char *argv[], char *envp[])
 {
-	t_list	*list;
+	t_list	**list;
 	t_list *tmp;
 
 	list = to_linked_list(envp);
-	tmp = lst_find(list, "HOME");
-	lst_del_node(&list, "HOME");
-	lst_del_node(&list, "PATH");
-	lst_del_node(&list, "XDG_SEAT_PATH");
-	lst_del_node(&list, "XDG_SESSION_PATH");
-	lst_del_node(&list, "NAOTEM");
-	display_linked_list(list);
+	tmp = lst_find(*list, "HOME");
+	lst_del_node(list, "HOME");
+	lst_del_node(list, "PATH");
+	lst_del_node(list, "XDG_SEAT_PATH");
+	lst_del_node(list, "XDG_SESSION_PATH");
+	lst_del_node(list, "NAOTEM");
+	display_linked_list(*list);
 }
