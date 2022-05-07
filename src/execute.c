@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:58:19 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/05 22:07:00 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/06 22:17:58 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	execute(char *args[], char *envp[])
 	pid_t		pid;
 	int			status;
 
+	if(!args[0])
+		return (1);
 	if (try_builtins_exec(args, envp) == 0)
 		return (1);
 	pid = fork();
