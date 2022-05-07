@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:27:35 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/05 23:54:48 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/06 21:47:28 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	unset(char *envp[], char *argv[])
 		return (1);
 	while (envp[i])
 		i++;
-	free(envp[pos]);
 	envp[pos] = NULL;
 	ft_swap(&envp[pos], &envp[i - 1]);
 	return (0);
