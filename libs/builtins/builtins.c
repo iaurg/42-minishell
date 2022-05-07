@@ -29,7 +29,11 @@ int	builtins_exit(t_command *cmd)
 
 int	builtins_unset(t_command *cmd)
 {
-	unset(cmd->envp, cmd->argv);
+	size_t	size;
 
+	size = 0;
+	while (cmd->argv[size])
+		size++;
+	unset(&cmd->argv[1], cmd->envp, size - 1);
 	return (0);
 }

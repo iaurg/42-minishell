@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 07:38:35 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/06 21:44:06 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/07 03:00:56 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
  */
 typedef struct s_list
 {
-	void			*content;
+	char			*content;
+	char			*key;
+	char			*value;
 	struct s_list	*next;
-}				t_list;
+}					t_list;
 
 char		*get_next_line(int fd);
 void		free_and_reset(void *var);
