@@ -6,7 +6,7 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/05/07 00:34:42 by vwildner         ###   ########.fr        #
+#    Updated: 2022/05/07 20:52:18 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,9 +105,12 @@ $(BUILTINS_OBJECTS_PATH)/%.o: $(BUILTINS_SOURCES_PATH)/%.c $(BUILTINS_HEADER)
 	@$(SAFE_MKDIR) $(BUILTINS_OBJECTS_PATH)
 	@$(CC) $(CFLAGS) -g -I $(INCLUDES_PATH) -L ./archives/libft.a -o $@ -c $< $(EXTERNAL_LIBS)
 
-test: $(NAME)
-	$(CC) $(TESTS) -lrt -lm -o $(TEST_NAME)
-	./$(TEST_NAME)
+test:
+	@$(CC) tests/test_unit.c \
+	libs/libft/*.c libs/builtins/*.c \
+	src/wip_lexer.c src/readline.c src/print_error.c src/signal.c src/execute.c \
+	-lreadline -lrt -lm \
+	-o test_unit && ./test_unit
 
 test_builtins:
 	python3 -m unittest tests.test_builtins -c
