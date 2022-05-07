@@ -52,14 +52,14 @@ int cd_home(char **envp)
 	char *home;
 
 	home = NULL;
-	if ((home = get_env_value(envp, "HOME")) == NULL)
-		return (1);
+	//if ((home = get_env_value(envp, "HOME")) == NULL)
+	//	return (1);
 	if (chdir(home) == -1)
 		return (1);
 	return (0);
 }
 
-int	main(void)
+int	cd(void)
 {
 	printf("%s\n", get_cwd());
 	chdir("/home/italo/Documents/Studies/42");
