@@ -6,38 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/03 22:48:51 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/05 22:13:23 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int	execute(char *args[], char *envp[])
-{
-	pid_t		pid;
-	pid_t		wpid;
-	int			status;
-
-	pid = fork();
-	if (pid == 0)
-	{
-		if (execvp(args[0], args) == -1)
-			perror("Command not found");
-		exit(EXIT_FAILURE);
-	}
-	else if (pid < 0)
-	{
-		perror("Error forking");
-		return (0);
-	}
-	else
-	{
-		wpid = waitpid(pid, &status, WUNTRACED);
-		while (!WIFEXITED(status) && !WIFSIGNALED(status))
-			wpid = waitpid(pid, &status, WUNTRACED);
-	}
-	return (1);
-}
 
 //void	handle_inner_arg(char *args)
 //{
@@ -53,15 +26,47 @@ int	execute(char *args[], char *envp[])
 //	}
 //}
 
-void	handle_dollar_sign(char **args, char *tmp, int i)
+char	*ms_getenv(char *envp[], char *key)
 {
+	char			*envp_key;
+	char			*final;
+	unsigned int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		envp_key = ft_strtok(envp[i], "=");
+		if (ft_strncmp(envp_key, key, ft_strlen(key)) == 0)
+		{
+			free(envp_key);
+			final = ft_strchr(envp[i], '=');
+			return (++final);
+		}
+		free(envp_key);
+		i++;
+	}
+	return (NULL);
+}
+
+void	handle_dollar_sign(char *envp[], char **args, char *tmp, int i)
+{
+	size_t	len;
+
+	len = ft_strlen(args[i]);
 	if (args[i][0] == '$')
 	{
-		tmp = getenv(&args[i][1]);
+		tmp = ms_getenv(envp, &args[i][1]);
 		if (tmp)
 		{
 			free(args[i]);
 			args[i] = tmp;
+		}
+		else if (len == 1)
+			return ;
+		else
+		{
+			free(args[i]);
+			args[i] = ft_strdup("");
 		}
 	}
 }
@@ -70,20 +75,23 @@ void	expand_args(char *args[], char *envp[])
 {
 	int		i;
 	char	*tmp;
+	size_t	len;
 
 	i = -1;
 	tmp = NULL;
 	while (args[++i])
 	{
-		handle_dollar_sign(args, tmp, i);
+		handle_dollar_sign(envp, args, tmp, i);
 		if (args[i][0] == '~')
 		{
 			tmp = getenv("HOME");
-			if (tmp)
-			{
-				free(args[i]);
+			printf("tmp: %s\n", tmp);
+			len = ft_strlen(args[i]);
+			free(args[i]);
+			if (len > 1)
 				args[i] = ft_strjoin(tmp, &args[i][1]);
-			}
+			else
+				args[i] = ft_strdup(tmp);
 		}
 	}
 }

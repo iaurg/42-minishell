@@ -17,8 +17,17 @@ int builtins_env(t_command *cmd)
 	return (0);
 }
 
-int builtins_cd(t_command *cmd)
+int	builtins_cd(t_command *cmd)
 {
-	printf("cd!\n");
+	return (0);
+}
+
+int	builtins_exit(t_command *cmd)
+{
+	return (0);
+}
+
+int	builtins_unset(t_command *cmd)
+{
 	return (0);
 }

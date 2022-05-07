@@ -1,23 +1,30 @@
 #include "../../includes/builtins.h"
 
+static int	builtins_none(t_command *cmd)
+{
+	return (1);
+}
+
 static t_dispatcher *run_cmd(t_builtin number)
 {
-	static t_dispatcher	*execute[SIZE];
+	static t_dispatcher	*table[SIZE];
 
-	execute[EXPORT] = builtins_export;
-	execute[ENV] = builtins_env;
-	execute[ECHO] = builtins_echo;
-
-	return (execute[number]);
+	table[BUILTINS_EXPORT] = builtins_export;
+	table[ENV] = builtins_env;
+	table[ECHO] = builtins_echo;
+	table[CD] = builtins_cd;
+	table[EXIT] = builtins_exit;
+	table[UNSET] = builtins_unset;
+	table[SIZE] = builtins_none;
+	return (table[number]);
 }
 
 int run(t_command *cmd)
 {
-	int	status;
-	t_dispatcher *run;
+	int				status;
+	t_dispatcher	*run;
 
 	run = run_cmd(cmd->builtin);
 	status = (*run)(cmd);
-
 	return (status);
 }

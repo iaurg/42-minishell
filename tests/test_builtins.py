@@ -23,7 +23,7 @@ class TestEcho(TestBuilder):
 
     def test_command(self):
         # The command under test
-        command = [f"./{self.test_name}", "-n", "test", "test2", "test3", "-n"]
+        command = [f"./{self.test_name}", "echo", "-n", "test", "test2", "test3", "-n"]
         result = subprocess.run(command, capture_output=True).stdout
 
         # The bash equivalent
@@ -37,7 +37,7 @@ class TestEcho(TestBuilder):
 
     def test_command2(self):
         # The command under test
-        command = [f"./{self.test_name}", "test", "test2", "test3", "-n"]
+        command = [f"./{self.test_name}", "echo", "test", "test2", "test3", "-n"]
         result = subprocess.run(command, capture_output=True).stdout
 
         # The bash equivalent

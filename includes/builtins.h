@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/04/29 20:26:19 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/06 21:17:43 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ typedef enum builtin {
 	ECHO,
 	CD,
 	ENV,
-	EXPORT,
+	BUILTINS_EXPORT,
+	EXIT,
+	UNSET,
 	SIZE
 }	t_builtin;
 
@@ -49,6 +51,8 @@ int			builtins_echo(t_command *cmd);
 int			builtins_pwd(t_command *cmd);
 int			builtins_export(t_command *cmd);
 int			builtins_env(t_command *cmd);
+int			builtins_exit(t_command *cmd);
+int			builtins_unset(t_command *cmd);
 int			builtins_cd(t_command *cmd);
 
 /* executors */
