@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/07 04:42:49 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/07 05:53:58 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef int	t_dispatcher(t_command *cmd);
 int			env(t_list *envp[]);
 int			export(char *arg, t_list *envp[]);
 int			echo(char **args, int fd);
-int	unset(char *argv[], t_list *envp[], size_t size);
+int			unset(char *argv[], t_list *envp[], size_t size);
 
 /* public interface */
 int			builtins_echo(t_command *cmd);
@@ -61,9 +61,9 @@ int			run(t_command *cmd);
 
 /* utils */
 t_command	*init_builtins(char *envp[]);
-t_list	*lst_find(t_list **list, char *key);
-int		lst_del_node(t_list **list, char *key);
-char	*ms_getenv(t_list *envp[], char *key);
-t_list	*ft_lstnew2(char *content);
+t_list		*lst_find(t_list **list, char *key);
+int			lst_del_node(t_list **list, char *key);
+char		*ms_getenv(t_list *envp[], char *key);
+t_list		*ft_lstnew2(char *content);
 
 #endif

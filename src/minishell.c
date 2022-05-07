@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/07 05:16:17 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/07 05:53:00 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	expand_args(t_command *cmd)
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	char	buffer[1024];
-	int		status;
+	char		buffer[1024];
+	int			status;
 	t_command	*cmd;
 
 	if (argc > 1 && argv)
@@ -92,7 +92,6 @@ int	main(int argc, char *argv[], char *envp[])
 		if (take_input(buffer))
 			break ;
 		cmd->argv = parse_input(buffer);
-		for (int j = 0; cmd->argv[j]; j++)
 		expand_args(cmd);
 		status = execute(cmd);
 	}
