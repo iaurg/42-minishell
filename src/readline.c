@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/06 22:13:30 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/06 22:26:13 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	take_input(char *input_text)
 	display = get_inline_shell_display();
 	buffer = readline(display);
 	free(display);
-
 	if (buffer)
 	{
 		save_history(buffer);
