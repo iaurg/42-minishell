@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstunshift.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/29 18:12:54 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/06 18:30:04 by vwildner         ###   ########.fr       */
+/*   Created: 2021/05/29 18:12:58 by vwildner          #+#    #+#             */
+/*   Updated: 2022/05/06 21:34:10 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstunshift(t_list **lst, t_list *new)
 {
 	t_list	*tmp;
 
-	if (new == NULL)
-		return ;
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	tmp = ft_lstlast(*lst);
-	tmp->next = new;
+	tmp = *lst;
+	*lst = new;
+	new->next = tmp;
 }
