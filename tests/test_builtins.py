@@ -110,5 +110,20 @@ class TestExportAlt(TestBuilderAlt):
 
         self.assertEqual(result, b"(null)\n")
 
+class TestUnset(TestBuilder):
+    test_name = "unset"
+
+    @unittest.skip("This builtin is not implemented yet")
+    def test_command_successful(self):
+        command = [f"./{self.test_name}", "FOO=bar"]
+        result = subprocess.run(command, capture_output=True).stdout
+
+        bash_emulated_command = "export FOO=bar; unset FOO; echo $FOO"
+        expected_result = subprocess.run(
+            bash_emulated_command, shell=True, capture_output=True
+        ).stdout
+
+        self.assertEqual(result, expected_result)
+
 if __name__ == "__main__":
     unittest.main()
