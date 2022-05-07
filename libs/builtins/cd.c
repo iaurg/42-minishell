@@ -30,6 +30,35 @@ char *get_cwd(void)
 	return (cwd);
 }
 
+// check if go up one directory
+int cd_up(char *cwd)
+{
+	char *tmp;
+
+	tmp = NULL;
+	if (cwd == NULL)
+		return (1);
+	if ((tmp = ft_strrchr(cwd, '/')) == NULL)
+		return (1);
+	if (tmp == cwd)
+		return (1);
+	*tmp = '\0';
+	return (0);
+}
+
+// cd ~ getenv("HOME")
+int cd_home(char **envp)
+{
+	char *home;
+
+	home = NULL;
+	if ((home = get_env_value(envp, "HOME")) == NULL)
+		return (1);
+	if (chdir(home) == -1)
+		return (1);
+	return (0);
+}
+
 int	main(void)
 {
 	printf("%s\n", get_cwd());
