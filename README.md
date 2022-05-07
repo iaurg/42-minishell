@@ -37,6 +37,8 @@ little bash or zsh. You will learn a lot about processes and file descriptors.
 
 [mini wiki](https://github.com/jmartini89/42_minishell/wiki)
 
+[soraia whimsical](https://whimsical.com/minishell-83Uso4CdWN3vAo736XT8rH)
+
 ## How shell interpret a input
 
 1. shell has analyzed input in the following way:
