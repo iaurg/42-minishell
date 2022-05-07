@@ -29,5 +29,7 @@ int	builtins_exit(t_command *cmd)
 
 int	builtins_unset(t_command *cmd)
 {
+	unset(cmd->envp, cmd->argv);
+
 	return (0);
 }
