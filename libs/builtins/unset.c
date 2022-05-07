@@ -6,47 +6,24 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:27:35 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/06 21:47:28 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/07 04:45:55 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
 
-static void	ft_swap(char **a, char **b)
+int	unset(char *argv[], t_list *envp[], size_t size)
 {
-	char *tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-int	unset(char *envp[], char *argv[])
-{
-	char			*envp_key;
-	char			*key;;
+	t_list			*exists;
 	unsigned int	i;
-	unsigned int	pos;
 
 	i = 0;
-	pos = 0;
-	if (argv[1] != NULL)
-		key = argv[1];
-	else
-		return (1);
-	while (envp[i])
+	while (i < size)
 	{
-		envp_key = ft_strtok(envp[i], "=");
-		if (ft_strncmp(envp_key, key, ft_strlen(key)) == 0)
-			pos = i;
-		free(envp_key);
+		exists = lst_find(envp, argv[i]);
+		if (exists)
+			lst_del_node(envp, argv[i]);
 		i++;
 	}
-	if (!pos)
-		return (1);
-	while (envp[i])
-		i++;
-	envp[pos] = NULL;
-	ft_swap(&envp[pos], &envp[i - 1]);
 	return (0);
 }

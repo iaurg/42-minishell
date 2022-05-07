@@ -6,36 +6,21 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:46:25 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/05 20:46:26 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/07 04:23:46 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
 
-int	export(char *arg, char *envp[])
+int	export(char *arg, t_list *envp[])
 {
-	unsigned int	i;
+	t_list			*exists;
 	char			*arg_key;
-	char			*envp_key;
 
 	arg_key = ft_strtok(arg, "=");
-	i = 0;
-	while (envp[i])
-	{
-		envp_key = ft_strtok(envp[i], "=");
-		if (ft_strncmp(envp_key, arg_key, ft_strlen(arg_key)) == 0)
-		{
-			free(arg_key);
-			free(envp_key);
-			free(envp[i]);
-			envp[i] = ft_strdup(arg);
-			return (0);
-		}
-		free(envp_key);
-		i++;
-	}
-	free(arg_key);
-	envp[i] = ft_strdup(arg);
-	envp[i + 1] = NULL;
+	exists = lst_find(envp, arg_key);
+	if (exists)
+		lst_del_node(envp, arg_key);
+	ft_lstpush(envp, ft_lstnew2(arg));
 	return (0);
 }

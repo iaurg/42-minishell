@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/04 17:59:47 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/06 23:27:56 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 # include <sys/wait.h>
 # include <sys/types.h>
 # include "../libs/libft/libft.h"
+# include "../includes/builtins.h"
 # include "./error.h"
+
 /* DELIMITERS */
 # define CHAR_WHITESPACE ' '
 # define CHAR_TAB '\t'
@@ -44,6 +46,6 @@ char	**parse_input(char *input_text);
 int		pwd(void);
 void	signal_handler(int signal_number);
 
-int		execute(char *args[], char *envp[]);
+int		execute(t_command *cmd);
 
 #endif

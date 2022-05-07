@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 05:08:59 by itaureli          #+#    #+#             */
-/*   Updated: 2022/04/29 20:25:28 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/07 03:27:39 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
 
-int	env(char *envp[])
+int	env(t_list *envp[])
 {
-	int	i;
+	t_list	*tmp;
 
-	i = -1;
-	while (envp[++i])
+	tmp = *envp;
+	while (tmp)
 	{
-		write(STDOUT_FILENO, envp[i], ft_strlen(envp[i]));
+		write(STDOUT_FILENO, tmp->key, ft_strlen(tmp->key));
+		write(STDOUT_FILENO, "=", 1);
+		write(STDOUT_FILENO, tmp->value, ft_strlen(tmp->value));
 		write(STDOUT_FILENO, "\n", 1);
+		tmp = tmp->next;
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:58:19 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/05 23:49:36 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/07 05:35:37 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static t_builtin	translate_builtin(char *name)
 		return (ENV);
 	if (ft_strncmp(name, "echo", 4) == 0)
 		return (ECHO);
-	if (ft_strncmp(name, "export", 6) == 0)
+	if (ft_strncmp(name, "export", 6) == 0
+		|| (ft_strchr(name, '=') != NULL))
 		return (BUILTINS_EXPORT);
 	if (ft_strncmp(name, "unset", 5) == 0)
 		return (UNSET);
@@ -39,47 +40,40 @@ static t_builtin	translate_builtin(char *name)
 	return (SIZE);
 }
 
-static t_command	*init_builtins(char *args[], char *envp[])
+static void	refresh_builtins(t_command *cmd)
 {
-	t_command	*cmd;
-	int			argc;
+	int	argc;
 
 	argc = 0;
-	cmd = (t_command *)malloc(sizeof(t_command));
-	while (args[argc])
+	while (cmd->argv[argc])
 		argc++;
 	cmd->argc = argc;
-	cmd->argv = args;
-	cmd->envp = envp;
-	cmd->builtin = translate_builtin(args[0]);
-	return (cmd);
+	cmd->builtin = translate_builtin(cmd->argv[0]);
 }
 
-static int	try_builtins_exec(char *args[], char *envp[])
+static int	try_builtins_exec(t_command *cmd)
 {
-	t_command	*cmd;
 	int			status;
 
 	status = 1;
-	cmd = init_builtins(args, envp);
+	refresh_builtins(cmd);
 	status = run(cmd);
-	free(cmd);
 	return (status);
 }
 
-int	execute(char *args[], char *envp[])
+int	execute(t_command *cmd)
 {
 	pid_t		pid;
 	int			status;
 
-	if (!args[0])
+	if (!cmd->argv[0])
 		return (1);
-	if (try_builtins_exec(args, envp) == 0)
+	if (try_builtins_exec(cmd) == 0)
 		return (1);
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execvp(args[0], args) == -1)
+		if (execvp(cmd->argv[0], cmd->argv) == -1)
 			perror("Command not found");
 		exit(EXIT_FAILURE);
 	}

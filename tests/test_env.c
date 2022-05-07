@@ -2,14 +2,10 @@
 
 int main(int argc, char *argv[], char *envp[])
 {
-	t_command cmd;
+	t_command *cmd;
 
-	cmd = (t_command) {
-		.argc = argc,
-		.argv = argv,
-		.envp = envp
-	};
-
-	builtins_env(&cmd);
+	cmd = init_builtins(envp);
+	cmd->argv = argv;
+	builtins_env(cmd);
 	return (0);
 }

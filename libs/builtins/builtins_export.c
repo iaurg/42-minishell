@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 23:02:52 by vwildner          #+#    #+#             */
-/*   Updated: 2022/04/28 23:58:28 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/07 05:36:04 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,22 @@ static int	handle_key_value(t_command *cmd)
 	return (print_export_err(cmd->argv[1], 1));
 }
 
+static int	export_key_value_in_arg_zero(t_command *cmd)
+{
+	if (ft_strchr(cmd->argv[0], '=') != NULL)
+	{
+		export(cmd->argv[0], cmd->envp);
+		return (1);
+	}
+	return (0);
+}
+
 int	builtins_export(t_command *cmd)
 {
 	char	*tmp;
 	int		status;
-
+	if (export_key_value_in_arg_zero(cmd))
+		return (0);
 	if (has_equals(cmd->argv[0]))
 		return (handle_key_value(cmd));
 	if (first_char_is_equal(cmd->argv[1]))
@@ -52,7 +63,6 @@ int	builtins_export(t_command *cmd)
 	{
 		tmp = ft_strjoin(cmd->argv[1], "=");
 		status = export(tmp, cmd->envp);
-		free(tmp);
 		return (status);
 	}
 	if ((!has_equals(cmd->argv[1])) && (has_equals(cmd->argv[2])))

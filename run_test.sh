@@ -6,6 +6,6 @@
 cc tests/test_$1.c \
   libs/libft/*.c src/wip_lexer.c src/readline.c src/print_error.c src/signal.c \
   -lreadline -lrt -lm \
-  -o test_parse \
+  -o test_$1 \
     && ./test_$1 \
 	&& rm ./test_$1
