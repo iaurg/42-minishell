@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 07:38:35 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/06 18:37:14 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/06 21:44:06 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_list		*ft_lstnew(void *content);
  * @param lst The address of a pointer to the first link of a list
  * @param new The address of a pointer to the element to be added to the list
  */
-void		ft_lstadd_front(t_list **lst, t_list *new);
+void		ft_lstunshift(t_list **lst, t_list *new);
 
 /**
  * @brief Counts the number of elements in a list.
@@ -108,7 +108,7 @@ t_list		*ft_lstlast(t_list *lst);
  * @param new The address of a pointer to the element to be
  * added to the list.
  */
-void		ft_lstadd_back(t_list **lst, t_list *new);
+void		ft_lstpush(t_list **lst, t_list *new);
 
 /**
  * @brief Takes as a parameter an element and frees the
