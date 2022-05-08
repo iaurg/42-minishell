@@ -4,7 +4,7 @@
 # Usage: ./run_test.sh <test_name>
 
 cc tests/test_$1.c \
-  libs/libft/*.c libs/builtins/*.c src/wip_lexer.c src/readline.c src/print_error.c src/signal.c src/execute.c\
+  libs/libft/*.c libs/builtins/*.c $(find src/ -type f \( -iname "*.c" ! -iname "minishell*" \)) \
   -lreadline -lrt -lm \
   -o test_$1 \
     && ./test_$1 \

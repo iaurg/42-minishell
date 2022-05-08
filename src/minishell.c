@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/07 05:53:00 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/07 21:54:30 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	signal(SIGQUIT, SIG_IGN);
 	cmd = init_builtins(envp);
+	atexit_clean(cmd);
 	status = 1;
 	while (status)
 	{
@@ -95,6 +96,5 @@ int	main(int argc, char *argv[], char *envp[])
 		expand_args(cmd);
 		status = execute(cmd);
 	}
-	free(cmd);
 	return (0);
 }

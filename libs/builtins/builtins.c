@@ -24,6 +24,10 @@ int	builtins_cd(t_command *cmd)
 
 int	builtins_exit(t_command *cmd)
 {
+	if (cmd->argc > 1)
+		exit(ft_atoi(cmd->argv[1]));
+	else
+		exit(0);
 	return (0);
 }
 

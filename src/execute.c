@@ -6,12 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:58:19 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/07 05:35:37 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/08 02:28:07 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include "../includes/builtins.h"
 
 //static t_command	*get_command(void)
 //{
@@ -63,27 +62,9 @@ static int	try_builtins_exec(t_command *cmd)
 
 int	execute(t_command *cmd)
 {
-	pid_t		pid;
-	int			status;
-
 	if (!cmd->argv[0])
 		return (1);
 	if (try_builtins_exec(cmd) == 0)
 		return (1);
-	pid = fork();
-	if (pid == 0)
-	{
-		if (execvp(cmd->argv[0], cmd->argv) == -1)
-			perror("Command not found");
-		exit(EXIT_FAILURE);
-	}
-	else if (pid < 0)
-		return (0);
-	else
-	{
-		waitpid(pid, &status, WUNTRACED);
-		while (!WIFEXITED(status) && !WIFSIGNALED(status))
-			waitpid(pid, &status, WUNTRACED);
-	}
-	return (1);
+	return (system_exec(cmd));
 }
