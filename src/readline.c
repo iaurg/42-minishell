@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/06 22:26:13 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/08 12:12:29 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ static char	*get_inline_shell_display(void)
 
 	getcwd(cwd, 1024);
 	path = get_last_slash_arg(cwd);
-	tmp = ft_strdup("\r\033[1;31m[user@minishell ");
+	tmp = ft_strjoin(ft_strdup(getenv("USER")), "\033[0;31m@minishell ");
 	other = ft_strjoin(tmp, path);
 	free(tmp);
-	tmp = ft_strjoin(other, "]$ \033[0;0m");
+	tmp = ft_strjoin(other, " ~ $\033[0m ");
 	free(other);
 	return (tmp);
 }
