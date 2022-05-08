@@ -6,11 +6,11 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/05/07 20:52:18 by vwildner         ###   ########.fr        #
+#    Updated: 2022/05/07 21:52:40 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		=	minishell.c readline.c wip_lexer.c print_error.c execute.c
+SRC		=	minishell.c readline.c wip_lexer.c print_error.c execute.c utils.c
 
 SRC_PATH = ./src
 
