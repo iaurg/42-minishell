@@ -18,8 +18,6 @@ https://ftp.kh.edu.tw/Linux/Redhat/en_6.2/doc/gsg/s1-navigating-cd.htm
 https://www.geeksforgeeks.org/chdir-in-c-language-with-examples/
 */
 
-// gcc -Wall -Wextra -Werror -o cd_test ./libs/builtins/cd.c ./libs/libft/*.c && ./cd_test
-
 char *get_cwd(void)
 {
 	char *cwd;
@@ -59,10 +57,40 @@ int cd_home(char **envp)
 	return (0);
 }
 
-int	cd(void)
+int cd_dir(char **argv, char **envp)
 {
-	printf("%s\n", get_cwd());
-	chdir("/home/italo/Documents/Studies/42");
-	printf("%s\n", get_cwd());
+	char *cwd;
+	char *tmp;
+	char *tmp2;
+
+	cwd = NULL;
+	tmp = NULL;
+	tmp2 = NULL;
+	if (argv[1] == NULL)
+		return (1);
+	if ((cwd = get_cwd()) == NULL)
+		return (1);
+	if (ft_strncmp(argv[1], "~", 1) == 0)
+		return (cd_home(envp));
+	if (ft_strncmp(argv[1], "..", 2) == 0)
+		return (cd_up(cwd));
+	if (ft_strncmp(argv[1], ".", 1) == 0)
+		return (0);
+	if ((tmp = ft_strjoin(cwd, "/")) == NULL)
+		return (1);
+	if ((tmp2 = ft_strjoin(tmp, argv[1])) == NULL)
+		return (1);
+	if (chdir(tmp2) == -1)
+		return (1);
+	free(tmp);
+	free(tmp2);
+	return (0);
+}
+
+int	cd(char **argv, t_list *envp[])
+{
+	if (!envp)
+		return 0;
+	chdir("/home/italo/Documents/Studies/42/42-minishell/src");
 	return (0);
 }
