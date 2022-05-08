@@ -2,6 +2,7 @@
 
 static int	builtins_none(t_command *cmd)
 {
+	(void)cmd;
 	return (1);
 }
 
