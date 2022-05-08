@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/07 21:53:44 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/08 01:02:32 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	signal_handler(int signal_number);
 int		execute(t_command *cmd);
 
 void	atexit_clean(void *data);
+char	*get_abspath(char *cmd, const char *path);
 
 #endif
