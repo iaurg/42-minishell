@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/07 21:53:44 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/08 11:51:28 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ char	**parse_input(char *input_text);
 int		pwd(void);
 void	signal_handler(int signal_number);
 
+int		system_exec(t_command *cmd);
 int		execute(t_command *cmd);
 
 void	atexit_clean(void *data);
+char	*get_abspath(char *cmd, const char *path);
 
 #endif
