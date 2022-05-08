@@ -6,12 +6,13 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:58:19 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/07 05:35:37 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/08 02:15:50 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 #include "../includes/builtins.h"
+#include <fcntl.h>
 
 //static t_command	*get_command(void)
 //{
@@ -61,20 +62,60 @@ static int	try_builtins_exec(t_command *cmd)
 	return (status);
 }
 
-int	execute(t_command *cmd)
+char	**to_array(t_list **list)
+{
+	char	**array;
+	t_list	*tmp;
+	int		i;
+	int		size;
+
+	size = 0;
+	i = 0;
+	tmp = *list;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		size++;
+	}
+	array = (char **)malloc(sizeof(char *) * (size + 1));
+	tmp = *list;
+	while (tmp)
+	{
+		array[i] = tmp->content;
+		tmp = tmp->next;
+		i++;
+	}
+	return (array);
+}
+
+char	*solve_absolute_path(t_command *cmd)
+{
+	char	*first_arg;
+	char	*all_paths;
+
+	first_arg = cmd->argv[0];
+	if (*first_arg == '/' || *first_arg == '.')
+		return (first_arg);
+	all_paths = ms_getenv(cmd->envp, "PATH");
+	return (get_abspath(first_arg, all_paths));
+}
+
+int	system_exec(t_command *cmd)
 {
 	pid_t		pid;
 	int			status;
+	char		*abspath;
+	char		**compat_envp;
 
-	if (!cmd->argv[0])
-		return (1);
-	if (try_builtins_exec(cmd) == 0)
-		return (1);
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execvp(cmd->argv[0], cmd->argv) == -1)
+		compat_envp = to_array(cmd->envp);
+		abspath = solve_absolute_path(cmd);
+		if (execve(abspath, cmd->argv, compat_envp) == -1)
 			perror("Command not found");
+		free(compat_envp);
+		free(abspath);
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
@@ -86,4 +127,13 @@ int	execute(t_command *cmd)
 			waitpid(pid, &status, WUNTRACED);
 	}
 	return (1);
+}
+
+int	execute(t_command *cmd)
+{
+	if (!cmd->argv[0])
+		return (1);
+	if (try_builtins_exec(cmd) == 0)
+		return (1);
+	return (system_exec(cmd));
 }
