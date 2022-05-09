@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 07:02:18 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/09 08:14:11 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/09 09:35:26 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ static int	read_redirection(t_command *cmd, int i, int fd)
 			status = read(fd, &c, 1);
 			while (status)
 				status = read(fd, &c, 1);
-			if (status == -1)
-			{
-				write(2, "Couldn't read file\n", 19);
-				break ;
-			}
 		}
 		i++;
 		if (cmd->argv[i]
@@ -52,7 +47,7 @@ int	set_fd(t_command *cmd)
 	if (!cmd->argv[i])
 		return (1);
 	while (cmd->argv[i] && ft_memcmp(cmd->argv[i], ">", 2)
-			&& ft_memcmp(cmd->argv[i], ">>", 3))
+		&& ft_memcmp(cmd->argv[i], ">>", 3))
 		i++;
 	if (!cmd->argv[i])
 	{
@@ -94,8 +89,8 @@ static int	remove_redirect_args(t_command *cmd)
 	j = 0;
 	while (j < cmd->argc)
 	{
-		if (!ft_memcmp(cmd->argv[i], ">", 2) ||
-			!ft_memcmp(cmd->argv[i], ">>", 3))
+		if (!ft_memcmp(cmd->argv[i], ">", 2)
+			|| !ft_memcmp(cmd->argv[i], ">>", 3))
 			i += 2;
 		else
 			args[j++] = ft_strdup(cmd->argv[i++]);
@@ -115,7 +110,7 @@ int	handle_redirections(t_command *cmd)
 	if (remove_redirect_args(cmd))
 	{
 		write(STDERR_FILENO,
-				"Unexpected error while removing redirection args\n", 46);
+			"Unexpected error while removing redirection args\n", 46);
 		return (1);
 	}
 	return (0);
