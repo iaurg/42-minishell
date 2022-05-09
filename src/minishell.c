@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/07 21:54:30 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/09 07:00:03 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	expand_args(t_command *cmd)
 				cmd->argv[i] = ft_strdup(tmp);
 		}
 	}
+	cmd->argc = i;
 }
 
 int	main(int argc, char *argv[], char *envp[])
