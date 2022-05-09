@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 07:02:18 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/09 09:35:26 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/09 19:39:39 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,24 +79,19 @@ static int	count_redir(t_command *cmd)
 
 static int	remove_redirect_args(t_command *cmd)
 {
-	int		i;
-	int		j;
-	char	**args;
+	int		index;
+	int		redir_count;
 
-	cmd->argc -= count_redir(cmd);
-	args = (char **)ft_calloc(sizeof(char *), cmd->argc + 1);
-	i = 0;
-	j = 0;
-	while (j < cmd->argc)
+	redir_count = count_redir(cmd);
+	if (redir_count < 0)
+		return (1);
+	index = 0;
+	while (redir_count--)
 	{
-		if (!ft_memcmp(cmd->argv[i], ">", 2)
-			|| !ft_memcmp(cmd->argv[i], ">>", 3))
-			i += 2;
-		else
-			args[j++] = ft_strdup(cmd->argv[i++]);
+		index = (cmd->argc - 2) + redir_count;
+		free(cmd->argv[index]);
+		cmd->argv[index] = NULL;
 	}
-	free_matrix(cmd->argv);
-	cmd->argv = args;
 	return (0);
 }
 
