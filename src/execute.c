@@ -6,20 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:58:19 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/08 02:28:07 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/09 08:10:27 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-//static t_command	*get_command(void)
-//{
-//	static t_command	*cmd;
-
-//	if (!cmd)
-//		cmd = (t_command *)malloc(sizeof(t_command));
-//	return (cmd);
-//}
 
 static t_builtin	translate_builtin(char *name)
 {
@@ -39,23 +30,12 @@ static t_builtin	translate_builtin(char *name)
 	return (SIZE);
 }
 
-static void	refresh_builtins(t_command *cmd)
-{
-	int	argc;
-
-	argc = 0;
-	while (cmd->argv[argc])
-		argc++;
-	cmd->argc = argc;
-	cmd->builtin = translate_builtin(cmd->argv[0]);
-}
-
 static int	try_builtins_exec(t_command *cmd)
 {
 	int			status;
 
 	status = 1;
-	refresh_builtins(cmd);
+	cmd->builtin = translate_builtin(cmd->argv[0]);
 	status = run(cmd);
 	return (status);
 }
@@ -64,6 +44,8 @@ int	execute(t_command *cmd)
 {
 	if (!cmd->argv[0])
 		return (1);
+	if (handle_redirections(cmd))
+		return (0);
 	if (try_builtins_exec(cmd) == 0)
 		return (1);
 	return (system_exec(cmd));

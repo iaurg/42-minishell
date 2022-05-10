@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 22:26:51 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/05 20:01:08 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/09 07:25:30 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	len_token(char *str)
 	while (*str
 		&& *str != CHAR_WHITESPACE
 		&& *str != CHAR_PIPE && *str != CHAR_LESSER
-		&& *str != CHAR_GREATER && *str != CHAR_DOUBLE_QT
+		&& *str != CHAR_DOUBLE_QT
 		&& *str != CHAR_SINGLE_QT)
 	{
 		len++;

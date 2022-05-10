@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 05:08:59 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/09 07:45:23 by vwildner         ###   ########.fr       */
+/*   Created: 2022/05/09 06:12:21 by vwildner          #+#    #+#             */
+/*   Updated: 2022/05/09 06:12:22 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
+#include "libft.h"
 
-int	env(t_list *envp[], int fd)
+void	free_matrix(char **matrix)
 {
-	t_list	*tmp;
+	int	i;
 
-	tmp = *envp;
-	while (tmp)
-	{
-		write(fd, tmp->key, ft_strlen(tmp->key));
-		write(fd, "=", 1);
-		write(fd, tmp->value, ft_strlen(tmp->value));
-		write(fd, "\n", 1);
-		tmp = tmp->next;
-	}
-	return (0);
+	i = 0;
+	if (!matrix)
+		return ;
+	while (matrix[i])
+		free(matrix[i++]);
+	free(matrix);
 }

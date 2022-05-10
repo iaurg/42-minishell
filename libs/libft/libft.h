@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 07:38:35 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/07 03:00:56 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/09 06:12:52 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,5 +156,7 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
  * @return t_list* Returns the new list or NULL if the allocation fails.
  */
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+void		free_matrix(char **matrix);
 
 #endif

@@ -15,6 +15,7 @@ SOURCES += ft_putendl_fd.c ft_putnbr_fd.c ft_strmapi.c
 SOURCES += ft_striteri.c ft_itoa.c get_next_line.c
 SOURCES += ft_getenv.c ft_strtok.c
 SOURCES += ft_lstpush.c ft_lstunshift.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_lstsize.c
+SOURCES += ft_free.c
 
 # Use same files from sources, but change .c to .o
 OBJECTS = ${SOURCES:.c=.o}
