@@ -4,16 +4,16 @@ int builtins_echo(t_command *cmd)
 {
 	if (cmd->argc <= 1)
 	{
-		write(STDOUT_FILENO, "\n", 1);
+		write(cmd->fd, "\n", 1);
 		return (0);
 	}
-	echo(cmd->argv, 1);
+	echo(cmd->argv, cmd->fd);
 	return (0);
 }
 
 int builtins_env(t_command *cmd)
 {
-	env(cmd->envp);
+	env(cmd->envp, cmd->fd);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/08 11:51:28 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/09 08:10:08 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/history.h>
 # include <sys/wait.h>
 # include <sys/types.h>
+# include <fcntl.h>
 # include "../libs/libft/libft.h"
 # include "../includes/builtins.h"
 # include "./error.h"
@@ -46,10 +47,14 @@ char	**parse_input(char *input_text);
 int		pwd(void);
 void	signal_handler(int signal_number);
 
+/* executors */
 int		system_exec(t_command *cmd);
 int		execute(t_command *cmd);
 
+/* cleanup */
 void	atexit_clean(void *data);
 char	*get_abspath(char *cmd, const char *path);
 
+/* redirections */
+int		handle_redirections(t_command *cmd);
 #endif
