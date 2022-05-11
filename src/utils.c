@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 18:54:55 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/10 09:46:33 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/11 18:26:46 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,23 @@ char	*help_slash_merge(char const *origin, char const *other)
 	return (merged);
 }
 
+void	print_err_msg(char *command, char *msg)
+{
+	char	*err_msg;
+
+	err_msg = ft_strdup("bash: ");
+	err_msg = ft_strjoin(err_msg, command);
+	err_msg = ft_strjoin(err_msg, ": ");
+	err_msg = ft_strjoin(err_msg, msg);
+	err_msg = ft_strjoin(err_msg, "\n");
+	write(STDERR_FILENO, err_msg, ft_strlen(err_msg));
+	free(err_msg);
+}
+
 char	*get_abspath(t_command *cmd, char *command, const char *path)
 {
 	char	*file;
 	char	*dir;
-	char	*tmp;
 	int		diff;
 
 	while (*path)
@@ -76,11 +88,7 @@ char	*get_abspath(t_command *cmd, char *command, const char *path)
 		if (*path)
 			path++;
 	}
-	tmp = ft_strdup("bash: ");
-	tmp = ft_strjoin(tmp, command);
-	tmp = ft_strjoin(tmp, ": command not found\n");
-	write(cmd->fd, tmp, ft_strlen(tmp));
-	free(tmp);
+	print_err_msg(command, "command not found");
 	cmd->status = 127;
 	exit(EXIT_FAILURE);
 	return (NULL);
