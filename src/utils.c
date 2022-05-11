@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 18:54:55 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/08 11:51:23 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/10 09:46:33 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@ char	*help_slash_merge(char const *origin, char const *other)
 	return (merged);
 }
 
-char	*get_abspath(char *cmd, const char *path)
+char	*get_abspath(t_command *cmd, char *command, const char *path)
 {
 	char	*file;
 	char	*dir;
+	char	*tmp;
 	int		diff;
 
 	while (*path)
@@ -64,7 +65,7 @@ char	*get_abspath(char *cmd, const char *path)
 		if (diff < 0)
 			diff = ft_strlen(path);
 		dir = ft_substr(path, 0, diff);
-		file = help_slash_merge(dir, cmd);
+		file = help_slash_merge(dir, command);
 		free(dir);
 		if (access(file, X_OK) == 0)
 			return (file);
@@ -75,7 +76,12 @@ char	*get_abspath(char *cmd, const char *path)
 		if (*path)
 			path++;
 	}
-	perror(ft_strjoin(cmd, ": command not found\n"));
+	tmp = ft_strdup("bash: ");
+	tmp = ft_strjoin(tmp, command);
+	tmp = ft_strjoin(tmp, ": command not found\n");
+	write(cmd->fd, tmp, ft_strlen(tmp));
+	free(tmp);
+	cmd->status = 127;
 	exit(EXIT_FAILURE);
 	return (NULL);
 }
