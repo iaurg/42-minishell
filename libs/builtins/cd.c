@@ -1,29 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/11 20:31:33 by itaureli          #+#    #+#             */
+/*   Updated: 2022/05/11 20:32:01 by itaureli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/builtins.h"
-
-char *get_cwd(void)
-{
-	char *cwd;
-
-	cwd = NULL;
-	if ((cwd = getcwd(NULL, 0)) == NULL)
-		return (NULL);
-	return (cwd);
-}
-
-int cd_up(char *cwd)
-{
-	char *tmp;
-
-	tmp = NULL;
-	if (cwd == NULL)
-		return (1);
-	if ((tmp = ft_strrchr(cwd, '/')) == NULL)
-		return (1);
-	if (tmp == cwd)
-		return (1);
-	*tmp = '\0';
-	return (0);
-}
 
 int cd_home(t_list *envp[])
 {
@@ -36,13 +23,6 @@ int cd_home(t_list *envp[])
 		return (1);
 	return (0);
 }
-
-/*
-Edge cases
-If cd ./libs/libft -> . on first element calls wrong if
-if cd /libs/ -> / on first element calls wrong if
-Show error when wrong path
-*/
 
 static void print_cd_error(char *argv[])
 {
