@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/06 22:26:13 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/11 19:57:33 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,32 @@ static char	*get_last_slash_arg(char *arg)
 	return (args[j - 1]);
 }
 
-static char	*get_inline_shell_display(void)
+static char	*get_inline_shell_display(t_list *envp[])
 {
 	char	cwd[1025];
 	char	*tmp;
 	char	*other;
 	char	*path;
+	char	*tmp_user;
 
 	getcwd(cwd, 1024);
 	path = get_last_slash_arg(cwd);
-	tmp = ft_strdup("\r\033[1;31m[user@minishell ");
+	tmp_user = ft_strdup(ms_getenv(envp, "USER"));
+	tmp = ft_strjoin(tmp_user, "\033[0;31m@minishell ");
 	other = ft_strjoin(tmp, path);
+	free(tmp_user);
 	free(tmp);
-	tmp = ft_strjoin(other, "]$ \033[0;0m");
+	tmp = ft_strjoin(other, " ~ $\033[0m ");
 	free(other);
 	return (tmp);
 }
 
-int	take_input(char *input_text)
+int	take_input(char *input_text, t_command *cmd)
 {
 	char	*buffer;
 	char	*display;
 
-	display = get_inline_shell_display();
+	display = get_inline_shell_display(cmd->envp);
 	buffer = readline(display);
 	free(display);
 	if (buffer)

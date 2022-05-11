@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/11 18:23:48 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/11 20:00:58 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define CHAR_DBL_LESSER '<<'
 # define CHAR_NULL 0
 
-int		take_input(char *input_text);
+int		take_input(char *input_text, t_command *cmd);
 char	**parse_input(char *input_text);
 int		pwd(void);
 void	signal_handler(int signal_number);

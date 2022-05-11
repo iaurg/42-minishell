@@ -19,6 +19,7 @@ int builtins_env(t_command *cmd)
 
 int	builtins_cd(t_command *cmd)
 {
+	cd(cmd->argv, cmd->envp);
 	return (0);
 }
 

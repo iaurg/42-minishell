@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/10 08:51:09 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/11 20:00:59 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef int	t_dispatcher(t_command *cmd);
 int			env(t_list *envp[], int fd);
 int			export(char *arg, t_list *envp[]);
 int			echo(char **args, int fd);
+int			cd(char **args, t_list *envp[]);
 int			unset(char *argv[], t_list *envp[], size_t size);
 
 /* public interface */
