@@ -56,10 +56,8 @@ static void print_cd_error(char *argv[])
 // TO-DO: test more edge cases and bash comparisons
 int	cd(char *argv[], t_list *envp[])
 {
-	if (!envp)
+	if (!envp || argv[1] == NULL)
 		return 0;
-	if (argv[1] == NULL)
-		return (0);
 	if (chdir(argv[1]) < 0)
 	{
 		print_cd_error(argv);
