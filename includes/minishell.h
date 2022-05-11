@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/09 08:10:08 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/11 18:23:48 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,12 @@ int		execute(t_command *cmd);
 
 /* cleanup */
 void	atexit_clean(void *data);
-char	*get_abspath(char *cmd, const char *path);
+char	*get_abspath(t_command *cmd, char *command, const char *path);
 
 /* redirections */
 int		handle_redirections(t_command *cmd);
+
+/* utilities */
+void	print_err_msg(char *command, char *msg);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:27:35 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/07 04:46:28 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/10 09:37:12 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_command	*init_builtins(char *envp[])
 	t_command	*cmd;
 
 	cmd = (t_command *)malloc(sizeof(t_command));
+	cmd->status = 0;
 	cmd->envp = to_linked_list(envp);
 	return (cmd);
 }
