@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 18:54:55 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/08 11:51:23 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/11 18:26:46 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,20 @@ char	*help_slash_merge(char const *origin, char const *other)
 	return (merged);
 }
 
-char	*get_abspath(char *cmd, const char *path)
+void	print_err_msg(char *command, char *msg)
+{
+	char	*err_msg;
+
+	err_msg = ft_strdup("bash: ");
+	err_msg = ft_strjoin(err_msg, command);
+	err_msg = ft_strjoin(err_msg, ": ");
+	err_msg = ft_strjoin(err_msg, msg);
+	err_msg = ft_strjoin(err_msg, "\n");
+	write(STDERR_FILENO, err_msg, ft_strlen(err_msg));
+	free(err_msg);
+}
+
+char	*get_abspath(t_command *cmd, char *command, const char *path)
 {
 	char	*file;
 	char	*dir;
@@ -64,7 +77,7 @@ char	*get_abspath(char *cmd, const char *path)
 		if (diff < 0)
 			diff = ft_strlen(path);
 		dir = ft_substr(path, 0, diff);
-		file = help_slash_merge(dir, cmd);
+		file = help_slash_merge(dir, command);
 		free(dir);
 		if (access(file, X_OK) == 0)
 			return (file);
@@ -75,7 +88,8 @@ char	*get_abspath(char *cmd, const char *path)
 		if (*path)
 			path++;
 	}
-	perror(ft_strjoin(cmd, ": command not found\n"));
+	print_err_msg(command, "command not found");
+	cmd->status = 127;
 	exit(EXIT_FAILURE);
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/11 19:55:08 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/11 20:00:57 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@
 //	}
 //}
 
+int	handle_status(t_command *cmd, int i)
+{
+	if (cmd->argv[i][1] == '?'
+		&& cmd->argv[i][2] == '\0')
+	{
+		free(cmd->argv[i]);
+		cmd->argv[i] = ft_itoa(cmd->status);
+		return (1);
+	}
+	return (0);
+}
+
 void	handle_dollar_sign(t_command *cmd, char *tmp, int i)
 {
 	size_t	len;
@@ -33,6 +45,8 @@ void	handle_dollar_sign(t_command *cmd, char *tmp, int i)
 	len = ft_strlen(cmd->argv[i]);
 	if (cmd->argv[i][0] == '$')
 	{
+		if (handle_status(cmd, i))
+			return ;
 		tmp = ms_getenv(cmd->envp, &cmd->argv[i][1]);
 		if (tmp)
 		{

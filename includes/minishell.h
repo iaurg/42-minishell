@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/11 19:56:43 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/11 20:00:58 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,12 @@ int		execute(t_command *cmd);
 
 /* cleanup */
 void	atexit_clean(void *data);
-char	*get_abspath(char *cmd, const char *path);
+char	*get_abspath(t_command *cmd, char *command, const char *path);
 
 /* redirections */
 int		handle_redirections(t_command *cmd);
+
+/* utilities */
+void	print_err_msg(char *command, char *msg);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/09 21:09:42 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/11 20:00:59 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_command {
 	char		**argv;
 	t_list		**envp;
 	t_builtin	builtin;
+	int			status;
 }	t_command;
 
 typedef int	t_dispatcher(t_command *cmd);
