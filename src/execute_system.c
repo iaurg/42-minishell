@@ -6,11 +6,26 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/10 19:12:01 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/11 18:33:32 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	ft_listlen(t_list **list)
+{
+	t_list	*tmp;
+	int	len;
+
+	len = 0;
+	tmp = *list;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		len++;
+	}
+	return (len);
+}
 
 char	**to_array(t_list **list)
 {
@@ -19,21 +34,14 @@ char	**to_array(t_list **list)
 	int		i;
 	int		size;
 
-	size = 0;
 	i = 0;
+	size = ft_listlen(list);
 	tmp = *list;
-	while (tmp)
-	{
-		tmp = tmp->next;
-		size++;
-	}
 	array = (char **)malloc(sizeof(char *) * (size + 1));
-	tmp = *list;
 	while (tmp)
 	{
-		array[i] = tmp->content;
+		array[i++] = tmp->content;
 		tmp = tmp->next;
-		i++;
 	}
 	return (array);
 }
