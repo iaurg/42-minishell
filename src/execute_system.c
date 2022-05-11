@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/11 18:33:32 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/11 18:40:56 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_listlen(t_list **list)
 {
 	t_list	*tmp;
-	int	len;
+	int		len;
 
 	len = 0;
 	tmp = *list;
@@ -58,22 +58,28 @@ char	*solve_absolute_path(t_command *cmd)
 	return (get_abspath(cmd, first_arg, all_paths));
 }
 
+void	execute_child_command(t_command *cmd)
+{
+	char	*abspath;
+	char	**compat_envp;
+
+	compat_envp = to_array(cmd->envp);
+	abspath = solve_absolute_path(cmd);
+	if (execve(abspath, cmd->argv, compat_envp) == -1)
+		perror("Command not found");
+	free(compat_envp);
+	free(abspath);
+}
+
 int	system_exec(t_command *cmd)
 {
-	pid_t		pid;
-	int			status;
-	char		*abspath;
-	char		**compat_envp;
+	pid_t	pid;
+	int		status;
 
 	pid = fork();
 	if (pid == 0)
 	{
-		compat_envp = to_array(cmd->envp);
-		abspath = solve_absolute_path(cmd);
-		if (execve(abspath, cmd->argv, compat_envp) == -1)
-			perror("Command not found");
-		free(compat_envp);
-		free(abspath);
+		execute_child_command(cmd);
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
