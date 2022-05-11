@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/09 07:00:03 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/11 19:55:08 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	main(int argc, char *argv[], char *envp[])
 	status = 1;
 	while (status)
 	{
-		if (take_input(buffer))
+		if (take_input(buffer, cmd))
 			break ;
 		cmd->argv = parse_input(buffer);
 		expand_args(cmd);
