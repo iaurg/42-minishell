@@ -50,47 +50,42 @@ int cd_home(char **envp)
 	char *home;
 
 	home = NULL;
-	//if ((home = get_env_value(envp, "HOME")) == NULL)
-	//	return (1);
+	if ((home = ms_getenv(envp, "HOME")) == NULL)
+		return (1);
 	if (chdir(home) == -1)
 		return (1);
 	return (0);
 }
 
+/*
 int cd_dir(char **argv, char **envp)
 {
 	char *cwd;
-	char *tmp;
-	char *tmp2;
-
-	cwd = NULL;
-	tmp = NULL;
-	tmp2 = NULL;
 	if (argv[1] == NULL)
 		return (1);
 	if ((cwd = get_cwd()) == NULL)
 		return (1);
-	if (ft_strncmp(argv[1], "~", 1) == 0)
-		return (cd_home(envp));
-	if (ft_strncmp(argv[1], "..", 2) == 0)
-		return (cd_up(cwd));
 	if (ft_strncmp(argv[1], ".", 1) == 0)
 		return (0);
 	if ((tmp = ft_strjoin(cwd, "/")) == NULL)
 		return (1);
 	if ((tmp2 = ft_strjoin(tmp, argv[1])) == NULL)
 		return (1);
-	if (chdir(tmp2) == -1)
-		return (1);
-	free(tmp);
-	free(tmp2);
-	return (0);
 }
+*/
 
-int	cd(char **argv, t_list *envp[])
+int	cd(char *argv[], t_list *envp[])
 {
+	int i;
+	i = 0;
 	if (!envp)
 		return 0;
-	chdir("/home/italo/Documents/Studies/42/42-minishell/src");
+	if (ft_strncmp(argv[1], "~", 1) == 0 && cd_home(envp[0]) == 1)
+		chdir(ms_getenv(envp, "HOME"));
+	if (ft_strncmp(argv[1], "..", 2) == 0)
+		chdir("..");
+	else {
+		chdir(argv[1]);
+	}
 	return (0);
 }
