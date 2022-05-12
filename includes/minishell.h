@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/12 06:10:43 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/12 06:18:16 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	child_signal_handler(int signal_number);
 
 /* utilities */
 void	print_err_msg(char *command, char *msg);
-char	*decopled_shell_display();
+char	*decopled_shell_display(void);
 char	*get_last_slash_arg(char *arg);
 
 #endif
