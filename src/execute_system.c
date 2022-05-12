@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_system.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/11 18:40:56 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/12 06:08:16 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	system_exec(t_command *cmd)
 	int		status;
 
 	pid = fork();
+	signal(SIGINT, child_signal_handler);
 	if (pid == 0)
 	{
 		execute_child_command(cmd);

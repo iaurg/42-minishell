@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/11 20:00:58 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/12 06:10:43 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@
 int		take_input(char *input_text, t_command *cmd);
 char	**parse_input(char *input_text);
 int		pwd(void);
-void	signal_handler(int signal_number);
 
 /* executors */
 int		system_exec(t_command *cmd);
@@ -58,7 +57,13 @@ char	*get_abspath(t_command *cmd, char *command, const char *path);
 /* redirections */
 int		handle_redirections(t_command *cmd);
 
+/* signals */
+void	signal_handler(int signal_number);
+void	child_signal_handler(int signal_number);
+
 /* utilities */
 void	print_err_msg(char *command, char *msg);
+char	*decopled_shell_display();
+char	*get_last_slash_arg(char *arg);
 
 #endif
