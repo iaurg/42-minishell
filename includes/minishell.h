@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/11 20:00:58 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/12 02:15:52 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int		handle_redirections(t_command *cmd);
 
 /* utilities */
 void	print_err_msg(char *command, char *msg);
-
+char	*solve_absolute_path(t_command *cmd);
+char	**to_array(t_list **list);
 #endif
