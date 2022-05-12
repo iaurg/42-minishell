@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:27:35 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/10 09:37:12 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/12 03:34:23 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,19 @@ char	*ms_getenv(t_list *envp[], char *key)
 	if (tmp)
 		return (tmp->value);
 	return (NULL);
+}
+
+int	read_file(char *filename)
+{
+	int		fd;
+
+	fd = open(filename, O_RDONLY, 0644);
+	if (fd == -1)
+	{
+		fprintf(stderr, "bash: no such file or directory: %s\n", filename);
+		return (0);
+	}
+	dup2(fd, 0);
+	close(fd);
+	return (fd);
 }

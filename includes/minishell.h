@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/12 02:15:52 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/12 03:34:53 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <readline/history.h>
 # include <sys/wait.h>
 # include <sys/types.h>
-# include <fcntl.h>
+
 # include "../libs/libft/libft.h"
 # include "../includes/builtins.h"
 # include "./error.h"
