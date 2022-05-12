@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/12 03:47:27 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/12 03:57:38 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	clear_first_arg(t_command *cmd, int first_arg_pos)
 	cmd->argc = i;
 }
 
-int	first_is_cat(t_command *cmd)
+int	command_comes_first(t_command *cmd)
 {
 	if (cmd->argc <= 1)
 		return (0);
@@ -49,23 +49,30 @@ int	first_is_cat(t_command *cmd)
 	return (0);
 }
 
+//int redirect_fd(t_command *cmd)
+//{
+//	char	tmp[2];
+
+//	if (ft_isdigit(cmd->argv[0][0]) && cmd->argv[0][1] == '<')
+//	{
+//		tmp[0] = cmd->argv[0][0];
+//		tmp[1] = '\0';
+//		cmd->fd = ft_atoi(tmp);
+//		return (1)
+//	}
+//	return (0);
+//}
+
 int	handle_first_arg(t_command *cmd)
 {
 	int		first_arg_pos;
 	char	*filename;
-	char	tmp[2];
 
 	first_arg_pos = 0;
-	if (first_is_cat(cmd))
+	if (command_comes_first(cmd))
 		return (0);
 	if (cmd->argv[0][0] == '<' && cmd->argv[0][1] == '<')
 		return (0);
-	if (ft_isdigit(cmd->argv[0][0]) && cmd->argv[0][1] == '<')
-	{
-		tmp[0] = cmd->argv[0][0];
-		tmp[1] = '\0';
-		cmd->fd = ft_atoi(tmp);
-	}
 	filename = ft_strchr(cmd->argv[0], '<');
 	if (filename)
 	{
