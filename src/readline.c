@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/11 21:44:10 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/12 01:37:24 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,20 @@ static char	*get_last_slash_arg(char *arg)
 static char	*get_inline_shell_display(t_list *envp[])
 {
 	char	cwd[1025];
+	char	hostname[257];
 	char	*tmp;
 	char	*path;
 	char	*tmp_user;
 
 	getcwd(cwd, 1024);
+	gethostname(hostname, 256);
 	path = get_last_slash_arg(cwd);
 	tmp = ft_strdup("\033[1;31m");
 	tmp_user = ft_strdup(ms_getenv(envp, "USER"));
 	tmp = ft_strjoin(tmp, tmp_user);
-	tmp = ft_strjoin(tmp, "\033[0;36m@minishell \033[0;34m");
+	tmp = ft_strjoin(tmp, "\033[0;36m@");
+	tmp = ft_strjoin(tmp, hostname);
+	tmp = ft_strjoin(tmp, " \033[0;34m");
 	tmp = ft_strjoin(tmp, path);
 	tmp = ft_strjoin(tmp, " ~ $\033[0m ");
 	free(tmp_user);
