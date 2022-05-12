@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/12 02:17:21 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/12 02:43:39 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,17 @@ int	handle_first_arg(t_command *cmd)
 {
 	int		first_arg_pos;
 	char	*filename;
+	char	tmp[2];
 
 	first_arg_pos = 0;
 	if (cmd->argv[0][0] == '<' && cmd->argv[0][1] == '<')
 		return (0);
+	if (ft_isdigit(cmd->argv[0][0]) && cmd->argv[0][1] == '<')
+	{
+		tmp[0] = cmd->argv[0][0];
+		tmp[1] = '\0';
+		cmd->fd = ft_atoi(tmp);
+	}
 	filename = ft_strchr(cmd->argv[0], '<');
 	if (filename)
 	{
@@ -62,8 +69,8 @@ int	handle_first_arg(t_command *cmd)
 		if (*filename == '\0')
 			filename = cmd->argv[first_arg_pos++];
 		read_file(filename);
+		clear_first_arg(cmd, first_arg_pos);
 	}
-	clear_first_arg(cmd, first_arg_pos);
 	return (0);
 }
 
