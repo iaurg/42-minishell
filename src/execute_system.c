@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/11 18:40:56 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/12 01:30:17 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,67 @@ char	*solve_absolute_path(t_command *cmd)
 	return (get_abspath(cmd, first_arg, all_paths));
 }
 
-void	execute_child_command(t_command *cmd)
+void	read_file(char *filename)
+{
+	int		fd;
+
+	fd = open(filename, O_RDONLY, 0644);
+	if (fd == -1)
+	{
+		fprintf(stderr, "bash: no such file or directory: %s\n", filename);
+		return ;
+	}
+	dup2(fd, 0);
+	close(fd);
+}
+
+void	clear_first_arg(t_command *cmd, int first_arg_pos)
+{
+	int	i;
+	char	**tmp;
+	i = 0;
+	while (cmd->argv[i])
+		i++;
+	tmp = (char **)malloc(sizeof(char *) * (i - first_arg_pos));
+	i = 0;
+	while (cmd->argv[i + first_arg_pos])
+	{
+		tmp[i] = ft_strdup(cmd->argv[i + first_arg_pos]);
+		i++;
+	}
+	free_matrix(cmd->argv);
+	cmd->argv = tmp;
+	cmd->argc = i;
+}
+
+int	handle_first_arg(t_command *cmd)
+{
+
+	int		first_arg_pos;
+	char	*filename;
+
+	first_arg_pos = 0;
+	if (cmd->argv[0][0] == '<' && cmd->argv[0][1] == '<')
+		return (0);
+	filename = ft_strchr(cmd->argv[0], '<');
+	if (filename)
+	{
+		filename++;
+		first_arg_pos++;
+		if (*filename == '\0')
+			filename = cmd->argv[first_arg_pos++];
+		read_file(filename);
+	}
+	clear_first_arg(cmd, first_arg_pos);
+	return (0);
+}
+
+static void	execute_child_command(t_command *cmd)
 {
 	char	*abspath;
 	char	**compat_envp;
 
+	handle_first_arg(cmd);
 	compat_envp = to_array(cmd->envp);
 	abspath = solve_absolute_path(cmd);
 	if (execve(abspath, cmd->argv, compat_envp) == -1)
