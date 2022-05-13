@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/11 20:00:59 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/12 03:43:15 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <errno.h>
 # include "../libs/libft/libft.h"
+# include <fcntl.h>
 
 typedef enum builtin {
 	ECHO,
@@ -68,5 +69,6 @@ t_list		*lst_find(t_list **list, char *key);
 int			lst_del_node(t_list **list, char *key);
 char		*ms_getenv(t_list *envp[], char *key);
 t_list		*ft_lstnew2(char *content);
+int			read_file(char *filename);
 
 #endif

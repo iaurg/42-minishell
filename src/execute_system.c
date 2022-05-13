@@ -6,56 +6,84 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/11 18:40:56 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/12 03:57:38 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_listlen(t_list **list)
+void	clear_first_arg(t_command *cmd, int first_arg_pos)
 {
-	t_list	*tmp;
-	int		len;
-
-	len = 0;
-	tmp = *list;
-	while (tmp)
-	{
-		tmp = tmp->next;
-		len++;
-	}
-	return (len);
-}
-
-char	**to_array(t_list **list)
-{
-	char	**array;
-	t_list	*tmp;
 	int		i;
-	int		size;
+	char	**tmp;
 
 	i = 0;
-	size = ft_listlen(list);
-	tmp = *list;
-	array = (char **)malloc(sizeof(char *) * (size + 1));
-	while (tmp)
+	while (cmd->argv[i])
+		i++;
+	tmp = (char **)malloc(sizeof(char *) * (i - first_arg_pos));
+	i = 0;
+	while (cmd->argv[i + first_arg_pos])
 	{
-		array[i++] = tmp->content;
-		tmp = tmp->next;
+		tmp[i] = ft_strdup(cmd->argv[i + first_arg_pos]);
+		i++;
 	}
-	return (array);
+	free_matrix(cmd->argv);
+	cmd->argv = tmp;
+	cmd->argc = i;
 }
 
-char	*solve_absolute_path(t_command *cmd)
+int	command_comes_first(t_command *cmd)
 {
-	char	*first_arg;
-	char	*all_paths;
+	if (cmd->argc <= 1)
+		return (0);
+	if (cmd->argv[1][0] == '<' && cmd->argv[1][1] == '\0'
+		&& cmd->argv[2] && cmd->argc == 3)
+	{
+		read_file(cmd->argv[2]);
+		free(cmd->argv[1]);
+		cmd->argv[1] = cmd->argv[2];
+		cmd->argc--;
+		cmd->argv[2] = NULL;
+		return (1);
+	}
+	return (0);
+}
 
-	first_arg = cmd->argv[0];
-	if (*first_arg == '/' || *first_arg == '.')
-		return (first_arg);
-	all_paths = ms_getenv(cmd->envp, "PATH");
-	return (get_abspath(cmd, first_arg, all_paths));
+//int redirect_fd(t_command *cmd)
+//{
+//	char	tmp[2];
+
+//	if (ft_isdigit(cmd->argv[0][0]) && cmd->argv[0][1] == '<')
+//	{
+//		tmp[0] = cmd->argv[0][0];
+//		tmp[1] = '\0';
+//		cmd->fd = ft_atoi(tmp);
+//		return (1)
+//	}
+//	return (0);
+//}
+
+int	handle_first_arg(t_command *cmd)
+{
+	int		first_arg_pos;
+	char	*filename;
+
+	first_arg_pos = 0;
+	if (command_comes_first(cmd))
+		return (0);
+	if (cmd->argv[0][0] == '<' && cmd->argv[0][1] == '<')
+		return (0);
+	filename = ft_strchr(cmd->argv[0], '<');
+	if (filename)
+	{
+		filename++;
+		first_arg_pos++;
+		if (*filename == '\0')
+			filename = cmd->argv[first_arg_pos++];
+		read_file(filename);
+		clear_first_arg(cmd, first_arg_pos);
+	}
+	return (0);
 }
 
 void	execute_child_command(t_command *cmd)
@@ -63,6 +91,7 @@ void	execute_child_command(t_command *cmd)
 	char	*abspath;
 	char	**compat_envp;
 
+	handle_first_arg(cmd);
 	compat_envp = to_array(cmd->envp);
 	abspath = solve_absolute_path(cmd);
 	if (execve(abspath, cmd->argv, compat_envp) == -1)
