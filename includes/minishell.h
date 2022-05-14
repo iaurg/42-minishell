@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
 /*   Updated: 2022/05/12 06:18:16 by itaureli         ###   ########.fr       */
@@ -21,7 +21,7 @@
 # include <readline/history.h>
 # include <sys/wait.h>
 # include <sys/types.h>
-# include <fcntl.h>
+
 # include "../libs/libft/libft.h"
 # include "../includes/builtins.h"
 # include "./error.h"
@@ -66,4 +66,6 @@ void	print_err_msg(char *command, char *msg);
 char	*decopled_shell_display(void);
 char	*get_last_slash_arg(char *arg);
 
+char	*solve_absolute_path(t_command *cmd);
+char	**to_array(t_list **list);
 #endif

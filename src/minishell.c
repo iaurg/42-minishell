@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
 /*   Updated: 2022/05/11 21:45:42 by itaureli         ###   ########.fr       */
@@ -37,7 +37,7 @@ void	handle_dollar_sign(t_command *cmd, char *tmp, int i)
 		if (tmp)
 		{
 			free(cmd->argv[i]);
-			cmd->argv[i] = tmp;
+			cmd->argv[i] = ft_strdup(tmp);
 		}
 		else if (len == 1)
 			return ;
