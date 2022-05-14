@@ -1,32 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/16 18:54:55 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/14 00:42:09 by vwildner         ###   ########.fr       */
+/*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
+/*   Updated: 2022/05/13 20:46:29 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	child_signal_handler(int signal_number)
+int	ft_listlen(t_list **list)
 {
-	if (signal_number == SIGINT)
+	t_list	*tmp;
+	int		len;
+
+	len = 0;
+	tmp = *list;
+	while (tmp)
 	{
-		write(1, "\n", 1);
-		signal(SIGINT, child_signal_handler);
+		tmp = tmp->next;
+		len++;
 	}
+	return (len);
 }
 
-void	signal_handler(int signal_number)
+char	**to_array(t_list **list)
 {
-	if (signal_number == SIGINT)
+	char	**array;
+	t_list	*tmp;
+	int		i;
+	int		size;
+
+	i = 0;
+	size = ft_listlen(list);
+	tmp = *list;
+	array = (char **)malloc(sizeof(char *) * (size + 1));
+	while (tmp)
 	{
-		write(1, "\n", 1);
-		decoupled_shell_display();
-		signal(SIGINT, signal_handler);
+		array[i++] = tmp->content;
+		tmp = tmp->next;
 	}
+	return (array);
 }

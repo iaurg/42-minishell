@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/11 20:00:57 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/11 21:45:42 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-//void	handle_inner_arg(char *args)
-//{
-//	if (args[i] == '(')
-//	{
-//		clean_arg = strtok(args[i], ")");
-//		tmp = shell_precedence(clean_arg, envp);
-//		if (tmp)
-//		{
-//			free(args[i]);
-//			*args[i] = tmp;
-//		}
-//	}
-//}
 
 int	handle_status(t_command *cmd, int i)
 {
@@ -51,7 +37,7 @@ void	handle_dollar_sign(t_command *cmd, char *tmp, int i)
 		if (tmp)
 		{
 			free(cmd->argv[i]);
-			cmd->argv[i] = tmp;
+			cmd->argv[i] = ft_strdup(tmp);
 		}
 		else if (len == 1)
 			return ;
@@ -99,12 +85,13 @@ int	main(int argc, char *argv[], char *envp[])
 		print_error(NO_ARGS);
 		return (1);
 	}
-	signal(SIGQUIT, SIG_IGN);
 	cmd = init_builtins(envp);
 	atexit_clean(cmd);
+	signal(SIGQUIT, SIG_IGN);
 	status = 1;
 	while (status)
 	{
+		signal(SIGINT, signal_handler);
 		if (take_input(buffer, cmd))
 			break ;
 		cmd->argv = parse_input(buffer);
