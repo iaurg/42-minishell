@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/12 01:37:24 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/12 05:57:06 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	save_history(char *input)
 		add_history(input);
 }
 
-static char	*get_last_slash_arg(char *arg)
+char	*get_last_slash_arg(char *arg)
 {
 	char	*args[256];
 	int		i;
