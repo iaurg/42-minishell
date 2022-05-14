@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/05/14 00:38:09 by vwildner         ###   ########.fr        #
+#    Updated: 2022/05/14 09:38:32 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ LBFT_DIR = ./libs/libft
 
 LBFT_LIB = ${LBFT_DIR}/libft.a
 
-CFLAGS	=	-Wall -Wextra -lreadline -g -O0
+CFLAGS	=	-Wall -Werror -Wextra -g -O0
 
 RM		=	rm -rf
 
@@ -138,6 +138,10 @@ fclean: clean
 
 run:
 	${MAKE} && ./minishell.a
+	${MSG1}
+
+valgrind:
+	${MAKE} && ${VALGRIND} ./minishell
 	${MSG1}
 
 re:			fclean all
