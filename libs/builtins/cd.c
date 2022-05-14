@@ -6,11 +6,20 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 20:31:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/13 20:34:57 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/14 01:03:30 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
+
+int	set_oldpwd(t_list *envp[], char *buf)
+{
+	char	*old_pwd;
+
+	old_pwd = ft_strjoin("OLDPWD=", buf);
+	export(old_pwd, envp);
+	return (0);
+}
 
 int cd_home(t_list *envp[])
 {

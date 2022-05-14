@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/13 20:46:58 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/14 01:03:53 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int			env(t_list *envp[], int fd);
 int			export(char *arg, t_list *envp[]);
 int			echo(char **args, int fd);
 int			cd(char **args, t_list *envp[]);
+int			cd_home(t_list *envp[]);
+int			set_oldpwd(t_list *envp[], char *buf);
 int			unset(char *argv[], t_list *envp[], size_t size);
 
 /* public interface */

@@ -20,11 +20,15 @@ int builtins_env(t_command *cmd)
 int	builtins_cd(t_command *cmd)
 {
 	char	buf[1025];
-	char	*old_pwd;
 	int		status;
 
 	status = 0;
 	getcwd(buf, 1024);
+	if (cmd->argc == 1)
+	{
+		cd_home(cmd->envp);
+		return (set_oldpwd(cmd->envp, buf));
+	}
 	if (cmd->argc > 2)
 	{
 		print_err_msg(cmd->argv[0], "too many arguments");
@@ -33,21 +37,11 @@ int	builtins_cd(t_command *cmd)
 	if (cmd->argv[1][0] == '-')
 	{
 		chdir(ms_getenv(cmd->envp, "OLDPWD"));
-		old_pwd = ft_strjoin("OLDPWD=", buf);
-		export(old_pwd, cmd->envp);
-		return (status);
-	}
-	if (cmd->argc == 1)
-	{
-		chdir(ms_getenv(cmd->envp, "HOME"));
-		return (status);
+		return (set_oldpwd(cmd->envp, buf));
 	}
 	status = cd(cmd->argv, cmd->envp);
 	if (status == 0)
-	{
-		old_pwd = ft_strjoin("OLDPWD=", buf);
-		export(old_pwd, cmd->envp);
-	}
+		return (set_oldpwd(cmd->envp, buf));
 	return (0);
 }
 
