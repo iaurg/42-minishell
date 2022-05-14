@@ -6,24 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/12 02:13:06 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/13 20:46:29 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	print_err_msg(char *command, char *msg)
-{
-	char	*err_msg;
-
-	err_msg = ft_strdup("bash: ");
-	err_msg = ft_strjoin(err_msg, command);
-	err_msg = ft_strjoin(err_msg, ": ");
-	err_msg = ft_strjoin(err_msg, msg);
-	err_msg = ft_strjoin(err_msg, "\n");
-	write(STDERR_FILENO, err_msg, ft_strlen(err_msg));
-	free(err_msg);
-}
 
 int	ft_listlen(t_list **list)
 {

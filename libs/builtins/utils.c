@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:27:35 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/12 03:34:23 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/13 20:46:34 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,17 @@ int	read_file(char *filename)
 	dup2(fd, 0);
 	close(fd);
 	return (fd);
+}
+
+void	print_err_msg(char *command, char *msg)
+{
+	char	*err_msg;
+
+	err_msg = ft_strdup("bash: ");
+	err_msg = ft_strjoin(err_msg, command);
+	err_msg = ft_strjoin(err_msg, ": ");
+	err_msg = ft_strjoin(err_msg, msg);
+	err_msg = ft_strjoin(err_msg, "\n");
+	write(STDERR_FILENO, err_msg, ft_strlen(err_msg));
+	free(err_msg);
 }
