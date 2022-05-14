@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 21:48:05 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/12 06:17:58 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/14 00:42:09 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*decopled_shell_display(void)
+char	*decoupled_shell_display(void)
 {
 	char	cwd[1025];
 	char	*tmp;
