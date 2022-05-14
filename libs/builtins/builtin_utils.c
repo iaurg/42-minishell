@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:27:35 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/14 10:09:22 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/14 10:20:41 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_list	**to_linked_list(char **envp)
 
 	i = -1;
 	list = (t_list **)malloc(sizeof(t_list *));
+	*list = NULL;
 	while (envp[++i])
 		ft_lstpush(list, ft_lstnew2(envp[i]));
 	return (list);
