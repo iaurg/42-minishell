@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/12 03:34:53 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/14 00:42:09 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@
 int		take_input(char *input_text, t_command *cmd);
 char	**parse_input(char *input_text);
 int		pwd(void);
-void	signal_handler(int signal_number);
 
 /* executors */
 int		system_exec(t_command *cmd);
@@ -58,8 +57,15 @@ char	*get_abspath(t_command *cmd, char *command, const char *path);
 /* redirections */
 int		handle_redirections(t_command *cmd);
 
+/* signals */
+void	signal_handler(int signal_number);
+void	child_signal_handler(int signal_number);
+
 /* utilities */
 void	print_err_msg(char *command, char *msg);
+char	*decoupled_shell_display(void);
+char	*get_last_slash_arg(char *arg);
+
 char	*solve_absolute_path(t_command *cmd);
 char	**to_array(t_list **list);
 #endif
