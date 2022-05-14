@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 20:31:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/11 20:32:01 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/13 20:34:57 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ static void print_cd_error(char *argv[])
 int	cd(char *argv[], t_list *envp[])
 {
 	if (!envp || argv[1] == NULL)
-		return 0;
+		return 1;
 	if (chdir(argv[1]) < 0)
 	{
 		print_cd_error(argv);
-		return (0);
+		return (1);
 	}
 	if (ft_strncmp(argv[1], "~", 1) == 0 && cd_home(envp) == 1)
 	{

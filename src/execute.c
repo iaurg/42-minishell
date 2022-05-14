@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:58:19 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/10 09:25:40 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/13 20:52:17 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,15 @@ static int	try_builtins_exec(t_command *cmd)
 
 int	execute(t_command *cmd)
 {
+	int	status;
+
+	status = 0;
 	if (!cmd->argv[0])
 		return (1);
 	if (handle_redirections(cmd))
 		return (0);
-	if (try_builtins_exec(cmd) == 0)
+	status = try_builtins_exec(cmd);
+	if (status == 0 || status == 127)
 		return (1);
 	return (system_exec(cmd));
 }

@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/12 03:34:53 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/13 20:47:10 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ char	*get_abspath(t_command *cmd, char *command, const char *path);
 int		handle_redirections(t_command *cmd);
 
 /* utilities */
-void	print_err_msg(char *command, char *msg);
 char	*solve_absolute_path(t_command *cmd);
 char	**to_array(t_list **list);
 #endif
