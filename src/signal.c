@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 18:54:55 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/15 06:45:20 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/15 06:47:29 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	signal_handler(int signal_number)
 	}
 }
 
-void handle_heredoc_signal(int signal_number)
+void	handle_heredoc_signal(int signal_number)
 {
 	int	*triggered;
 

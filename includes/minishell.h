@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/15 06:46:07 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/15 06:47:54 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ int		read_input(t_command *cmd);
 
 /* signal handlers */
 int		*get_signal_triggered_status(void);
-void 	handle_heredoc_signal(int signal_number);
+void	handle_heredoc_signal(int signal_number);
 
 #endif
