@@ -14,10 +14,12 @@
 			"editorWhitespace.foreground": "#6273a47b"
 	},
 	"files.associations": {
+		"*.h": "c",
 		"libft.h": "c",
 		"minishell.h": "c",
 		"cerrno": "c",
-		"builtins.h": "c"
+		"builtins.h": "c",
+		"cstdlib": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }
