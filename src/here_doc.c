@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 06:43:18 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/15 06:45:16 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/15 16:56:01 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	read_input(t_command *cmd)
 		if (ft_strncmp(cmd->argv[i], "<<", 3) == 0 && cmd->argv[i + 1])
 		{
 			exec_read_stdin(cmd->argv[i + 1]);
-			if (ft_strncmp(cmd->argv[0], "<<", 3) == 0)
+			if (ft_strncmp(cmd->argv[0], "<<", 3) == 0 && cmd->argv[2] == NULL)
 			{
 				free_matrix(cmd->argv);
 				cmd->argc = 0;
