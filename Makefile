@@ -6,7 +6,7 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/05/14 21:09:13 by vwildner         ###   ########.fr        #
+#    Updated: 2022/05/15 06:38:46 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,7 +128,7 @@ $(BUILTINS_OBJECTS_PATH)/%.o: $(BUILTINS_SOURCES_PATH)/%.c $(BUILTINS_HEADER)
 
 test:
 	@$(CC) tests/test_unit.c \
-	libs/libft/*.c libs/builtins/*.c \
+	libs/libft/*.c libs/builtins/*.c libs/get_next_line/*.c \
 	$(SRCS_NO_ENTRY) \
 	-lreadline -lrt -lm \
 	-o test_unit && ./test_unit

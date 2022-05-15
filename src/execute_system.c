@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_system.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/12 06:08:16 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/15 05:45:33 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,6 @@ int	system_exec(t_command *cmd)
 		else
 			cmd->status = 0;
 	}
+	free(cmd->argv);
 	return (1);
 }
