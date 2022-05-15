@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/15 06:37:20 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/15 06:46:07 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	child_signal_handler(int signal_number);
 void	print_err_msg(char *command, char *msg);
 void	decoupled_shell_display(void);
 char	*get_last_slash_arg(char *arg);
+void	handle_exit(const char *s);
 
 char	*solve_absolute_path(t_command *cmd);
 char	**to_array(t_list **list);
@@ -85,5 +86,6 @@ int		read_input(t_command *cmd);
 
 /* signal handlers */
 int		*get_signal_triggered_status(void);
+void 	handle_heredoc_signal(int signal_number);
 
 #endif

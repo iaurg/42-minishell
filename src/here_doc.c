@@ -1,24 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   here_doc.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/15 06:43:18 by vwildner          #+#    #+#             */
+/*   Updated: 2022/05/15 06:45:16 by vwildner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 #include "../libs/get_next_line/get_next_line.h"
-
-
-void	handle_exit(const char *s)
-{
-	perror(s);
-	exit(EXIT_FAILURE);
-}
-
-void handle_heredoc_signal(int signal_number)
-{
-	int	*triggered;
-
-	triggered = get_signal_triggered_status();
-	if (signal_number == SIGINT)
-	{
-		*triggered = 1;
-		signal(SIGINT, handle_heredoc_signal);
-	}
-}
 
 void	parse_here_doc(char *delim, int *fd)
 {
