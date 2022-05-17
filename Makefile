@@ -6,11 +6,11 @@
 #    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/05/14 09:38:32 by itaureli         ###   ########.fr        #
+#    Updated: 2022/05/16 22:17:43 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		= readline.c wip_lexer.c print_error.c execute.c utils.c execute_system.c redir.c utils2.c signal.c prompt.c
+SRC		= readline.c wip_lexer.c print_error.c execute.c utils.c execute_system.c redir.c utils2.c signal.c prompt.c here_doc.c
 
 SRC_MAIN = $(SRC)
 SRC_MAIN += minishell.c
@@ -69,7 +69,7 @@ BUILTINS_OBJECTS = $(addprefix $(BUILTINS_OBJECTS_PATH)/,$(subst .c,.o,$(BUILTIN
 BUILTINS_HEADER_FILE = builtins.h
 
 EXTERNAL_LIBS = -lreadline
-INTERNAL_LIBS = -lbuiltins -lft
+INTERNAL_LIBS = -lbuiltins -lft -lgnl
 
 INCLUDES_PATH = ./includes
 
@@ -80,13 +80,20 @@ ARCHIVE = @ar -rc
 
 SAFE_MKDIR = mkdir -p
 
+# libgnl
+MAKE_EXTERNAL = make -C
+LIBFT_PATH = $(LIBS_PATH)/libft
+GNL = libgnl.a
+GNL_PATH = $(LIBS_PATH)/get_next_line
+GNL_ARCHIVE = $(ARCHIVES_PATH)/$(GNL)
+
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
 
 all: $(NAME)
 
 $(NAME): $(LBFT_LIB) $(OBJECTS) $(MINI_HEADER)
-	gcc -g -Wall -Wextra -o minishell ./src/*.c ./libs/builtins/*.c ./libs/libft/*.c -C -lreadline
+	gcc -g -Wall -Wextra -o minishell ./src/*.c ./libs/builtins/*.c ./libs/libft/*.c ./libs/get_next_line/*.c -C -lreadline
 
 #$(NAME): $(LBFT_LIB) $(OBJECTS) $(MINI_HEADER)
 #	$(CC) $(CFLAGS) -w -g $(OBJECTS) $(LBFT_LIB) -o $(NAME) -L $(ARCHIVES_PATH) $(EXTERNAL_LIBS) $(INTERNAL_LIBS)
@@ -103,6 +110,15 @@ builtins: $(BUILTINS_NAME)
 	@cp ./$(BUILTINS_NAME) ./archives
 	@rm $(BUILTINS_NAME)
 
+build_get_next_line:
+	@$(MAKE_EXTERNAL) $(GNL_PATH)
+	@$(SAFE_MKDIR) $(ARCHIVES_PATH)
+	@$(COPY) $(GNL_PATH)/$(GNL) $(ARCHIVES_PATH)
+
+get_next_line_clean:
+	$(MAKE_EXTERNAL) $(GNL_PATH) fclean
+	$(REMOVE) $(GNL_ARCHIVE)
+
 $(BUILTINS_NAME): $(BUILTINS_OBJECTS)
 	$(ARCHIVE) $@ $^
 
@@ -112,7 +128,7 @@ $(BUILTINS_OBJECTS_PATH)/%.o: $(BUILTINS_SOURCES_PATH)/%.c $(BUILTINS_HEADER)
 
 test:
 	@$(CC) tests/test_unit.c \
-	libs/libft/*.c libs/builtins/*.c \
+	libs/libft/*.c libs/builtins/*.c libs/get_next_line/*.c \
 	$(SRCS_NO_ENTRY) \
 	-lreadline -lrt -lm \
 	-o test_unit && ./test_unit

@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 07:38:35 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/09 06:12:52 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/14 20:51:40 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-char		*get_next_line(int fd);
 void		free_and_reset(void *var);
 ssize_t		read_line(char **holder, char **buffer, char **final_line, int fd);
 char		*split_line(char **holder);
