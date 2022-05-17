@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:27:35 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/14 10:21:02 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/17 20:35:46 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
 #include <string.h>
+
 t_list	*ft_lstnew2(char *content)
 {
 	t_list	*element;
@@ -21,10 +22,11 @@ t_list	*ft_lstnew2(char *content)
 	element = (t_list *)malloc(sizeof(t_list));
 	if (element == NULL)
 		return (NULL);
-	element->key = splitted[0];
-	element->value = splitted[1];
+	element->key = ft_strdup(splitted[0]);
+	element->value = ft_strdup(splitted[1]);
 	element->content = content;
 	element->next = NULL;
+	free_matrix(splitted);
 	return (element);
 }
 

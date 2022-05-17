@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/14 01:03:53 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/17 01:11:23 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ char		*ms_getenv(t_list *envp[], char *key);
 t_list		*ft_lstnew2(char *content);
 int			read_file(char *filename);
 void		print_err_msg(char *command, char *msg);
+
+t_list	**to_linked_list(char **envp);
 
 #endif
