@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/11 21:45:42 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/15 05:45:19 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int	main(int argc, char *argv[], char *envp[])
 		if (take_input(buffer, cmd))
 			break ;
 		cmd->argv = parse_input(buffer);
+		if (read_input(cmd))
+			continue ;
 		expand_args(cmd);
 		status = execute(cmd);
 	}

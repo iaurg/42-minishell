@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/13 20:47:10 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/15 06:47:54 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,17 @@
 # define CHAR_DBL_LESSER '<<'
 # define CHAR_NULL 0
 
+/* TEMPORARY REFERENCES */
+# define TMP_FILE "/tmp/here_doc_tmp_file"
+
+/* file i/o */
+# define INPUT 0
+# define OUTPUT 1
+
+/* pipe ends */
+# define READ_END 0
+# define WRITE_END 1
+
 int		take_input(char *input_text, t_command *cmd);
 char	**parse_input(char *input_text);
 int		pwd(void);
@@ -63,9 +74,18 @@ void	child_signal_handler(int signal_number);
 
 /* utilities */
 void	print_err_msg(char *command, char *msg);
-char	*decoupled_shell_display(void);
+void	decoupled_shell_display(void);
 char	*get_last_slash_arg(char *arg);
+void	handle_exit(const char *s);
 
 char	*solve_absolute_path(t_command *cmd);
 char	**to_array(t_list **list);
+
+/* here doc */
+int		read_input(t_command *cmd);
+
+/* signal handlers */
+int		*get_signal_triggered_status(void);
+void	handle_heredoc_signal(int signal_number);
+
 #endif
