@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 23:02:52 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/10 09:13:35 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:15:02 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	builtins_export(t_command *cmd)
 		return (print_export_err(cmd->argv[2], 1));
 	if (has_equals(cmd->argv[1]))
 		return (export(cmd->argv[1], cmd->envp));
-	if ((cmd->argv[1] == NULL))
+	if (cmd->argv[1] == NULL)
 		return (env(cmd->envp, cmd->fd));
 	perror("Unknown error");
 	return (-1);

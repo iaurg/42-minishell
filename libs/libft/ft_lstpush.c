@@ -16,7 +16,6 @@ void	ft_lstpush(t_list **lst, t_list *new)
 {
 	t_list	*tmp;
 
-	lst = NULL;
 	if (new == NULL)
 		return ;
 	if (*lst == NULL)

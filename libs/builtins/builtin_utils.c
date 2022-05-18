@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:27:35 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/17 20:35:46 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:12:16 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ t_list	*ft_lstnew2(char *content)
 	if (element == NULL)
 		return (NULL);
 	element->key = ft_strdup(splitted[0]);
-	element->value = ft_strdup(splitted[1]);
+	if (splitted[1])
+		element->value = ft_strdup(splitted[1]);
+	else
+		element->value = NULL;
 	element->content = content;
 	element->next = NULL;
 	free_matrix(splitted);
