@@ -1,4 +1,4 @@
-#include "libs/libft/libft.h"
+#include "../libs/libft/libft.h"
 #include <stdio.h>
 
 // cc tests/parse_whitespace.c -g3 libs/libft/*.c
@@ -78,19 +78,22 @@ char **merge_by(char **args, char *delimiters)
 	return (final);
 }
 
+char **parse_whitespace(char *str, char *delims)
+{
+	char	**args;
+	char	**final;
+
+	args = ft_split(str, ' ');
+	final = merge_by(args, delims);
+	return (final);
+}
+
 int main(void)
 {
 	char	str[] = "echo \"hello new world\" this is a \'test case\'";
-	char	**args = ft_split(str, ' ');
-	char	*delims = "\"\'";
-	int j = 0;
-	while (args[j])
-		j++;
-	args[j] = NULL;
-	printf("args are: \n");
-	for (int i = 0; args[i]; i++)
-		printf("args [%i] = %s\n", i, args[i]);
-	char	**final = merge_by(args, delims);
+	char	delims[] = "\"\'";
+	char	**final = parse_whitespace(str, delims);
+
 	printf("final args are: \n");
 	for (int i = 0; final[i]; i++)
 		printf("final[%i] = `%s`\n", i, final[i]);
