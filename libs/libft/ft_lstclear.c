@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 18:13:02 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/06 18:30:50 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/17 00:55:52 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 		element = tmp;
 	}
 	*lst = NULL;
+	free(lst);
 }

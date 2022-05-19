@@ -1,36 +1,8 @@
-#include <stddef.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include "../includes/builtins.h"
 #include "../libs/libft/libft.h"
 
-t_list	*ft_lstnew2(char *content)
-{
-	t_list	*element;
-	char	**splitted;
-
-	splitted = ft_split(content, '=');
-	element = (t_list *)malloc(sizeof(t_list));
-	if (element == NULL)
-		return (NULL);
-	element->key = splitted[0];
-	element->value = splitted[1];
-	element->content = content;
-	element->next = NULL;
-	return (element);
-}
-
-t_list	**to_linked_list(char **envp)
-{
-	t_list	**list;
-	int		i;
-
-	i = -1;
-	list = (t_list **)malloc(sizeof(t_list *));
-	while (envp[++i])
-		ft_lstpush(list, ft_lstnew(envp[i]));
-	return (list);
-}
+// compile with:
+// cc examples/linked_list_envp.c -g -C libs/libft/*.c libs/builtins/*.c -o example_linked_list_envp
 
 void	display_linked_list(t_list *list)
 {
@@ -44,61 +16,16 @@ void	display_linked_list(t_list *list)
 	}
 }
 
-static int are_equal(char *one, char *other)
-{
-	return (ft_strncmp(one, other, ft_strlen(other)));
-}
-
-t_list	*lst_find(t_list *list, char *key)
-{
-	t_list	*tmp;
-
-	tmp = list;
-	while (tmp != NULL)
-	{
-		if (are_equal(tmp->content, key) == 0)
-			return (tmp);
-		tmp = tmp->next;
-	}
-	return (NULL);
-}
-
-int	lst_del_node(t_list **list, char *key)
-{
-	t_list	*tmp;
-	t_list	*prev;
-
-	tmp = *list;
-	prev = NULL;
-	if (tmp != NULL && are_equal(tmp->content, key) == 0)
-	{
-		*list = tmp->next;
-		free(tmp);
-		return (1);
-	}
-	while (tmp != NULL && are_equal(tmp->content, key) != 0)
-	{
-		prev = tmp;
-		tmp = tmp->next;
-	}
-	if (tmp == NULL)
-		return (0);
-	prev->next = tmp->next;
-	free(tmp);
-	return (1);
-}
-
 int main(int argc, char *argv[], char *envp[])
 {
 	t_list	**list;
 	t_list *tmp;
 
+	char *my_env[] = {
+		"PATH=/usr/bin:/bin:/usr/sbin:/sbin",
+		"HOME=/home/vwildner",
+		NULL
+	};
 	list = to_linked_list(envp);
-	tmp = lst_find(*list, "HOME");
-	lst_del_node(list, "HOME");
-	lst_del_node(list, "PATH");
-	lst_del_node(list, "XDG_SEAT_PATH");
-	lst_del_node(list, "XDG_SESSION_PATH");
-	lst_del_node(list, "NAOTEM");
-	display_linked_list(*list);
+	ft_lstclear(list, free);
 }

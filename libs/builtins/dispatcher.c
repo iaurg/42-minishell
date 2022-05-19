@@ -8,7 +8,7 @@ static int	builtins_none(t_command *cmd)
 
 static t_dispatcher *run_cmd(t_builtin number)
 {
-	static t_dispatcher	*table[SIZE];
+	static t_dispatcher	*table[SIZE + 1];
 
 	table[BUILTINS_EXPORT] = builtins_export;
 	table[ENV] = builtins_env;

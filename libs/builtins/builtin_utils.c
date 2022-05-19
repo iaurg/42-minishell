@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:27:35 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/13 20:46:34 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:12:16 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
 #include <string.h>
+
 t_list	*ft_lstnew2(char *content)
 {
 	t_list	*element;
@@ -21,10 +22,14 @@ t_list	*ft_lstnew2(char *content)
 	element = (t_list *)malloc(sizeof(t_list));
 	if (element == NULL)
 		return (NULL);
-	element->key = splitted[0];
-	element->value = splitted[1];
+	element->key = ft_strdup(splitted[0]);
+	if (splitted[1])
+		element->value = ft_strdup(splitted[1]);
+	else
+		element->value = NULL;
 	element->content = content;
 	element->next = NULL;
+	free_matrix(splitted);
 	return (element);
 }
 
@@ -35,6 +40,7 @@ t_list	**to_linked_list(char **envp)
 
 	i = -1;
 	list = (t_list **)malloc(sizeof(t_list *));
+	*list = NULL;
 	while (envp[++i])
 		ft_lstpush(list, ft_lstnew2(envp[i]));
 	return (list);

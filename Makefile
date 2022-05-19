@@ -6,7 +6,7 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/05/15 06:38:46 by vwildner         ###   ########.fr        #
+#    Updated: 2022/05/17 20:34:46 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ LBFT_DIR = ./libs/libft
 
 LBFT_LIB = ${LBFT_DIR}/libft.a
 
-CFLAGS	=	-Wall -Wextra -lreadline -g -O0
+CFLAGS	=	-Wall -Werror -Wextra -g -O0
 
 RM		=	rm -rf
 
@@ -154,6 +154,10 @@ fclean: clean
 
 run:
 	${MAKE} && ./minishell.a
+	${MSG1}
+
+valgrind:
+	${MAKE} && ${VALGRIND} ./minishell
 	${MSG1}
 
 re:			fclean all
