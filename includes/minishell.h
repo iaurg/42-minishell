@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/15 06:47:54 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/18 19:18:53 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,10 @@
 # define READ_END 0
 # define WRITE_END 1
 
+/* parsers */
 int		take_input(char *input_text, t_command *cmd);
 char	**parse_input(char *input_text);
-int		pwd(void);
+void	expand_args(t_command *cmd);
 
 /* executors */
 int		system_exec(t_command *cmd);
