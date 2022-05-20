@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/18 19:18:53 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/20 02:12:33 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@
 
 /* parsers */
 int		take_input(char *input_text, t_command *cmd);
+int		read_input(char *buffer, t_command *cmd);
 char	**parse_input(char *input_text);
 void	expand_args(t_command *cmd);
+char	**parse_whitespace(char *str, char *delims);
 
 /* executors */
 int		system_exec(t_command *cmd);
@@ -78,12 +80,10 @@ void	print_err_msg(char *command, char *msg);
 void	decoupled_shell_display(void);
 char	*get_last_slash_arg(char *arg);
 void	handle_exit(const char *s);
+int		odd_quote_tokens(char *str, t_command *cmd);
 
 char	*solve_absolute_path(t_command *cmd);
 char	**to_array(t_list **list);
-
-/* here doc */
-int		read_input(t_command *cmd);
 
 /* signal handlers */
 int		*get_signal_triggered_status(void);

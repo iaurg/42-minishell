@@ -1,9 +1,6 @@
-#include "../libs/libft/libft.h"
-#include <stdio.h>
+#include "../includes/minishell.h"
 
-// cc examples/parse_whitespace.c -g3 libs/libft/*.c
-
-int find_end(char **args, char delim)
+static int	find_end(char **args, char delim)
 {
 	int	i;
 
@@ -17,7 +14,7 @@ int find_end(char **args, char delim)
 	return (++i);
 }
 
-char **malloc_mat(char **args)
+static char	**malloc_mat(char **args)
 {
 	char	**to_malloc;
 	int		i;
@@ -31,7 +28,7 @@ char **malloc_mat(char **args)
 	return (to_malloc);
 }
 
-char **join_args(char **args, char delim)
+static char	**join_args(char **args, char delim)
 {
 	int		end_index;
 	int		i;
@@ -39,14 +36,16 @@ char **join_args(char **args, char delim)
 	char	*tmp;
 	char	*other;
 	char	**final;
+	size_t	arg_len;
 
 	final = malloc_mat(args);
 	i = -1;
 	j = 0;
 	while (args[++i])
 	{
+		arg_len = ft_strlen(args[i]);
 		tmp = ft_strdup(args[i]);
-		if (args[i][0] == delim && args[i][ft_strlen(args[i]) - 1] != delim)
+		if (args[i][0] == delim && args[i][arg_len - 1] != delim)
 		{
 			end_index = find_end(&args[i], delim);
 			while (--end_index)
@@ -66,7 +65,7 @@ char **join_args(char **args, char delim)
 	return (final);
 }
 
-char **merge_by(char **args, char *delimiters)
+static char	**merge_by(char **args, char *delimiters)
 {
 	int	i;
 	char	**final;
@@ -78,7 +77,7 @@ char **merge_by(char **args, char *delimiters)
 	return (final);
 }
 
-char **parse_whitespace(char *str, char *delims)
+char	**parse_whitespace(char *str, char *delims)
 {
 	char	**args;
 	char	**final;
@@ -86,16 +85,4 @@ char **parse_whitespace(char *str, char *delims)
 	args = ft_split(str, ' ');
 	final = merge_by(args, delims);
 	return (final);
-}
-
-int main(void)
-{
-	char	str[] = "echo \"hello new world\" \"$PATH\" this is a \'test case\'";
-	char	delims[] = "\"\'";
-	char	**final = parse_whitespace(str, delims);
-
-	printf("final args are: \n");
-	for (int i = 0; final[i]; i++)
-		printf("final[%i] = `%s`\n", i, final[i]);
-	free_matrix(final);
 }
