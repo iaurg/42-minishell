@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 06:43:18 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/15 16:56:01 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/21 02:26:26 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,12 @@ int	sanitize_argv(t_command *cmd)
 	return (0);
 }
 
-int	read_input(t_command *cmd)
+int	read_input(char *buffer, t_command *cmd)
 {
 	int	i;
 
+	if (handle_tokens(buffer, cmd))
+		return (1);
 	i = -1;
 	while (cmd->argv[++i])
 	{

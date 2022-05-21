@@ -6,11 +6,11 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/05/20 00:42:48 by vwildner         ###   ########.fr        #
+#    Updated: 2022/05/21 03:53:57 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		= readline.c wip_lexer.c print_error.c execute.c utils.c execute_system.c redir.c utils2.c signal.c prompt.c here_doc.c expand.c
+SRC		= readline.c wip_lexer.c print_error.c execute.c utils.c execute_system.c redir.c utils2.c signal.c prompt.c here_doc.c expand.c tokens.c parse_whitespace.c parse_whitespace_utils.c
 
 SRC_MAIN = $(SRC)
 SRC_MAIN += minishell.c
@@ -31,7 +31,7 @@ LBFT_DIR = ./libs/libft
 
 LBFT_LIB = ${LBFT_DIR}/libft.a
 
-CFLAGS	=	-Wall -Werror -Wextra -g -O0
+CFLAGS	=	-Wall -Wextra -g -O0 -Og
 
 RM		=	rm -rf
 

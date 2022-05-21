@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/19 17:58:28 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/21 02:54:00 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,13 @@ int	handle_status(t_command *cmd, int i)
 
 int	handle_quotes(t_command *cmd, int i)
 {
-	size_t	len;
 	char	*tmp;
 
 	tmp = NULL;
-	len = ft_strlen(cmd->argv[i]);
 	if ((cmd->argv[i][0] == CHAR_DOUBLE_QT
 		|| cmd->argv[i][0] == CHAR_SINGLE_QT))
 	{
 		tmp = ft_strtrim(cmd->argv[i], "\"\'");
-		printf("tmp: %s\n", tmp);
 		free(cmd->argv[i]);
 		cmd->argv[i] = ft_strdup(tmp);
 		free(tmp);
@@ -69,11 +66,23 @@ void	handle_dollar_sign(t_command *cmd, char *tmp, int i)
 	}
 }
 
+void	handle_home(t_command *cmd, char *tmp, int i)
+{
+	if (cmd->argv[i][0] == '~')
+	{
+		tmp = getenv("HOME");
+		free(cmd->argv[i]);
+		if (ft_strlen(cmd->argv[i]) > 1)
+			cmd->argv[i] = ft_strjoin(tmp, &cmd->argv[i][1]);
+		else
+			cmd->argv[i] = ft_strdup(tmp);
+	}
+}
+
 void	expand_args(t_command *cmd)
 {
 	int		i;
 	char	*tmp;
-	size_t	len;
 
 	i = -1;
 	tmp = NULL;
@@ -82,16 +91,8 @@ void	expand_args(t_command *cmd)
 		if (handle_quotes(cmd, i))
 			continue ;
 		handle_dollar_sign(cmd, tmp, i);
-		if (cmd->argv[i][0] == '~')
-		{
-			tmp = getenv("HOME");
-			len = ft_strlen(cmd->argv[i]);
-			free(cmd->argv[i]);
-			if (len > 1)
-				cmd->argv[i] = ft_strjoin(tmp, &cmd->argv[i][1]);
-			else
-				cmd->argv[i] = ft_strdup(tmp);
-		}
+		handle_home(cmd, tmp, i);
 	}
 	cmd->argc = i;
+	cmd->argv = map_clear_quotes(cmd->argv);
 }

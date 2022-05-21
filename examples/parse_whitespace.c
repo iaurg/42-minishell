@@ -1,7 +1,7 @@
 #include "../libs/libft/libft.h"
 #include <stdio.h>
 
-// cc tests/parse_whitespace.c -g3 libs/libft/*.c
+// cc examples/parse_whitespace.c -g3 libs/libft/*.c
 
 int find_end(char **args, char delim)
 {
@@ -46,7 +46,7 @@ char **join_args(char **args, char delim)
 	while (args[++i])
 	{
 		tmp = ft_strdup(args[i]);
-		if (args[i][0] == delim)
+		if (args[i][0] == delim && args[i][ft_strlen(args[i]) - 1] != delim)
 		{
 			end_index = find_end(&args[i], delim);
 			while (--end_index)
@@ -90,7 +90,7 @@ char **parse_whitespace(char *str, char *delims)
 
 int main(void)
 {
-	char	str[] = "echo \"hello new world\" this is a \'test case\'";
+	char	str[] = "echo \"hello new world\" \"$PATH\" this is a \'test case\'";
 	char	delims[] = "\"\'";
 	char	**final = parse_whitespace(str, delims);
 

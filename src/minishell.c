@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/19 01:01:58 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/21 02:40:57 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		signal(SIGINT, signal_handler);
 		if (take_input(buffer, cmd))
-			break ;
-		cmd->argv = parse_input(buffer);
-		if (read_input(cmd))
+			continue ;
+		if (read_input(buffer, cmd))
 			continue ;
 		expand_args(cmd);
 		status = execute(cmd);
