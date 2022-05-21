@@ -21,11 +21,6 @@ int main(int argc, char *argv[], char *envp[])
 	t_list	**list;
 	t_list *tmp;
 
-	char *my_env[] = {
-		"PATH=/usr/bin:/bin:/usr/sbin:/sbin",
-		"HOME=/home/vwildner",
-		NULL
-	};
 	list = to_linked_list(envp);
 	ft_lstclear(list, free);
 }

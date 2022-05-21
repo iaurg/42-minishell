@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/21 02:40:57 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/21 20:22:44 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int	main(int argc, char *argv[], char *envp[])
 		expand_args(cmd);
 		status = execute(cmd);
 	}
+	ft_lstclear(cmd->envp, free);
 	return (0);
 }

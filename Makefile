@@ -6,7 +6,7 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/05/21 03:53:57 by vwildner         ###   ########.fr        #
+#    Updated: 2022/05/21 20:22:38 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ LBFT_DIR = ./libs/libft
 
 LBFT_LIB = ${LBFT_DIR}/libft.a
 
-CFLAGS	=	-Wall -Wextra -g -O0 -Og
+CFLAGS	=	-Wall -Wextra -g -O0
 
 RM		=	rm -rf
 

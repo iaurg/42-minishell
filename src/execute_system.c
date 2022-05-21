@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/15 05:45:33 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/21 20:14:57 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	execute_child_command(t_command *cmd)
 	abspath = solve_absolute_path(cmd);
 	if (execve(abspath, cmd->argv, compat_envp) == -1)
 		perror("Command not found");
-	free(compat_envp);
+	free_matrix(compat_envp);
 	free(abspath);
 }
 
