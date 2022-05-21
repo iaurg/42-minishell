@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/12 05:57:06 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/05/21 02:39:57 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	take_input(char *input_text, t_command *cmd)
 	display = get_inline_shell_display(cmd->envp);
 	buffer = readline(display);
 	free(display);
-	if (buffer)
+	if (ft_strlen(buffer) > 0)
 	{
 		save_history(buffer);
 		ft_strlcpy(input_text, buffer, ft_strlen(buffer) + 1);

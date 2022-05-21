@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_whitespace.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/21 03:01:30 by vwildner          #+#    #+#             */
+/*   Updated: 2022/05/21 03:05:21 by vwildner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static int	find_end(char **args, char delim)
@@ -36,16 +48,14 @@ static char	**join_args(char **args, char delim)
 	char	*tmp;
 	char	*other;
 	char	**final;
-	size_t	arg_len;
 
 	final = malloc_mat(args);
 	i = -1;
 	j = 0;
 	while (args[++i])
 	{
-		arg_len = ft_strlen(args[i]);
 		tmp = ft_strdup(args[i]);
-		if (args[i][0] == delim && args[i][arg_len - 1] != delim)
+		if (args[i][0] == delim && args[i][ft_strlen(args[i]) - 1] != delim)
 		{
 			end_index = find_end(&args[i], delim);
 			while (--end_index)
@@ -67,7 +77,7 @@ static char	**join_args(char **args, char delim)
 
 static char	**merge_by(char **args, char *delimiters)
 {
-	int	i;
+	int		i;
 	char	**final;
 
 	i = 0;
