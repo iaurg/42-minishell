@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/21 02:06:00 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/21 03:49:19 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@
 # define CHAR_DBL_LESSER '<<'
 # define CHAR_NULL 0
 
+/* TOKENIZER */
+# define START_REPR '#'
+# define DQ_REPR '\r'
+# define SQ_REPR '\f'
+
 /* TEMPORARY REFERENCES */
 # define TMP_FILE "/tmp/here_doc_tmp_file"
 
@@ -59,7 +64,9 @@ int		read_input(char *buffer, t_command *cmd);
 char	**parse_input(char *input_text);
 void	expand_args(t_command *cmd);
 char	**parse_whitespace(char *str, char *delims);
-char		**map_clear_quotes(char **args);
+char	**map_clear_quotes(char **args);
+char	**join_args(char **args, char delim);
+
 /* executors */
 int		system_exec(t_command *cmd);
 int		execute(t_command *cmd);
@@ -81,7 +88,6 @@ void	decoupled_shell_display(void);
 char	*get_last_slash_arg(char *arg);
 void	handle_exit(const char *s);
 int		handle_tokens(char *str, t_command *cmd);
-
 char	*solve_absolute_path(t_command *cmd);
 char	**to_array(t_list **list);
 
