@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 03:01:30 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/21 03:41:11 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/22 01:24:44 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*join_str(char *tmp, char **args, int *i)
 	return (tmp);
 }
 
-char	**_join_args(char **args, char delim, char **final, char *tmp)
+static char	**_join_args(char **args, char delim, char **final, char *tmp)
 {
 	int	i;
 	int	j;

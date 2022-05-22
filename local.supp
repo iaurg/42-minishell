@@ -1,0 +1,18 @@
+{
+   ignore_readline
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:xmalloc
+   fun:rl_make_bare_keymap
+   fun:rl_generic_bind
+   fun:UnknownInlinedFun
+   fun:rl_bind_keyseq_if_unbound_in_map
+   fun:bind_arrow_keys_internal
+   fun:UnknownInlinedFun
+   fun:UnknownInlinedFun
+   fun:rl_initialize
+   fun:readline
+   fun:take_input
+   fun:main
+}

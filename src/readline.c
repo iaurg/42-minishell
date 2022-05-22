@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/21 20:23:00 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/22 03:35:00 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,21 @@ char	*get_last_slash_arg(char *arg)
 //	return (tmp);
 //}
 
-int	take_input(char *input_text, t_command *cmd)
+int	take_input(char *input_text)
 {
 	char	*buffer;
 	//char	*display;
 
 	//display = get_inline_shell_display(cmd->envp);
-	buffer = readline(">");
+	buffer = readline("[ minishell ]$ ");
 	//free(display);
-	if (buffer)
+	if (ft_strlen(buffer) > 0)
 	{
 		save_history(buffer);
 		ft_strlcpy(input_text, buffer, ft_strlen(buffer) + 1);
+		free(buffer);
 		return (0);
 	}
+	free(buffer);
 	return (1);
 }

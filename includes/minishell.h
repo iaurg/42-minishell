@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/21 03:49:19 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/22 03:34:07 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,14 @@
 # define WRITE_END 1
 
 /* parsers */
-int		take_input(char *input_text, t_command *cmd);
+int		take_input(char *input_text);
 int		read_input(char *buffer, t_command *cmd);
 char	**parse_input(char *input_text);
 void	expand_args(t_command *cmd);
 char	**parse_whitespace(char *str, char *delims);
 char	**map_clear_quotes(char **args);
 char	**join_args(char **args, char delim);
+int		replace_explicit_quotes(char *str);
 
 /* executors */
 int		system_exec(t_command *cmd);
