@@ -56,6 +56,26 @@ char **parser(char *str)
 			i++;
 			continue;
 		}
+		if (str[i] == '"')
+		{
+			token = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
+			if (!token)
+				return (NULL);
+			j = 0;
+			token[j++] = str[i++];
+			while (str[i] && str[i] != '"')
+			{
+				token[j] = str[i];
+				i++;
+				j++;
+			}
+			token[j++] = str[i++];
+			token[j] = '\0';
+			tokens[k] = token;
+			k++;
+			i++;
+			continue;
+		}
 		token = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
 		if (!token)
 			return (NULL);
@@ -76,7 +96,35 @@ char **parser(char *str)
 
 int	main(void)
 {
-	printf("[0] %s \n", parser("echo 'hello world'")[0]);
-	printf("[1] %s \n", parser("echo 'hello world'")[1]);
+	char *str = strdup("echo \"hello world\"");
+	int i;
+	i = 0;
+	while (parser(str)[i])
+	{
+		printf("`%s` \n", parser(str)[i]);
+		i++;
+	}
+	/*
+	i = 0;
+	while (parser("cat | cat | cat")[i])
+	{
+		printf("`%s` \n", parser("cat | cat | cat")[i]);
+		i++;
+	}
+
+	i = 0;
+	while (parser("echo | | echo $? exit")[i])
+	{
+		printf("`%s` \n", parser("echo | | echo $? exit")[i]);
+		i++;
+	}
+
+	i = 0;
+	while (parser("echo oi && echo tchau | wc -l echo 1 exit")[i])
+	{
+		printf("`%s` \n", parser("echo oi && echo tchau | wc -l echo 1 exit")[i]);
+		i++;
+	}
+	*/
 	return (0);
 }
