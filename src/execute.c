@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:58:19 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/13 20:52:17 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/28 20:43:51 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,30 @@ int	execute(t_command *cmd)
 		return (1);
 	return (system_exec(cmd));
 }
+
+//void	execute_redir(t_command *cmd)
+//{
+//	int		fd[2];
+//	pid_t	pid;
+//	int		status;
+
+//	if (pipe(fd) == -1)
+//		handle_exit("`exec_redir`: Error while redirecting pipe\n");
+//	pid = fork();
+//	if (pid < 0)
+//		handle_exit("`exec_redir`: Error while forking redirect\n");
+//	if (pid > 0)
+//	{
+//		close(fd[OUTPUT]);
+//		dup2(fd[INPUT], STDIN_FILENO);
+//		close(fd[INPUT]);
+//		waitpid(pid, &status, 0);
+//		if (WEXITSTATUS(status) == EXIT_FAILURE)
+//			exit(EXIT_FAILURE);
+//		return ;
+//	}
+//	close(fd[INPUT]);
+//	dup2(fd[OUTPUT], STDOUT_FILENO);
+//	close(fd[OUTPUT]);
+//	execute(cmd);
+//}

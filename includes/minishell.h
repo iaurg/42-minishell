@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/21 03:49:19 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/28 21:44:08 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	**join_args(char **args, char delim);
 /* executors */
 int		system_exec(t_command *cmd);
 int		execute(t_command *cmd);
+int		handle_execute(t_command *cmd);
+void	execute_pipe(int *flag, int *fds, t_command *cmd, int pos);
 
 /* cleanup */
 void	atexit_clean(void *data);
