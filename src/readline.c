@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/30 21:32:02 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/30 22:01:42 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,28 +61,6 @@ static char	*get_inline_shell_display(t_list *envp[])
 	return (tmp);
 }
 
-static int	using_prohibited_characters(char *buff)
-{
-	int		i;
-	char	c;
-
-	i = -1;
-	if (buff == NULL)
-		return (1);
-	while (buff[++i])
-	{
-		c = buff[i];
-		if (c == ';' || c == '\\' || c == '&')
-		{
-			write(STDERR_FILENO, "minishell: syntax error: `", 27);
-			write(STDERR_FILENO, &c, 1);
-			write(STDERR_FILENO, "` is not a valid token\n", 23);
-			return (1);
-		}
-	}
-	return (0);
-}
-
 int	take_input(char *buffer, t_command *cmd)
 {
 	char	*tmp;
@@ -91,16 +69,15 @@ int	take_input(char *buffer, t_command *cmd)
 	display = get_inline_shell_display(cmd->envp);
 	tmp = readline(display);
 	ft_strlcpy(buffer, tmp, ft_strlen(tmp) + 1);
-	free(display);
 	free(tmp);
-	if (ft_strlen(tmp) > 0)
+	free(display);
+	if (tmp == NULL)
+		return (1);
+	if (ft_strlen(buffer) == 0)
+		return (0);
+	if (ft_strlen(buffer) > 0)
 	{
 		save_history(buffer);
-		return (0);
-	}
-	if (using_prohibited_characters(buffer))
-	{
-		cmd->status = 127;
 		return (0);
 	}
 	return (1);
