@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/28 20:32:11 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:19:11 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		signal(SIGINT, signal_handler);
 		if (take_input(buffer, cmd))
-			continue ;
+			break ;
 		if (read_input(buffer, cmd))
 			continue ;
 		expand_args(cmd);

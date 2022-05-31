@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/24 19:59:06 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:32:02 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static int	using_prohibited_characters(char *buff)
 	char	c;
 
 	i = -1;
+	if (buff == NULL)
+		return (1);
 	while (buff[++i])
 	{
 		c = buff[i];
@@ -81,25 +83,24 @@ static int	using_prohibited_characters(char *buff)
 	return (0);
 }
 
-int	take_input(char *input_text, t_command *cmd)
+int	take_input(char *buffer, t_command *cmd)
 {
-	char	*buffer;
+	char	*tmp;
 	char	*display;
 
 	display = get_inline_shell_display(cmd->envp);
-	buffer = readline(display);
+	tmp = readline(display);
+	ft_strlcpy(buffer, tmp, ft_strlen(tmp) + 1);
 	free(display);
+	free(tmp);
+	if (ft_strlen(tmp) > 0)
+	{
+		save_history(buffer);
+		return (0);
+	}
 	if (using_prohibited_characters(buffer))
 	{
 		cmd->status = 127;
-		free(buffer);
-		return (1);
-	}
-	if (ft_strlen(buffer) > 0)
-	{
-		save_history(buffer);
-		ft_strlcpy(input_text, buffer, ft_strlen(buffer) + 1);
-		free(buffer);
 		return (0);
 	}
 	return (1);
