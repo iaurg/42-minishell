@@ -6,13 +6,13 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/30 21:48:16 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/30 22:10:32 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int	using_prohibited_characters(char *buff)
+static int	using_prohibited_characters(t_command *cmd, char *buff)
 {
 	int		i;
 	char	c;
@@ -28,6 +28,7 @@ static int	using_prohibited_characters(char *buff)
 			write(STDERR_FILENO, "minishell: syntax error: `", 27);
 			write(STDERR_FILENO, &c, 1);
 			write(STDERR_FILENO, "` is not a valid token\n", 23);
+			cmd->status = 127;
 			return (1);
 		}
 	}
@@ -55,13 +56,9 @@ int	main(int argc, char *argv[], char *envp[])
 		if (take_input(buffer, cmd))
 			break ;
 		if (using_prohibited_characters(buffer))
-		{
-			cmd->status = 127;
 			continue ;
-		}
 		if (read_input(buffer, cmd))
 			continue ;
-		expand_args(cmd);
 		status = handle_execute(cmd);
 	}
 	return (0);
