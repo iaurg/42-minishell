@@ -6,13 +6,13 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/30 22:10:32 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/30 22:13:23 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int	using_prohibited_characters(t_command *cmd, char *buff)
+static int	using_prohibited_characters(char *buff, t_command *cmd)
 {
 	int		i;
 	char	c;
@@ -55,7 +55,7 @@ int	main(int argc, char *argv[], char *envp[])
 		signal(SIGINT, signal_handler);
 		if (take_input(buffer, cmd))
 			break ;
-		if (using_prohibited_characters(buffer))
+		if (using_prohibited_characters(buffer, cmd))
 			continue ;
 		if (read_input(buffer, cmd))
 			continue ;
