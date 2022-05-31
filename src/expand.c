@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/21 02:54:00 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/28 21:53:22 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,4 @@ void	expand_args(t_command *cmd)
 		handle_home(cmd, tmp, i);
 	}
 	cmd->argc = i;
-	cmd->argv = map_clear_quotes(cmd->argv);
 }

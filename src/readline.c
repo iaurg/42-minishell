@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/24 19:59:06 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/30 22:01:42 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,45 +61,23 @@ static char	*get_inline_shell_display(t_list *envp[])
 	return (tmp);
 }
 
-static int	using_prohibited_characters(char *buff)
+int	take_input(char *buffer, t_command *cmd)
 {
-	int		i;
-	char	c;
-
-	i = -1;
-	while (buff[++i])
-	{
-		c = buff[i];
-		if (c == ';' || c == '\\' || c == '&')
-		{
-			write(STDERR_FILENO, "minishell: syntax error: `", 27);
-			write(STDERR_FILENO, &c, 1);
-			write(STDERR_FILENO, "` is not a valid token\n", 23);
-			return (1);
-		}
-	}
-	return (0);
-}
-
-int	take_input(char *input_text, t_command *cmd)
-{
-	char	*buffer;
+	char	*tmp;
 	char	*display;
 
 	display = get_inline_shell_display(cmd->envp);
-	buffer = readline(display);
+	tmp = readline(display);
+	ft_strlcpy(buffer, tmp, ft_strlen(tmp) + 1);
+	free(tmp);
 	free(display);
-	if (using_prohibited_characters(buffer))
-	{
-		cmd->status = 127;
-		free(buffer);
+	if (tmp == NULL)
 		return (1);
-	}
+	if (ft_strlen(buffer) == 0)
+		return (0);
 	if (ft_strlen(buffer) > 0)
 	{
 		save_history(buffer);
-		ft_strlcpy(input_text, buffer, ft_strlen(buffer) + 1);
-		free(buffer);
 		return (0);
 	}
 	return (1);
