@@ -12,6 +12,9 @@ echo "hello world" -> {echo, "hello world", NULL} (keep the quotes!)
 echo "hello ' world" -> invalid input
 
 parser split arguments with quotes.
+
+Read again:
+https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
 */
 
 int ft_count_words(char *str, char *delim)
@@ -52,10 +55,7 @@ char **parser(char *str)
 	while (str[i])
 	{
 		if (str[i] == ' ')
-		{
 			i++;
-			continue;
-		}
 		if (str[i] == '"')
 		{
 			token = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
@@ -64,11 +64,7 @@ char **parser(char *str)
 			j = 0;
 			token[j++] = str[i++];
 			while (str[i] && str[i] != '"')
-			{
-				token[j] = str[i];
-				i++;
-				j++;
-			}
+				token[j++] = str[i++];
 			token[j++] = str[i++];
 			token[j] = '\0';
 			tokens[k] = token;
@@ -76,15 +72,8 @@ char **parser(char *str)
 			i++;
 			continue;
 		}
-		token = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
-		if (!token)
-			return (NULL);
 		while (str[i] && str[i] != ' ')
-		{
-			token[j] = str[i];
-			j++;
-			i++;
-		}
+			token[j++] = str[i++];
 		token[j] = '\0';
 		tokens[k] = token;
 		k++;
@@ -96,9 +85,25 @@ char **parser(char *str)
 
 int	main(void)
 {
-	char *str = strdup("echo \"hello world\"");
+	char *str = strdup("echo \"hello ''' '''' """" world\"");
 	int i;
 	i = 0;
+	while (parser(str)[i])
+	{
+		printf("`%s` \n", parser(str)[i]);
+		i++;
+	}
+
+	i = 0;
+	str = strdup("echo \"hello world with a big string inside this crazy thing\"");
+	while (parser(str)[i])
+	{
+		printf("`%s` \n", parser(str)[i]);
+		i++;
+	}
+	/*
+	i = 0;
+	str = strdup("echo test > ls >> ls >> ls ; echo test >> ls; cat ls");
 	while (parser(str)[i])
 	{
 		printf("`%s` \n", parser(str)[i]);
