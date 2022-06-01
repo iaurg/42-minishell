@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 20:31:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/14 01:43:06 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/28 21:49:47 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int cd_home(t_list *envp[])
 
 static void print_cd_error(char *argv[])
 {
-		write(STDERR_FILENO, "bash: cd: ", 10);
+		write(STDERR_FILENO, "minishell: cd: ", 10);
 		write(STDERR_FILENO, argv[1], ft_strlen(argv[1]));
 		write(STDERR_FILENO, ": No such file or directory", 27);
 		write(STDERR_FILENO, "\n", 1);

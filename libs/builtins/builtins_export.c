@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 23:02:52 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/17 21:15:02 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/28 21:49:38 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	has_equals(const char *first)
 
 static int	print_export_err(const char *arg, int errnum)
 {
-	fprintf(stderr, "bash: export: `%s': not a valid identifier\n", arg);
+	fprintf(stderr, "minishell: export: `%s': not a valid identifier\n", arg);
 	return (errnum);
 }
 

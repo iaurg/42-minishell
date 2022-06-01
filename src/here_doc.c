@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 06:43:18 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/21 02:26:26 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/30 22:10:45 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ int	read_input(char *buffer, t_command *cmd)
 			sanitize_argv(cmd);
 		}
 	}
+	expand_args(cmd);
 	return (0);
 }

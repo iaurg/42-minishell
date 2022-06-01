@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:27:35 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/17 21:12:16 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/28 21:49:22 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	read_file(char *filename)
 	fd = open(filename, O_RDONLY, 0644);
 	if (fd == -1)
 	{
-		fprintf(stderr, "bash: no such file or directory: %s\n", filename);
+		fprintf(stderr, "minishell: no such file or directory: %s\n", filename);
 		return (0);
 	}
 	dup2(fd, 0);
@@ -129,7 +129,7 @@ void	print_err_msg(char *command, char *msg)
 {
 	char	*err_msg;
 
-	err_msg = ft_strdup("bash: ");
+	err_msg = ft_strdup("minishell: ");
 	err_msg = ft_strjoin(err_msg, command);
 	err_msg = ft_strjoin(err_msg, ": ");
 	err_msg = ft_strjoin(err_msg, msg);

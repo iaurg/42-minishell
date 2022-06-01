@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/25 23:40:51 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/01 20:59:14 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,5 @@ int	system_exec(t_command *cmd)
 		else
 			cmd->status = 0;
 	}
-	free(cmd->argv);
 	return (1);
 }
