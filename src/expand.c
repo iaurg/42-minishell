@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/28 21:53:22 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/31 11:15:48 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ int	handle_status(t_command *cmd, int i)
 	return (0);
 }
 
-int	handle_quotes(t_command *cmd, int i)
+int	handle_quotes(t_command *cmd, char *arg, int i)
 {
-	char	*tmp;
+	char	*token;
 
-	tmp = NULL;
-	if ((cmd->argv[i][0] == CHAR_DOUBLE_QT
-		|| cmd->argv[i][0] == CHAR_SINGLE_QT))
+	token = ft_strchr(cmd->argv[i], *arg);
+	if (token != NULL)
 	{
-		tmp = ft_strtrim(cmd->argv[i], "\"\'");
-		free(cmd->argv[i]);
-		cmd->argv[i] = ft_strdup(tmp);
-		free(tmp);
+		while (token != NULL)
+		{
+			ft_memmove(token, token + 1, ft_strlen(token));
+			token = ft_strchr(cmd->argv[i], *arg);
+		}
 		return (1);
 	}
 	return (0);
@@ -44,13 +44,15 @@ int	handle_quotes(t_command *cmd, int i)
 void	handle_dollar_sign(t_command *cmd, char *tmp, int i)
 {
 	size_t	len;
+	char	*token;
 
 	len = ft_strlen(cmd->argv[i]);
-	if (cmd->argv[i][0] == '$')
+	token = ft_strchr(cmd->argv[i], '$');
+	if (token != NULL)
 	{
 		if (handle_status(cmd, i))
 			return ;
-		tmp = ms_getenv(cmd->envp, &cmd->argv[i][1]);
+		tmp = ms_getenv(cmd->envp, ++token);
 		if (tmp)
 		{
 			free(cmd->argv[i]);
@@ -68,14 +70,20 @@ void	handle_dollar_sign(t_command *cmd, char *tmp, int i)
 
 void	handle_home(t_command *cmd, char *tmp, int i)
 {
-	if (cmd->argv[i][0] == '~')
+	char	*sign_start;
+	char	*tmp_arg;
+
+	tmp_arg = ft_strdup(cmd->argv[i]);
+	sign_start = ft_strchr(tmp_arg, '~');
+	if (sign_start != NULL)
 	{
 		tmp = getenv("HOME");
 		free(cmd->argv[i]);
-		if (ft_strlen(cmd->argv[i]) > 1)
-			cmd->argv[i] = ft_strjoin(tmp, &cmd->argv[i][1]);
+		if (++sign_start != NULL)
+			cmd->argv[i] = ft_strjoin(tmp, sign_start);
 		else
 			cmd->argv[i] = ft_strdup(tmp);
+		free(tmp_arg);
 	}
 }
 
@@ -88,8 +96,9 @@ void	expand_args(t_command *cmd)
 	tmp = NULL;
 	while (cmd->argv[++i])
 	{
-		if (handle_quotes(cmd, i))
+		if (handle_quotes(cmd, "\'", i))
 			continue ;
+		handle_quotes(cmd, "\"", i);
 		handle_dollar_sign(cmd, tmp, i);
 		handle_home(cmd, tmp, i);
 	}

@@ -6,34 +6,35 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/30 22:13:23 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/05/31 10:29:15 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int	using_prohibited_characters(char *buff, t_command *cmd)
-{
-	int		i;
-	char	c;
+// TODO: must be improved to handle only prohibited characters outside of quotes
+//static int	using_prohibited_characters(char *buff, t_command *cmd)
+//{
+//	int		i;
+//	char	c;
 
-	i = -1;
-	if (buff == NULL)
-		return (1);
-	while (buff[++i] != '\0')
-	{
-		c = buff[i];
-		if (c == ';' || c == '\\' || c == '&')
-		{
-			write(STDERR_FILENO, "minishell: syntax error: `", 27);
-			write(STDERR_FILENO, &c, 1);
-			write(STDERR_FILENO, "` is not a valid token\n", 23);
-			cmd->status = 127;
-			return (1);
-		}
-	}
-	return (0);
-}
+//	i = -1;
+//	if (buff == NULL)
+//		return (1);
+//	while (buff[++i] != '\0')
+//	{
+//		c = buff[i];
+//		if (c == ';' || c == '\\' || c == '&')
+//		{
+//			write(STDERR_FILENO, "minishell: syntax error: `", 27);
+//			write(STDERR_FILENO, &c, 1);
+//			write(STDERR_FILENO, "` is not a valid token\n", 23);
+//			cmd->status = 127;
+//			return (1);
+//		}
+//	}
+//	return (0);
+//}
 
 int	main(int argc, char *argv[], char *envp[])
 {
@@ -55,8 +56,6 @@ int	main(int argc, char *argv[], char *envp[])
 		signal(SIGINT, signal_handler);
 		if (take_input(buffer, cmd))
 			break ;
-		if (using_prohibited_characters(buffer, cmd))
-			continue ;
 		if (read_input(buffer, cmd))
 			continue ;
 		status = handle_execute(cmd);
