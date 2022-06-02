@@ -6,14 +6,14 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/05/28 21:57:49 by vwildner         ###   ########.fr        #
+#    Updated: 2022/06/01 20:57:57 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		= readline.c wip_lexer.c print_error.c execute.c utils.c execute_system.c redir.c utils2.c signal.c prompt.c here_doc.c expand.c tokens.c parse_whitespace.c parse_whitespace_utils.c pipe.c pipe_execute.c
+SRC		= minishell.c readline.c wip_lexer.c print_error.c execute.c utils.c execute_system.c redir.c utils2.c signal.c prompt.c here_doc.c expand.c tokens.c parse_whitespace.c parse_whitespace_utils.c pipe.c pipe_execute.c
 
 SRC_MAIN = $(SRC)
-SRC_MAIN += minishell.c
+SRC_MAIN += main.c
 
 SRC_PATH = ./src
 
@@ -94,12 +94,6 @@ all: $(NAME)
 
 $(NAME): $(LBFT_LIB) $(OBJECTS) $(MINI_HEADER)
 	gcc -g -Wall -Wextra -o minishell ./src/*.c ./libs/builtins/*.c ./libs/libft/*.c ./libs/get_next_line/*.c -C -lreadline
-
-#$(NAME): $(LBFT_LIB) $(OBJECTS) $(MINI_HEADER)
-#	$(CC) $(CFLAGS) -w -g $(OBJECTS) $(LBFT_LIB) -o $(NAME) -L $(ARCHIVES_PATH) $(EXTERNAL_LIBS) $(INTERNAL_LIBS)
-#	${MSG1}
-
-#$(CC) $(CFLAGS) $(OBJECTS) $(LBFT_LIB) -o $(NAME)
 
 libft: $(LBFT_LIB)
 

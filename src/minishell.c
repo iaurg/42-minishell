@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/31 10:29:15 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 20:52:33 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 //	return (0);
 //}
 
-int	main(int argc, char *argv[], char *envp[])
+int	minishell(int argc, char *argv[], char *envp[])
 {
 	char		buffer[1024];
 	int			status;
