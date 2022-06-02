@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/06/01 21:47:05 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:20:00 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,8 @@ char	**to_array(t_list **list);
 /* signal handlers */
 int		*get_signal_triggered_status(void);
 void	handle_heredoc_signal(int signal_number);
+
+/* entrypoint */
+int		minishell(char *envp[]);
 
 #endif
