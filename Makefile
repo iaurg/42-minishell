@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/05/28 21:57:49 by vwildner         ###   ########.fr        #
+#    Updated: 2022/06/01 21:47:38 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		= readline.c wip_lexer.c print_error.c execute.c utils.c execute_system.c redir.c utils2.c signal.c prompt.c here_doc.c expand.c tokens.c parse_whitespace.c parse_whitespace_utils.c pipe.c pipe_execute.c
+SRC		= readline.c wip_code.c print_error.c execute.c utils.c execute_system.c redir.c utils2.c signal.c prompt.c here_doc.c expand.c tokens.c parse_whitespace.c parse_whitespace_utils.c pipe.c pipe_execute.c
 
 SRC_MAIN = $(SRC)
 SRC_MAIN += minishell.c
