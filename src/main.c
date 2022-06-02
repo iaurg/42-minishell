@@ -6,12 +6,19 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 21:51:52 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 21:51:53 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:16:19 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/minishell.h"
+
 int	main(int argc, char *argv[], char *envp[])
 {
-	minishell(argc, argv, envp);
+	if (argc > 1 && argv)
+	{
+		print_error(NO_ARGS);
+		return (1);
+	}
+	minishell(envp);
 	return (0);
 }

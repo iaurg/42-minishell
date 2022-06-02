@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/28 21:44:08 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:15:53 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,8 @@ char	**to_array(t_list **list);
 /* signal handlers */
 int		*get_signal_triggered_status(void);
 void	handle_heredoc_signal(int signal_number);
+
+/* entrypoint */
+int	minishell(char *envp[]);
 
 #endif

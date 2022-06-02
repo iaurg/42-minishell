@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/01 20:52:33 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:15:25 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,19 @@
 //	return (0);
 //}
 
-int	minishell(int argc, char *argv[], char *envp[])
+void	destroy_program(t_command *cmd)
+{
+	ft_lstclear(cmd->envp, free);
+	free(cmd);
+}
+
+int	minishell(char *envp[])
 {
 	char		buffer[1024];
 	int			status;
 	t_command	*cmd;
 
-	if (argc > 1 && argv)
-	{
-		print_error(NO_ARGS);
-		return (1);
-	}
 	cmd = init_builtins(envp);
-	atexit_clean(cmd);
 	signal(SIGQUIT, SIG_IGN);
 	status = 1;
 	while (status)
@@ -60,5 +60,6 @@ int	minishell(int argc, char *argv[], char *envp[])
 			continue ;
 		status = handle_execute(cmd);
 	}
+	destroy_program(cmd);
 	return (0);
 }
