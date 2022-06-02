@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 21:35:26 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:36:34 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void	handle_exit(const char *s)
 	exit(EXIT_FAILURE);
 }
 
-int ft_count_words(char *str, char *delim)
+int	ft_count_words(char *str, char *delim)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;

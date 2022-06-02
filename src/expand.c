@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/01 21:11:04 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:36:00 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	expand_args(t_command *cmd)
 	tmp = NULL;
 	while (cmd->argv[++i])
 	{
-
 		if (handle_quotes(cmd, "\'", i))
 			continue ;
 		handle_quotes(cmd, "\"", i);
