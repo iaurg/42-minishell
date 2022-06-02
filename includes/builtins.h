@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 22:35:09 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:48:00 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,5 @@ void		print_err_msg(char *command, char *msg);
 
 t_list		**to_linked_list(char **envp);
 int			first_char_is_equal(const char *first);
-
 
 #endif
