@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 03:43:27 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/21 03:48:23 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 21:28:47 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,52 @@ static int	odd_quote_tokens(char *str)
 	return (j % 2 == 1 || k % 2 == 1);
 }
 
+char **parser(char *str)
+{
+	char **tokens;
+	char *token;
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	tokens = (char **)malloc(sizeof(char *) * (ft_count_words(str, " ") + 1));
+	if (!tokens)
+		return (NULL);
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			i++;
+		if (str[i] == '"' || str[i] == '\'')
+		{
+			token = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
+			if (!token)
+				return (NULL);
+			j = 0;
+			token[j++] = str[i++];
+			while (str[i] && str[i] != '"')
+				token[j++] = str[i++];
+			token[j++] = str[i++];
+			token[j] = '\0';
+			tokens[k] = token;
+			k++;
+			i++;
+			continue;
+		}
+		token = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
+		while (str[i] && str[i] != ' ')
+			token[j++] = str[i++];
+		token[j] = '\0';
+		tokens[k] = token;
+		k++;
+		j = 0;
+	}
+	tokens[k] = NULL;
+	return (tokens);
+}
+
 int	handle_tokens(char *str, t_command *cmd)
 {
 	char	*tmp;
@@ -71,6 +117,6 @@ int	handle_tokens(char *str, t_command *cmd)
 		free(tmp);
 		return (1);
 	}
-	cmd->argv = parse_whitespace(tmp, "\'\"");
+	cmd->argv = parser(tmp);
 	return (0);
 }
