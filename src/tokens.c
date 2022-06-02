@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 03:43:27 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/02 20:02:08 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/02 20:06:47 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	tokenize_internal_quotes(char *str, char qt_repr, char dbl_qt_repr)
 			while (str[++i] != '\'')
 				replace_if_matches(&str[i], '\"', qt_repr);
 		}
-
 	}
 }
 
@@ -54,9 +53,8 @@ void	recover_internal_quotes(char *str, char qt_repr, char dbl_qt_repr)
 		else if (str[i] == '\'' && ft_strchr(&str[i + 1], '\''))
 		{
 			while (str[++i] != '\'')
-				replace_if_matches(&str[i],qt_repr, '\"');
+				replace_if_matches(&str[i], qt_repr, '\"');
 		}
-
 	}
 }
 
@@ -84,7 +82,7 @@ static int	odd_nbr_quote_tokens(t_command *cmd, char *str)
 int	handle_tokens(char *str, t_command *cmd)
 {
 	tokenize_internal_quotes(str, SQ_REPR, DQ_REPR);
-	if (odd_nbr_quote_tokens(str))
+	if (odd_nbr_quote_tokens(cmd, str))
 	{
 		cmd->status = 127;
 		ft_putstr_fd("minishell: syntax error: unbalanced quotes\n",
