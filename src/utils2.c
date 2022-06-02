@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/21 03:48:01 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 21:01:00 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,23 @@ char	*clear_quotes(char *str)
 	return (tmp);
 }
 
-char	**map_clear_quotes(char **args)
+int ft_count_words(char *str, char *delim)
 {
-	int		i;
-	char	**final;
+	int i;
+	int count;
 
 	i = 0;
-	while (args[i])
-		i++;
-	final = (char **)malloc(sizeof(char *) * (i + 1));
-	i = -1;
-	while (args[++i])
-		final[i] = clear_quotes(args[i]);
-	free_matrix(args);
-	return (final);
+	count = 0;
+	while (str[i])
+	{
+		if (ft_strchr(delim, str[i]) == NULL)
+		{
+			count++;
+			while (str[i] && ft_strchr(delim, str[i]) == NULL)
+				i++;
+		}
+		else
+			i++;
+	}
+	return (count);
 }
