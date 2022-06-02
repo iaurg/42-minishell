@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 03:43:27 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/02 19:26:13 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/02 20:02:08 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	tokenize_internal_quotes(char *str, char qt_repr, char dbl_qt_repr)
 	}
 }
 
-static void	recover_internal_quotes(char *str, char qt_repr, char dbl_qt_repr)
+void	recover_internal_quotes(char *str, char qt_repr, char dbl_qt_repr)
 {
 	int		i;
 
@@ -60,23 +60,25 @@ static void	recover_internal_quotes(char *str, char qt_repr, char dbl_qt_repr)
 	}
 }
 
-static int	odd_nbr_quote_tokens(char *str)
+static int	odd_nbr_quote_tokens(t_command *cmd, char *str)
 {
 	int		i;
-	int		j;
-	int		k;
+	int		single_quotes;
+	int		double_quotes;
 
 	i = -1;
-	j = 0;
-	k = 0;
+	single_quotes = 0;
+	double_quotes = 0;
 	while (str[++i])
 	{
 		if (str[i] == '\'')
-			j++;
+			single_quotes++;
 		if (str[i] == '\"')
-			k++;
+			double_quotes++;
 	}
-	return (j % 2 == 1 || k % 2 == 1);
+	cmd->s_quotes = single_quotes;
+	cmd->d_quotes = double_quotes;
+	return (single_quotes % 2 == 1 || double_quotes % 2 == 1);
 }
 
 int	handle_tokens(char *str, t_command *cmd)

@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/06/02 18:59:35 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/02 19:33:30 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	handle_exit(const char *s);
 int		handle_tokens(char *str, t_command *cmd);
 char	*solve_absolute_path(t_command *cmd);
 char	**to_array(t_list **list);
+void	recover_internal_quotes(char *str, char qt_repr, char dbl_qt_repr);
 
 /* signal handlers */
 int		*get_signal_triggered_status(void);
