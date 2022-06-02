@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/21 03:48:01 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/02 18:03:44 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char	**to_array(t_list **list)
 		array[i++] = tmp->content;
 		tmp = tmp->next;
 	}
+	array[i] = NULL;
 	return (array);
 }
 
