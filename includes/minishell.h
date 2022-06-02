@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/06/01 22:20:00 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/02 18:59:35 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 
 /* TOKENIZER */
 # define START_REPR '#'
-# define DQ_REPR '\r'
-# define SQ_REPR '\f'
+# define DQ_REPR 25
+# define SQ_REPR 26
 
 /* TEMPORARY REFERENCES */
 # define TMP_FILE "/tmp/here_doc_tmp_file"

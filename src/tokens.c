@@ -6,40 +6,61 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 03:43:27 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/21 03:48:23 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/02 19:26:13 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static char	*replace_explicit_quotes(char *str)
+static void	replace_if_matches(char *origin, char match, char replacement)
 {
-	int		i;
-	char	*tmp;
-
-	i = -1;
-	tmp = malloc(sizeof(char) * (strlen(str) + 1));
-	while (str[++i + 1])
-	{
-		if ((str[i] == '\\' && (str[i + 1] == '\"' || str[i + 1] == '\'')))
-		{
-			tmp[i] = START_REPR;
-			if (str[i + 1] == '\"')
-				tmp[i + 1] = DQ_REPR;
-			else if (str[i + 1] == '\'')
-				tmp[i + 1] = SQ_REPR;
-			i++;
-		}
-		else
-			tmp[i] = str[i];
-	}
-	tmp[i] = str[i];
-	i++;
-	tmp[i] = '\0';
-	return (tmp);
+	if (*origin == match)
+		*origin = replacement;
 }
 
-static int	odd_quote_tokens(char *str)
+static void	tokenize_internal_quotes(char *str, char qt_repr, char dbl_qt_repr)
+{
+	int		i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == '\"' && ft_strchr(&str[i + 1], '\"'))
+		{
+			while (str[++i] != '\"')
+				replace_if_matches(&str[i], '\'', dbl_qt_repr);
+		}
+		else if (str[i] == '\'' && ft_strchr(&str[i + 1], '\''))
+		{
+			while (str[++i] != '\'')
+				replace_if_matches(&str[i], '\"', qt_repr);
+		}
+
+	}
+}
+
+static void	recover_internal_quotes(char *str, char qt_repr, char dbl_qt_repr)
+{
+	int		i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == '\"' && ft_strchr(&str[i + 1], '\"'))
+		{
+			while (str[++i] != '\"')
+				replace_if_matches(&str[i], dbl_qt_repr, '\'');
+		}
+		else if (str[i] == '\'' && ft_strchr(&str[i + 1], '\''))
+		{
+			while (str[++i] != '\'')
+				replace_if_matches(&str[i],qt_repr, '\"');
+		}
+
+	}
+}
+
+static int	odd_nbr_quote_tokens(char *str)
 {
 	int		i;
 	int		j;
@@ -60,17 +81,15 @@ static int	odd_quote_tokens(char *str)
 
 int	handle_tokens(char *str, t_command *cmd)
 {
-	char	*tmp;
-
-	tmp = replace_explicit_quotes(str);
-	if (odd_quote_tokens(tmp))
+	tokenize_internal_quotes(str, SQ_REPR, DQ_REPR);
+	if (odd_nbr_quote_tokens(str))
 	{
 		cmd->status = 127;
 		ft_putstr_fd("minishell: syntax error: unbalanced quotes\n",
 			STDERR_FILENO);
-		free(tmp);
 		return (1);
 	}
-	cmd->argv = parse_whitespace(tmp, "\'\"");
+	recover_internal_quotes(str, SQ_REPR, DQ_REPR);
+	cmd->argv = parse_whitespace(str, "\'\"");
 	return (0);
 }
