@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 21:01:00 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/01 21:35:26 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,34 +50,6 @@ void	handle_exit(const char *s)
 {
 	perror(s);
 	exit(EXIT_FAILURE);
-}
-
-char	*clear_quotes(char *str)
-{
-	int		i;
-	int		j;
-	char	*tmp;
-
-	i = -1;
-	j = 0;
-	tmp = malloc(sizeof(char) * (ft_strlen(str) + 1));
-	while (str[++i + 1])
-	{
-		if ((str[i] == START_REPR
-				&& (str[i + 1] == DQ_REPR || str[i + 1] == SQ_REPR)))
-		{
-			if (str[i + 1] == DQ_REPR)
-				tmp[j++] = '\"';
-			else if (str[i + 1] == SQ_REPR)
-				tmp[j++] = '\'';
-			i++;
-		}
-		else
-			tmp[j++] = str[i];
-	}
-	tmp[j++] = str[i];
-	tmp[j] = '\0';
-	return (tmp);
 }
 
 int ft_count_words(char *str, char *delim)
