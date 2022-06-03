@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_system.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/02 20:09:50 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/03 00:22:21 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

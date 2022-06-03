@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/02 18:03:44 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:36:34 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,46 +53,23 @@ void	handle_exit(const char *s)
 	exit(EXIT_FAILURE);
 }
 
-char	*clear_quotes(char *str)
+int	ft_count_words(char *str, char *delim)
 {
-	int		i;
-	int		j;
-	char	*tmp;
-
-	i = -1;
-	j = 0;
-	tmp = malloc(sizeof(char) * (ft_strlen(str) + 1));
-	while (str[++i + 1])
-	{
-		if ((str[i] == START_REPR
-				&& (str[i + 1] == DQ_REPR || str[i + 1] == SQ_REPR)))
-		{
-			if (str[i + 1] == DQ_REPR)
-				tmp[j++] = '\"';
-			else if (str[i + 1] == SQ_REPR)
-				tmp[j++] = '\'';
-			i++;
-		}
-		else
-			tmp[j++] = str[i];
-	}
-	tmp[j++] = str[i];
-	tmp[j] = '\0';
-	return (tmp);
-}
-
-char	**map_clear_quotes(char **args)
-{
-	int		i;
-	char	**final;
+	int	i;
+	int	count;
 
 	i = 0;
-	while (args[i])
-		i++;
-	final = (char **)malloc(sizeof(char *) * (i + 1));
-	i = -1;
-	while (args[++i])
-		final[i] = clear_quotes(args[i]);
-	free_matrix(args);
-	return (final);
+	count = 0;
+	while (str[i])
+	{
+		if (ft_strchr(delim, str[i]) == NULL)
+		{
+			count++;
+			while (str[i] && ft_strchr(delim, str[i]) == NULL)
+				i++;
+		}
+		else
+			i++;
+	}
+	return (count);
 }

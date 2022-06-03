@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 03:43:27 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/02 20:06:47 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 21:45:58 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,6 @@ int	handle_tokens(char *str, t_command *cmd)
 		return (1);
 	}
 	recover_internal_quotes(str, SQ_REPR, DQ_REPR);
-	cmd->argv = parse_whitespace(str, "\'\"");
+	cmd->argv = parser(tmp);
 	return (0);
 }
