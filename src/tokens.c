@@ -90,6 +90,6 @@ int	handle_tokens(char *str, t_command *cmd)
 		return (1);
 	}
 	recover_internal_quotes(str, SQ_REPR, DQ_REPR);
-	cmd->argv = parser(tmp);
+	cmd->argv = parser(str);
 	return (0);
 }
