@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 22:48:00 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/02 19:54:07 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_command {
 	t_list		**envp;
 	t_builtin	builtin;
 	int			status;
+	int			s_quotes;
+	int			d_quotes;
 }	t_command;
 
 typedef int	t_dispatcher(t_command *cmd);

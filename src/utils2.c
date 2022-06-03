@@ -43,6 +43,7 @@ char	**to_array(t_list **list)
 		array[i++] = tmp->content;
 		tmp = tmp->next;
 	}
+	array[i] = NULL;
 	return (array);
 }
 

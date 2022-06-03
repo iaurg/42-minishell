@@ -44,8 +44,8 @@
 
 /* TOKENIZER */
 # define START_REPR '#'
-# define DQ_REPR '\r'
-# define SQ_REPR '\f'
+# define DQ_REPR 25
+# define SQ_REPR 26
 
 /* TEMPORARY REFERENCES */
 # define TMP_FILE "/tmp/here_doc_tmp_file"
@@ -93,6 +93,7 @@ void	handle_exit(const char *s);
 int		handle_tokens(char *str, t_command *cmd);
 char	*solve_absolute_path(t_command *cmd);
 char	**to_array(t_list **list);
+void	recover_internal_quotes(char *str, char qt_repr, char dbl_qt_repr);
 
 /* signal handlers */
 int		*get_signal_triggered_status(void);
