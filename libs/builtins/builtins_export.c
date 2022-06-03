@@ -6,18 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 23:02:52 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/28 21:49:38 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:40:07 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
-
-static int	first_char_is_equal(const char *first)
-{
-	if (ft_strncmp(first, "=", 1) == 0)
-		return (1);
-	return (0);
-}
 
 static int	has_equals(const char *first)
 {
@@ -53,6 +46,7 @@ int	builtins_export(t_command *cmd)
 {
 	char	*tmp;
 	int		status;
+
 	if (export_key_value_in_arg_zero(cmd))
 		return (0);
 	if (has_equals(cmd->argv[0]))
