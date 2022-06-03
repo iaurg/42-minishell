@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/06/01 22:20:00 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/03 00:22:16 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ int		read_input(char *buffer, t_command *cmd);
 char	**parse_input(char *input_text);
 void	expand_args(t_command *cmd);
 char	**parse_whitespace(char *str, char *delims);
-char	**map_clear_quotes(char **args);
 char	**join_args(char **args, char delim);
+int		ft_count_words(char *str, char *delim);
+char	**parser(char *str);
 
 /* executors */
 int		system_exec(t_command *cmd);

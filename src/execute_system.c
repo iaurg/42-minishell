@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_system.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 21:59:17 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/03 00:22:21 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,6 @@ int	command_comes_first(t_command *cmd)
 	}
 	return (0);
 }
-
-//int redirect_fd(t_command *cmd)
-//{
-//	char	tmp[2];
-
-//	if (ft_isdigit(cmd->argv[0][0]) && cmd->argv[0][1] == '<')
-//	{
-//		tmp[0] = cmd->argv[0][0];
-//		tmp[1] = '\0';
-//		cmd->fd = ft_atoi(tmp);
-//		return (1)
-//	}
-//	return (0);
-//}
 
 int	handle_first_arg(t_command *cmd)
 {
