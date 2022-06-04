@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/06/03 00:22:16 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/04 17:05:04 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,12 @@ char	*get_abspath(t_command *cmd, char *command, const char *path);
 
 /* redirections */
 int		handle_redirections(t_command *cmd);
+int		set_fd(t_command *cmd);
 
 /* signals */
 void	signal_handler(int signal_number);
 void	child_signal_handler(int signal_number);
+void	newline_hook(int sig);
 
 /* utilities */
 void	print_err_msg(char *command, char *msg);

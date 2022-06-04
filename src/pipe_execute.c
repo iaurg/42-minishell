@@ -6,13 +6,13 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 21:41:49 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/28 21:56:43 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/04 20:24:24 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	newline_hook(int sig)
+void	newline_hook(int sig)
 {
 	if (sig == SIGINT)
 		write(2, "\n", 1);
@@ -41,13 +41,15 @@ void	execute_pipe(int *flag, int *fds, t_command *cmd, int pos)
 	int		origin_argc;
 	char	**origin_argv;
 
-	signal(SIGINT, newline_hook);
+	set_fd(cmd);
 	if (!fork())
 	{
 		if (!flag[0])
 			dup2(fds[0], STDIN_FILENO);
 		if (!flag[1])
 			dup2(fds[3], STDOUT_FILENO);
+		else
+			dup2(cmd->fd, STDOUT_FILENO);
 		i = 0;
 		while (i < 4)
 			close(fds[i++]);

@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/03 18:41:07 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/04 14:56:21 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ int	minishell(char *envp[])
 		signal(SIGINT, signal_handler);
 		if (take_input(buffer, cmd))
 			break ;
-		if (using_prohibited_characters(buffer, cmd))
-			continue ;
-		if (read_input(buffer, cmd))
+		if (using_prohibited_characters(buffer, cmd) || read_input(buffer, cmd))
 			continue ;
 		status = handle_execute(cmd);
 	}
