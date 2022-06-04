@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/06/04 16:46:27 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/04 17:05:04 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int		set_fd(t_command *cmd);
 /* signals */
 void	signal_handler(int signal_number);
 void	child_signal_handler(int signal_number);
+void	newline_hook(int sig);
 
 /* utilities */
 void	print_err_msg(char *command, char *msg);

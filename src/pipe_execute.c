@@ -6,13 +6,13 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 21:41:49 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/04 16:50:18 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/04 18:07:44 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	newline_hook(int sig)
+void	newline_hook(int sig)
 {
 	if (sig == SIGINT)
 		write(2, "\n", 1);
