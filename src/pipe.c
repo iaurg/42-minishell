@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:41:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/28 22:01:04 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/04 20:25:06 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	move_fds_to_next_pipe(int *fds)
 
 static int	no_next_pipe(char *arg)
 {
+	signal(SIGINT, newline_hook);
 	if (!arg)
 		return (1);
 	return (0);
