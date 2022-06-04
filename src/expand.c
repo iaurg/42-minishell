@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/01 22:36:00 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/04 20:14:52 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ void	handle_home(t_command *cmd, char *tmp, int i)
 	char	*sign_start;
 	char	*tmp_arg;
 
-	tmp_arg = ft_strdup(cmd->argv[i]);
-	sign_start = ft_strchr(tmp_arg, '~');
-	if (sign_start != NULL)
+	if (ft_strchr(cmd->argv[i], '~') != NULL)
 	{
+		tmp_arg = ft_strdup(cmd->argv[i]);
+		sign_start = ft_strchr(tmp_arg, '~');
 		tmp = getenv("HOME");
 		free(cmd->argv[i]);
 		if (++sign_start != NULL)
