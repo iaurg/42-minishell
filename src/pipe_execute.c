@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 21:41:49 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/28 21:56:43 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/04 16:50:18 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	execute_pipe(int *flag, int *fds, t_command *cmd, int pos)
 	int		origin_argc;
 	char	**origin_argv;
 
+	set_fd(cmd);
 	signal(SIGINT, newline_hook);
 	if (!fork())
 	{
@@ -48,6 +49,8 @@ void	execute_pipe(int *flag, int *fds, t_command *cmd, int pos)
 			dup2(fds[0], STDIN_FILENO);
 		if (!flag[1])
 			dup2(fds[3], STDOUT_FILENO);
+		else
+			dup2(cmd->fd, STDOUT_FILENO);
 		i = 0;
 		while (i < 4)
 			close(fds[i++]);
