@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 22:36:34 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/04 20:08:22 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**to_array(t_list **list)
 	array = (char **)malloc(sizeof(char *) * (size + 1));
 	while (tmp)
 	{
-		array[i++] = tmp->content;
+		array[i++] = ft_strdup(tmp->content);
 		tmp = tmp->next;
 	}
 	array[i] = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_system.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/03 00:22:21 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/04 20:07:16 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ void	execute_child_command(t_command *cmd)
 	char	**compat_envp;
 
 	handle_first_arg(cmd);
-	compat_envp = to_array(cmd->envp);
 	abspath = solve_absolute_path(cmd);
-	if (execve(abspath, cmd->argv, compat_envp) == -1)
-		perror("Command not found");
+	compat_envp = to_array(cmd->envp);
+	execve(abspath, cmd->argv, compat_envp);
 	free_matrix(compat_envp);
-	free(abspath);
+	if (abspath != NULL)
+		free(abspath);
 }
 
 int	system_exec(t_command *cmd)

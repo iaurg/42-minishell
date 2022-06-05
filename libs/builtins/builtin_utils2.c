@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:34:34 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 22:41:51 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/04 20:17:34 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,17 @@ int	first_char_is_equal(const char *first)
 void	print_err_msg(char *command, char *msg)
 {
 	char	*err_msg;
+	char	*other;
 
 	err_msg = ft_strdup("minishell: ");
-	err_msg = ft_strjoin(err_msg, command);
-	err_msg = ft_strjoin(err_msg, ": ");
-	err_msg = ft_strjoin(err_msg, msg);
-	err_msg = ft_strjoin(err_msg, "\n");
+	other = ft_strjoin(err_msg, command);
+	free(err_msg);
+	err_msg = ft_strjoin(other, ": ");
+	free(other);
+	other = ft_strjoin(err_msg, msg);
+	free(err_msg);
+	err_msg = ft_strjoin(other, "\n");
+	free(other);
 	write(STDERR_FILENO, err_msg, ft_strlen(err_msg));
 	free(err_msg);
 }
