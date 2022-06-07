@@ -6,14 +6,14 @@
 #    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/05/18 20:33:19 by itaureli         ###   ########.fr        #
+#    Updated: 2022/06/06 23:54:50 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		= readline.c wip_lexer.c print_error.c execute.c utils.c execute_system.c redir.c utils2.c signal.c prompt.c here_doc.c
+SRC		= minishell.c readline.c code.c print_error.c execute.c utils.c execute_system.c redir.c utils2.c signal.c prompt.c here_doc.c expand.c tokens.c parse_whitespace.c parse_whitespace_utils.c pipe.c pipe_execute.c
 
 SRC_MAIN = $(SRC)
-SRC_MAIN += minishell.c
+SRC_MAIN += main.c
 
 SRC_PATH = ./src
 
@@ -56,7 +56,7 @@ TESTS = $(addprefix $(TEST_PATH)/,$(TEST_FILES))
 
 BUILTINS_NAME = libbuiltins.a
 
-BUILTINS_SOURCES_FILES		= builtins.c echo.c dispatcher.c env.c export.c builtins_export.c utils.c
+BUILTINS_SOURCES_FILES		= builtins.c echo.c dispatcher.c env.c export.c builtins_export.c builtin_utils.c builtins_cd.c builtin_utils2.c
 
 BUILTINS_SOURCES_PATH = ./libs/builtins
 
@@ -94,12 +94,6 @@ all: $(NAME)
 
 $(NAME): $(LBFT_LIB) $(OBJECTS) $(MINI_HEADER)
 	gcc -g -Wall -Wextra -o minishell ./src/*.c ./libs/builtins/*.c ./libs/libft/*.c ./libs/get_next_line/*.c -C -lreadline
-
-#$(NAME): $(LBFT_LIB) $(OBJECTS) $(MINI_HEADER)
-#	$(CC) $(CFLAGS) -w -g $(OBJECTS) $(LBFT_LIB) -o $(NAME) -L $(ARCHIVES_PATH) $(EXTERNAL_LIBS) $(INTERNAL_LIBS)
-#	${MSG1}
-
-#$(CC) $(CFLAGS) $(OBJECTS) $(LBFT_LIB) -o $(NAME)
 
 libft: $(LBFT_LIB)
 
@@ -154,6 +148,10 @@ fclean: clean
 
 run:
 	${MAKE} && ./minishell.a
+	${MSG1}
+
+valgrind:
+	${MAKE} && ${VALGRIND} ./minishell
 	${MSG1}
 
 re:			fclean all

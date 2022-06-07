@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   parse_whitespace.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/29 18:13:02 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/17 00:55:52 by vwildner         ###   ########.fr       */
+/*   Created: 2022/05/21 03:01:30 by vwildner          #+#    #+#             */
+/*   Updated: 2022/05/21 03:18:24 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/minishell.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+static char	**merge_by(char **args, char *delimiters)
 {
-	t_list	*tmp;
-	t_list	*element;
+	int		i;
+	char	**final;
 
-	if (*lst == NULL)
-		return ;
-	element = *lst;
-	while (element != NULL)
-	{
-		tmp = element->next;
-		ft_lstdelone(element, del);
-		element = tmp;
-	}
-	*lst = NULL;
-	free(lst);
+	i = 0;
+	final = join_args(args, delimiters[i]);
+	while (delimiters[++i])
+		final = join_args(final, delimiters[i]);
+	return (final);
+}
+
+char	**parse_whitespace(char *str, char *delims)
+{
+	char	**args;
+	char	**final;
+
+	args = ft_split(str, ' ');
+	final = merge_by(args, delims);
+	return (final);
 }

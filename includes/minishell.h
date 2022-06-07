@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/05/15 06:47:54 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/06 23:07:26 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@
 # define CHAR_DBL_LESSER '<<'
 # define CHAR_NULL 0
 
+/* TOKENIZER */
+# define START_REPR '#'
+# define DQ_REPR 25
+# define SQ_REPR 26
+
 /* TEMPORARY REFERENCES */
 # define TMP_FILE "/tmp/here_doc_tmp_file"
 
@@ -53,13 +58,21 @@
 # define READ_END 0
 # define WRITE_END 1
 
+/* parsers */
 int		take_input(char *input_text, t_command *cmd);
+int		read_input(char *buffer, t_command *cmd);
 char	**parse_input(char *input_text);
-int		pwd(void);
+void	expand_args(t_command *cmd);
+char	**parse_whitespace(char *str, char *delims);
+char	**join_args(char **args, char delim);
+char	**parser(char *str);
+void	mini_parse(char *src, char **dest);
 
 /* executors */
 int		system_exec(t_command *cmd);
 int		execute(t_command *cmd);
+int		handle_execute(t_command *cmd);
+void	execute_pipe(int *flag, int *fds, t_command *cmd, int pos);
 
 /* cleanup */
 void	atexit_clean(void *data);
@@ -67,25 +80,29 @@ char	*get_abspath(t_command *cmd, char *command, const char *path);
 
 /* redirections */
 int		handle_redirections(t_command *cmd);
+int		set_fd(t_command *cmd);
 
 /* signals */
 void	signal_handler(int signal_number);
 void	child_signal_handler(int signal_number);
+void	newline_hook(int sig);
 
 /* utilities */
 void	print_err_msg(char *command, char *msg);
 void	decoupled_shell_display(void);
 char	*get_last_slash_arg(char *arg);
 void	handle_exit(const char *s);
-
+int		handle_tokens(char *str, t_command *cmd);
 char	*solve_absolute_path(t_command *cmd);
 char	**to_array(t_list **list);
-
-/* here doc */
-int		read_input(t_command *cmd);
+void	recover_internal_quotes(char *str, char qt_repr, char dbl_qt_repr);
+int		ft_count_words(char *str, char *delim);
 
 /* signal handlers */
 int		*get_signal_triggered_status(void);
 void	handle_heredoc_signal(int signal_number);
+
+/* entrypoint */
+int		minishell(char *envp[]);
 
 #endif

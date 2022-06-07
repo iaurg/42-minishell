@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dispatcher.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/01 22:41:39 by vwildner          #+#    #+#             */
+/*   Updated: 2022/06/01 22:41:45 by vwildner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/builtins.h"
 
 static int	builtins_none(t_command *cmd)
@@ -6,9 +18,9 @@ static int	builtins_none(t_command *cmd)
 	return (1);
 }
 
-static t_dispatcher *run_cmd(t_builtin number)
+static t_dispatcher	*run_cmd(t_builtin number)
 {
-	static t_dispatcher	*table[SIZE];
+	static t_dispatcher	*table[SIZE + 1];
 
 	table[BUILTINS_EXPORT] = builtins_export;
 	table[ENV] = builtins_env;
@@ -20,7 +32,7 @@ static t_dispatcher *run_cmd(t_builtin number)
 	return (table[number]);
 }
 
-int run(t_command *cmd)
+int	run(t_command *cmd)
 {
 	int				status;
 	t_dispatcher	*run;

@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/14 01:03:53 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/02 19:54:07 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_command {
 	t_list		**envp;
 	t_builtin	builtin;
 	int			status;
+	int			s_quotes;
+	int			d_quotes;
 }	t_command;
 
 typedef int	t_dispatcher(t_command *cmd);
@@ -73,5 +75,8 @@ char		*ms_getenv(t_list *envp[], char *key);
 t_list		*ft_lstnew2(char *content);
 int			read_file(char *filename);
 void		print_err_msg(char *command, char *msg);
+
+t_list		**to_linked_list(char **envp);
+int			first_char_is_equal(const char *first);
 
 #endif

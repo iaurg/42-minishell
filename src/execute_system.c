@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/15 05:45:33 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/04 20:07:16 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,6 @@ int	command_comes_first(t_command *cmd)
 	return (0);
 }
 
-//int redirect_fd(t_command *cmd)
-//{
-//	char	tmp[2];
-
-//	if (ft_isdigit(cmd->argv[0][0]) && cmd->argv[0][1] == '<')
-//	{
-//		tmp[0] = cmd->argv[0][0];
-//		tmp[1] = '\0';
-//		cmd->fd = ft_atoi(tmp);
-//		return (1)
-//	}
-//	return (0);
-//}
-
 int	handle_first_arg(t_command *cmd)
 {
 	int		first_arg_pos;
@@ -92,12 +78,12 @@ void	execute_child_command(t_command *cmd)
 	char	**compat_envp;
 
 	handle_first_arg(cmd);
-	compat_envp = to_array(cmd->envp);
 	abspath = solve_absolute_path(cmd);
-	if (execve(abspath, cmd->argv, compat_envp) == -1)
-		perror("Command not found");
-	free(compat_envp);
-	free(abspath);
+	compat_envp = to_array(cmd->envp);
+	execve(abspath, cmd->argv, compat_envp);
+	free_matrix(compat_envp);
+	if (abspath != NULL)
+		free(abspath);
 }
 
 int	system_exec(t_command *cmd)
@@ -124,6 +110,5 @@ int	system_exec(t_command *cmd)
 		else
 			cmd->status = 0;
 	}
-	free(cmd->argv);
 	return (1);
 }

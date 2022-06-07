@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 10:08:33 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/14 20:59:21 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:45:15 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ int	get_next_line(int fd, char **line)
 	char		*line_buffer;
 	bool		is_linebreak;
 
-	if (fd < 0 || fd > MAX_FILE_DESCRIPTOR || GNL_BUFFER_SIZE <= 0 || line == NULL)
+	if (fd < 0 || fd > MAX_FILE_DESCRIPTOR
+		|| GNL_BUFFER_SIZE <= 0 || line == NULL)
 		return (GNL_ERROR);
 	is_linebreak = false;
 	line_buffer = initialize_line_buffer(read_buffer, &is_linebreak);

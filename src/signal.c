@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 18:54:55 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/15 06:47:29 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 19:58:05 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	signal_handler(int signal_number)
 	if (signal_number == SIGINT)
 	{
 		write(1, "\n", 1);
-		fflush(stdout);
-		decoupled_shell_display();
-		signal(SIGINT, signal_handler);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
 	}
 }
 

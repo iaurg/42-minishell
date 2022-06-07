@@ -6,18 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 23:02:52 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/10 09:13:35 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/01 22:40:07 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/builtins.h"
-
-static int	first_char_is_equal(const char *first)
-{
-	if (ft_strncmp(first, "=", 1) == 0)
-		return (1);
-	return (0);
-}
 
 static int	has_equals(const char *first)
 {
@@ -28,7 +21,7 @@ static int	has_equals(const char *first)
 
 static int	print_export_err(const char *arg, int errnum)
 {
-	fprintf(stderr, "bash: export: `%s': not a valid identifier\n", arg);
+	fprintf(stderr, "minishell: export: `%s': not a valid identifier\n", arg);
 	return (errnum);
 }
 
@@ -53,6 +46,7 @@ int	builtins_export(t_command *cmd)
 {
 	char	*tmp;
 	int		status;
+
 	if (export_key_value_in_arg_zero(cmd))
 		return (0);
 	if (has_equals(cmd->argv[0]))
@@ -69,7 +63,7 @@ int	builtins_export(t_command *cmd)
 		return (print_export_err(cmd->argv[2], 1));
 	if (has_equals(cmd->argv[1]))
 		return (export(cmd->argv[1], cmd->envp));
-	if ((cmd->argv[1] == NULL))
+	if (cmd->argv[1] == NULL)
 		return (env(cmd->envp, cmd->fd));
 	perror("Unknown error");
 	return (-1);

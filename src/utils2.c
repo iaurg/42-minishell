@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/05/15 06:44:52 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/04 20:08:22 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ char	**to_array(t_list **list)
 	array = (char **)malloc(sizeof(char *) * (size + 1));
 	while (tmp)
 	{
-		array[i++] = tmp->content;
+		array[i++] = ft_strdup(tmp->content);
 		tmp = tmp->next;
 	}
+	array[i] = NULL;
 	return (array);
 }
 
@@ -50,4 +51,25 @@ void	handle_exit(const char *s)
 {
 	perror(s);
 	exit(EXIT_FAILURE);
+}
+
+int	ft_count_words(char *str, char *delim)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (ft_strchr(delim, str[i]) == NULL)
+		{
+			count++;
+			while (str[i] && ft_strchr(delim, str[i]) == NULL)
+				i++;
+		}
+		else
+			i++;
+	}
+	return (count);
 }

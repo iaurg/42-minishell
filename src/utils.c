@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 18:54:55 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/12 02:13:44 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/04 20:05:57 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,8 @@ char	*get_abspath(t_command *cmd, char *command, const char *path)
 		if (*path)
 			path++;
 	}
-	print_err_msg(command, "command not found");
+	print_err_msg(command, "No such file or directory");
 	cmd->status = 127;
-	exit(EXIT_FAILURE);
 	return (NULL);
 }
 
@@ -88,7 +87,10 @@ char	*solve_absolute_path(t_command *cmd)
 
 	first_arg = cmd->argv[0];
 	if (*first_arg == '/' || *first_arg == '.')
+	{
+		first_arg = ft_strdup(cmd->argv[0]);
 		return (first_arg);
+	}
 	all_paths = ms_getenv(cmd->envp, "PATH");
 	return (get_abspath(cmd, first_arg, all_paths));
 }

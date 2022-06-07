@@ -6,87 +6,55 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/15 05:45:19 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/06 18:59:11 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	handle_status(t_command *cmd, int i)
+static int	print_token_error(t_command *cmd, char c)
 {
-	if (cmd->argv[i][1] == '?'
-		&& cmd->argv[i][2] == '\0')
-	{
-		free(cmd->argv[i]);
-		cmd->argv[i] = ft_itoa(cmd->status);
+	write(STDERR_FILENO, "minishell: syntax error: `", 27);
+	write(STDERR_FILENO, &c, 1);
+	write(STDERR_FILENO, "` is not a valid token\n", 23);
+	cmd->status = 127;
+	return (1);
+}
+
+static int	using_prohibited_characters(char *buff, t_command *cmd)
+{
+	int		i;
+
+	i = -1;
+	if (buff == NULL)
 		return (1);
+	while (buff[++i] != '\0')
+	{
+		if (buff[i] == '\'' && ft_strchr(&buff[i + 1], '\''))
+			while (buff[++i] != '\'')
+				;
+		else if (buff[i] == '\"' && ft_strchr(&buff[i + 1], '\"'))
+			while (buff[++i] != '\"')
+				;
+		if (buff[i] == ';' || buff[i] == '\\' || buff[i] == '&')
+			return (print_token_error(cmd, buff[i]));
 	}
 	return (0);
 }
 
-void	handle_dollar_sign(t_command *cmd, char *tmp, int i)
+void	destroy_program(t_command *cmd)
 {
-	size_t	len;
-
-	len = ft_strlen(cmd->argv[i]);
-	if (cmd->argv[i][0] == '$')
-	{
-		if (handle_status(cmd, i))
-			return ;
-		tmp = ms_getenv(cmd->envp, &cmd->argv[i][1]);
-		if (tmp)
-		{
-			free(cmd->argv[i]);
-			cmd->argv[i] = ft_strdup(tmp);
-		}
-		else if (len == 1)
-			return ;
-		else
-		{
-			free(cmd->argv[i]);
-			cmd->argv[i] = ft_strdup("");
-		}
-	}
+	ft_lstclear(cmd->envp, free);
+	free(cmd);
 }
 
-void	expand_args(t_command *cmd)
-{
-	int		i;
-	char	*tmp;
-	size_t	len;
-
-	i = -1;
-	tmp = NULL;
-	while (cmd->argv[++i])
-	{
-		handle_dollar_sign(cmd, tmp, i);
-		if (cmd->argv[i][0] == '~')
-		{
-			tmp = getenv("HOME");
-			len = ft_strlen(cmd->argv[i]);
-			free(cmd->argv[i]);
-			if (len > 1)
-				cmd->argv[i] = ft_strjoin(tmp, &cmd->argv[i][1]);
-			else
-				cmd->argv[i] = ft_strdup(tmp);
-		}
-	}
-	cmd->argc = i;
-}
-
-int	main(int argc, char *argv[], char *envp[])
+int	minishell(char *envp[])
 {
 	char		buffer[1024];
 	int			status;
 	t_command	*cmd;
 
-	if (argc > 1 && argv)
-	{
-		print_error(NO_ARGS);
-		return (1);
-	}
 	cmd = init_builtins(envp);
-	atexit_clean(cmd);
 	signal(SIGQUIT, SIG_IGN);
 	status = 1;
 	while (status)
@@ -94,11 +62,12 @@ int	main(int argc, char *argv[], char *envp[])
 		signal(SIGINT, signal_handler);
 		if (take_input(buffer, cmd))
 			break ;
-		cmd->argv = parse_input(buffer);
-		if (read_input(cmd))
+		if (ft_strlen(buffer) == 0 || using_prohibited_characters(buffer, cmd)
+			|| read_input(buffer, cmd))
 			continue ;
-		expand_args(cmd);
-		status = execute(cmd);
+		status = handle_execute(cmd);
+		free_matrix(cmd->argv);
 	}
+	destroy_program(cmd);
 	return (0);
 }
