@@ -66,6 +66,7 @@ int	minishell(char *envp[])
 			|| read_input(buffer, cmd))
 			continue ;
 		status = handle_execute(cmd);
+		free_matrix(cmd->argv);
 	}
 	destroy_program(cmd);
 	return (0);
