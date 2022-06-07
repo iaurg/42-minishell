@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 03:43:27 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 21:45:58 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/06 23:26:32 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ static int	odd_nbr_quote_tokens(t_command *cmd, char *str)
 
 int	handle_tokens(char *str, t_command *cmd)
 {
+	int	i;
+	int	n_tokens;
+
 	tokenize_internal_quotes(str, SQ_REPR, DQ_REPR);
 	if (odd_nbr_quote_tokens(cmd, str))
 	{
@@ -89,7 +92,11 @@ int	handle_tokens(char *str, t_command *cmd)
 			STDERR_FILENO);
 		return (1);
 	}
-	recover_internal_quotes(str, SQ_REPR, DQ_REPR);
-	cmd->argv = parser(str);
+	n_tokens = ft_count_words(str, " ");
+	cmd->argv = (char **)ft_calloc(n_tokens + 1, sizeof(char *));
+	mini_parse(str, cmd->argv);
+	i = -1;
+	while (cmd->argv[++i])
+		recover_internal_quotes(cmd->argv[i], SQ_REPR, DQ_REPR);
 	return (0);
 }

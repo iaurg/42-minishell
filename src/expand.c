@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/04 20:14:52 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/06 23:25:11 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,10 @@ void	expand_args(t_command *cmd)
 	tmp = NULL;
 	while (cmd->argv[++i])
 	{
-		if (handle_quotes(cmd, "\'", i))
+		if (cmd->s_quotes >= 2 && handle_quotes(cmd, "\'", i))
 			continue ;
-		handle_quotes(cmd, "\"", i);
+		if (cmd->d_quotes >= 2)
+			handle_quotes(cmd, "\"", i);
 		handle_dollar_sign(cmd, tmp, i);
 		handle_home(cmd, tmp, i);
 	}
