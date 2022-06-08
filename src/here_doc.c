@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 06:43:18 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 21:10:59 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/07 20:36:50 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
-#include "../libs/get_next_line/get_next_line.h"
+#include "minishell.h"
+#include <get_next_line.h>
 
 void	parse_here_doc(char *delim, int *fd)
 {

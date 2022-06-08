@@ -6,11 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 04:54:03 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/01 22:42:03 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:17:43 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
+#include "builtins.h"
 
 static int	check_flag_n(char *args)
 {

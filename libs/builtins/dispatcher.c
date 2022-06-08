@@ -6,11 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:41:39 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 22:41:45 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:17:39 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
+#include "builtins.h"
 
 static int	builtins_none(t_command *cmd)
 {
