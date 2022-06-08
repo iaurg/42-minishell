@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 16:31:19 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/01 20:19:39 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 23:48:24 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,20 @@ char	*get_last_slash_arg(char *arg)
 
 int	take_input(char *buffer, t_command *cmd)
 {
-	char	*tmp;
+	char	*out;
+	char	*trimmed;
 
 	(void)cmd;
-	tmp = readline("[ minishell ]$ ");
-	ft_strlcpy(buffer, tmp, ft_strlen(tmp) + 1);
-	free(tmp);
-	if (tmp == NULL)
+	out = readline("[ minishell ]$ ");
+	if (out == NULL)
+	{
+		free(out);
 		return (1);
+	}
+	trimmed = ft_strtrim(out, " ");
+	ft_strlcpy(buffer, trimmed, ft_strlen(trimmed) + 1);
+	free(out);
+	free(trimmed);
 	if (ft_strlen(buffer) == 0)
 		return (0);
 	if (ft_strlen(buffer) > 0)
