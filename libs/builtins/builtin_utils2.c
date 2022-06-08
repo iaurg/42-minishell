@@ -6,11 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:34:34 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/04 20:17:34 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:17:16 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
+#include "builtins.h"
 
 int	first_char_is_equal(const char *first)
 {
@@ -39,7 +39,7 @@ void	print_err_msg(char *command, char *msg)
 
 static int	are_equal(char *one, char *other)
 {
-	return (ft_strncmp(one, other, ft_strlen(other)));
+	return (ft_memcmp(one, other, ft_strlen(other)));
 }
 
 t_list	*lst_find(t_list **list, char *key)
@@ -66,7 +66,7 @@ int	lst_del_node(t_list **list, char *key)
 	if (tmp != NULL && are_equal(tmp->key, key) == 0)
 	{
 		*list = tmp->next;
-		free(tmp);
+		ft_lstdelone(tmp, free);
 		return (1);
 	}
 	while (tmp != NULL && are_equal(tmp->key, key) != 0)
@@ -77,6 +77,6 @@ int	lst_del_node(t_list **list, char *key)
 	if (tmp == NULL)
 		return (0);
 	prev->next = tmp->next;
-	free(tmp);
+	ft_lstdelone(tmp, free);
 	return (1);
 }

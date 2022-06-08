@@ -6,11 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:27:35 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 22:39:13 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:17:11 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
+#include "builtins.h"
 #include <string.h>
 
 t_list	*ft_lstnew2(char *content)

@@ -6,11 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:26:00 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 22:39:41 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:17:20 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
+#include "builtins.h"
 
 static int	_builtins_cd(t_command *cmd, char *buf)
 {
