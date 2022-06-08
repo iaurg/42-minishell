@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:34:34 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/04 20:17:34 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 22:53:52 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	print_err_msg(char *command, char *msg)
 
 static int	are_equal(char *one, char *other)
 {
-	return (ft_strncmp(one, other, ft_strlen(other)));
+	return (ft_memcmp(one, other, ft_strlen(other)));
 }
 
 t_list	*lst_find(t_list **list, char *key)

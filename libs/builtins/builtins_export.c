@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 23:02:52 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 22:40:07 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 22:53:56 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	builtins_export(t_command *cmd)
 	{
 		tmp = ft_strjoin(cmd->argv[1], "=");
 		status = export(tmp, cmd->envp);
+		free(tmp);
 		return (status);
 	}
 	if ((!has_equals(cmd->argv[1])) && (has_equals(cmd->argv[2])))
