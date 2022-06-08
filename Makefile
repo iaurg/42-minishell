@@ -6,7 +6,7 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/06/07 21:11:48 by vwildner         ###   ########.fr        #
+#    Updated: 2022/06/08 00:57:24 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ SRC		= code.c \
 	pipe.c \
 	pipe_execute.c \
 	print_error.c \
-	prompt.c \
 	readline.c \
 	redir.c \
 	signal.c \
