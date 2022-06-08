@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/06/06 23:07:26 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 20:43:28 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@
 # include <sys/wait.h>
 # include <sys/types.h>
 
-# include "../libs/libft/libft.h"
-# include "../includes/builtins.h"
-# include "./error.h"
+# include "builtins.h"
+# include "error.h"
 
 /* DELIMITERS */
 # define CHAR_WHITESPACE ' '
@@ -63,8 +62,6 @@ int		take_input(char *input_text, t_command *cmd);
 int		read_input(char *buffer, t_command *cmd);
 char	**parse_input(char *input_text);
 void	expand_args(t_command *cmd);
-char	**parse_whitespace(char *str, char *delims);
-char	**join_args(char **args, char delim);
 char	**parser(char *str);
 void	mini_parse(char *src, char **dest);
 

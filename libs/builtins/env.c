@@ -6,11 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 05:08:59 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/09 07:45:23 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:17:48 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
+#include "builtins.h"
 
 int	env(t_list *envp[], int fd)
 {

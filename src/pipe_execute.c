@@ -6,11 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 21:41:49 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/04 20:24:24 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:19:37 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 void	newline_hook(int sig)
 {
