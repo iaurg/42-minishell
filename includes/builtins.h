@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/02 19:54:07 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 20:42:50 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <errno.h>
-# include "../libs/libft/libft.h"
+# include "libft.h"
 # include <fcntl.h>
 
 typedef enum builtin {

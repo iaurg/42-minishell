@@ -6,11 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 20:31:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/01 22:43:07 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:17:34 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
+#include "builtins.h"
 
 int	set_oldpwd(t_list *envp[], char *buf)
 {

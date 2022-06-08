@@ -6,11 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 21:51:52 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/01 22:16:19 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:19:17 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 int	main(int argc, char *argv[], char *envp[])
 {

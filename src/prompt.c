@@ -6,11 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 21:48:05 by itaureli          #+#    #+#             */
-/*   Updated: 2022/05/15 03:56:44 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:19:53 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 void	decoupled_shell_display(void)
 {
