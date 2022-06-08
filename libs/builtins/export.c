@@ -22,5 +22,6 @@ int	export(char *arg, t_list *envp[])
 	if (exists)
 		lst_del_node(envp, arg_key);
 	ft_lstpush(envp, ft_lstnew2(arg));
+	free(arg_key);
 	return (0);
 }

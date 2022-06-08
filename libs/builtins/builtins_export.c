@@ -57,6 +57,7 @@ int	builtins_export(t_command *cmd)
 	{
 		tmp = ft_strjoin(cmd->argv[1], "=");
 		status = export(tmp, cmd->envp);
+		free(tmp);
 		return (status);
 	}
 	if ((!has_equals(cmd->argv[1])) && (has_equals(cmd->argv[2])))

@@ -39,7 +39,7 @@ void	print_err_msg(char *command, char *msg)
 
 static int	are_equal(char *one, char *other)
 {
-	return (ft_strncmp(one, other, ft_strlen(other)));
+	return (ft_memcmp(one, other, ft_strlen(other)));
 }
 
 t_list	*lst_find(t_list **list, char *key)
