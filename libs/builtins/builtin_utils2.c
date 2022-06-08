@@ -6,11 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:34:34 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/04 20:17:34 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:17:16 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/builtins.h"
+#include "builtins.h"
 
 int	first_char_is_equal(const char *first)
 {

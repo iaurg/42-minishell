@@ -1,4 +1,4 @@
-#include "../includes/minishell.h"
+#include "minishell.h"
 #include "minunit.h"
 
 void test_setup(void) {
