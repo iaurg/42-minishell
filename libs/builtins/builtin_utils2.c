@@ -66,7 +66,7 @@ int	lst_del_node(t_list **list, char *key)
 	if (tmp != NULL && are_equal(tmp->key, key) == 0)
 	{
 		*list = tmp->next;
-		free(tmp);
+		ft_lstdelone(tmp, free);
 		return (1);
 	}
 	while (tmp != NULL && are_equal(tmp->key, key) != 0)
@@ -77,6 +77,6 @@ int	lst_del_node(t_list **list, char *key)
 	if (tmp == NULL)
 		return (0);
 	prev->next = tmp->next;
-	free(tmp);
+	ft_lstdelone(tmp, free);
 	return (1);
 }
