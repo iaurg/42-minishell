@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/06/07 20:43:28 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/08 00:55:52 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int		handle_execute(t_command *cmd);
 void	execute_pipe(int *flag, int *fds, t_command *cmd, int pos);
 
 /* cleanup */
-void	atexit_clean(void *data);
 char	*get_abspath(t_command *cmd, char *command, const char *path);
 
 /* redirections */
@@ -86,7 +85,6 @@ void	newline_hook(int sig);
 
 /* utilities */
 void	print_err_msg(char *command, char *msg);
-void	decoupled_shell_display(void);
 char	*get_last_slash_arg(char *arg);
 void	handle_exit(const char *s);
 int		handle_tokens(char *str, t_command *cmd);
