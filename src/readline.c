@@ -70,14 +70,20 @@ char	*get_last_slash_arg(char *arg)
 
 int	take_input(char *buffer, t_command *cmd)
 {
-	char	*tmp;
+	char	*out;
+	char	*trimmed;
 
 	(void)cmd;
-	tmp = readline("[ minishell ]$ ");
-	ft_strlcpy(buffer, tmp, ft_strlen(tmp) + 1);
-	free(tmp);
-	if (tmp == NULL)
+	out = readline("[ minishell ]$ ");
+	if (out == NULL)
+	{
+		free(out);
 		return (1);
+	}
+	trimmed = ft_strtrim(out, " ");
+	ft_strlcpy(buffer, trimmed, ft_strlen(trimmed) + 1);
+	free(out);
+	free(trimmed);
 	if (ft_strlen(buffer) == 0)
 		return (0);
 	if (ft_strlen(buffer) > 0)
