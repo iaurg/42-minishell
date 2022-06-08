@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/07 18:19:01 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/08 00:55:16 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	handle_home(t_command *cmd, char *tmp, int i)
 	{
 		tmp_arg = ft_strdup(cmd->argv[i]);
 		sign_start = ft_strchr(tmp_arg, '~');
-		tmp = getenv("HOME");
+		tmp = ms_getenv(cmd->envp, "HOME");
 		free(cmd->argv[i]);
 		if (++sign_start != NULL)
 			cmd->argv[i] = ft_strjoin(tmp, sign_start);
