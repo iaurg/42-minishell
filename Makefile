@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/06/08 00:57:24 by vwildner         ###   ########.fr        #
+#    Updated: 2022/06/08 23:44:43 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -141,7 +141,7 @@ $(BUILTINS_NAME): $(BUILTINS_OBJECTS)
 
 $(BUILTINS_OBJECTS): $(BUILTINS_SOURCES) $(BUILTINS_HEADER)
 	@$(SAFE_MKDIR) $(BUILTINS_OBJECTS_PATH)
-	@$(CC) $(CFLAGS) -g -I $(INCLUDES_PATH) -L $(ARCHIVES_PATH) -o $@ -c $< $(EXTERNAL_LIBS)
+	@$(CC) $(CFLAGS) -g -I $(INCLUDES_PATH) -o $@ -c $<
 
 test:
 	@$(CC) tests/test_unit.c \
