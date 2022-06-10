@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 06:43:18 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/10 09:25:48 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/10 09:31:46 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void	parse_here_doc(char *delim, int *fd)
 		}
 		tmp = ft_strjoin(line, "\n");
 		ft_putstr_fd(tmp, fd[WRITE_END]);
-		free(tmp);
-		free(line);
+		free_tmp(tmp, line);
 		ft_putstr_fd("… ", STDIN_FILENO);
 		i = get_next_line(STDIN_FILENO, &line);
 	}
