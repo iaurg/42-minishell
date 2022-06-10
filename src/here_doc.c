@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 06:43:18 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/07 20:36:50 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/10 09:25:48 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	parse_here_doc(char *delim, int *fd)
 {
 	char	*line;
+	char	*tmp;
 	int		i;
 
 	close(fd[READ_END]);
@@ -31,7 +32,9 @@ void	parse_here_doc(char *delim, int *fd)
 			free(line);
 			return ;
 		}
-		ft_putstr_fd(ft_strjoin(line, "\n"), fd[WRITE_END]);
+		tmp = ft_strjoin(line, "\n");
+		ft_putstr_fd(tmp, fd[WRITE_END]);
+		free(tmp);
 		free(line);
 		ft_putstr_fd("… ", STDIN_FILENO);
 		i = get_next_line(STDIN_FILENO, &line);
