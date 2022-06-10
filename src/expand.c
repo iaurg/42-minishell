@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/08 00:55:16 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/08 23:32:04 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void	expand_args(t_command *cmd)
 			continue ;
 		if (cmd->d_quotes >= 2)
 			handle_quotes(cmd, "\"", i);
-		handle_dollar_sign(cmd, tmp, i);
+		if (!(ft_strncmp(cmd->argv[i], "$", 2) == 0))
+			handle_dollar_sign(cmd, tmp, i);
 		handle_home(cmd, tmp, i);
 	}
 	cmd->argc = i;
