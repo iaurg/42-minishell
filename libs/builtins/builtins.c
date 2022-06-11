@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:23:50 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/11 17:02:03 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/11 17:18:50 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,8 @@ int	builtins_env(t_command *cmd)
 int	builtins_exit(t_command *cmd)
 {
 	if (cmd->argc > 2)
-	{
 		write(STDERR_FILENO, "exit: too many arguments\n", 26);
-		return (0);
-	}
-	if (cmd->argc > 1)
+	else if (cmd->argc > 1)
 		exit(ft_atoi(cmd->argv[1]));
 	else
 		exit(0);
