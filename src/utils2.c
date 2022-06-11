@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/07 18:20:30 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/10 09:32:08 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,10 @@ int	ft_count_words(char *str, char *delim)
 			i++;
 	}
 	return (count);
+}
+
+void	free_tmp(char *tmp, char *line)
+{
+	free(tmp);
+	free(line);
 }

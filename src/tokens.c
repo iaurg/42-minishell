@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 03:43:27 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/07 18:20:17 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/10 08:04:50 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ int	handle_tokens(char *str, t_command *cmd)
 	i = -1;
 	while (cmd->argv[++i])
 		recover_internal_quotes(cmd->argv[i], SQ_REPR, DQ_REPR);
+	cmd->argc = i;
 	return (0);
 }
