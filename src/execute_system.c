@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/07 18:18:50 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/13 20:19:39 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ void	clear_first_arg(t_command *cmd, int first_arg_pos)
 	i = 0;
 	while (cmd->argv[i])
 		i++;
-	tmp = (char **)malloc(sizeof(char *) * (i - first_arg_pos));
+	tmp = (char **)malloc(sizeof(char *) * (i - first_arg_pos + 1));
 	i = 0;
 	while (cmd->argv[i + first_arg_pos])
 	{
 		tmp[i] = ft_strdup(cmd->argv[i + first_arg_pos]);
 		i++;
 	}
+	tmp[i] = NULL;
 	free_matrix(cmd->argv);
 	cmd->argv = tmp;
 	cmd->argc = i;
