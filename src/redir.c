@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 07:02:18 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/07 18:20:06 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/14 23:13:11 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static int	read_redirection(t_command *cmd, int i, int fd)
 int	set_fd(t_command *cmd)
 {
 	int		i;
+	int		j;
 	int		fd;
 
 	i = 0;
@@ -49,6 +50,12 @@ int	set_fd(t_command *cmd)
 	while (cmd->argv[i] && ft_memcmp(cmd->argv[i], ">", 2)
 		&& ft_memcmp(cmd->argv[i], ">>", 3))
 		i++;
+	j = i - 1;
+	while (cmd->argv[++j])
+	{
+		if (!ft_memcmp(cmd->argv[j], ">", 2) && cmd->argv[j + 1] == NULL)
+			return (1);
+	}
 	if (!cmd->argv[i])
 	{
 		cmd->fd = fd;
@@ -89,6 +96,8 @@ static int	remove_redirect_args(t_command *cmd)
 	while (redir_count--)
 	{
 		index = (cmd->argc - 2) + redir_count;
+		if (index < 1)
+			return (0);
 		free(cmd->argv[index]);
 		cmd->argv[index] = NULL;
 	}
@@ -99,7 +108,9 @@ int	handle_redirections(t_command *cmd)
 {
 	if (set_fd(cmd))
 	{
-		write(STDERR_FILENO, "Unexpected error while setting fd\n", 35);
+		ft_putstr_fd(
+			"minishell: syntax error near unexpected token `newline\'\n",
+			STDERR_FILENO);
 		return (1);
 	}
 	if (remove_redirect_args(cmd))
