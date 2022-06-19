@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_export.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 23:02:52 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/14 22:05:32 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/19 16:44:05 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
-
-static int	has_equals(const char *first)
-{
-	if (ft_strchr(first, '=') != NULL)
-		return (1);
-	return (0);
-}
 
 static int	print_export_err(const char *arg, int errnum)
 {
@@ -32,12 +25,29 @@ static int	handle_key_value(t_command *cmd)
 	return (print_export_err(cmd->argv[1], 1));
 }
 
+static void	print_envp(t_command *cmd)
+{
+	t_list	*temp;
+
+	temp = *cmd->envp;
+	while (temp->next != NULL)
+	{
+		ft_putstr_fd(temp->content, STDOUT_FILENO);
+		ft_putstr_fd("\n", STDOUT_FILENO);
+		temp = temp->next;
+	}
+	return ;
+}
+
 static int	export_key_value_in_arg_zero(t_command *cmd)
 {
 	if (ft_strchr(cmd->argv[0], '=') != NULL)
 	{
 		export(cmd->argv[0], cmd->envp);
 		return (1);
+	}
+	if (cmd->argv[1] == NULL) {
+		print_envp(cmd);
 	}
 	return (0);
 }

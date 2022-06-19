@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/06/10 09:32:31 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/19 16:38:30 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ char	**to_array(t_list **list);
 void	recover_internal_quotes(char *str, char qt_repr, char dbl_qt_repr);
 int		ft_count_words(char *str, char *delim);
 void	free_tmp(char *tmp, char *line);
+int		has_equals(const char *first);
 
 /* signal handlers */
 int		*get_signal_triggered_status(void);

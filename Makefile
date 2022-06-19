@@ -6,7 +6,7 @@
 #    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/06/08 23:44:43 by itaureli         ###   ########.fr        #
+#    Updated: 2022/06/19 16:38:12 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SRC		= code.c \
 	signal.c \
 	tokens.c \
 	utils.c \
-	utils2.c
+	utils2.c \
+	utils3.c
 
 SRC_MAIN = $(SRC)
 SRC_MAIN += main.c # <- the program entrypoint
