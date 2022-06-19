@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:34:34 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/07 18:17:16 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/19 19:01:30 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	print_err_msg(char *command, char *msg)
 
 static int	are_equal(char *one, char *other)
 {
-	return (ft_memcmp(one, other, ft_strlen(other)));
+	return (ft_memcmp(other, one, ft_strlen(one)));
 }
 
 t_list	*lst_find(t_list **list, char *key)
