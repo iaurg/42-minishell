@@ -6,7 +6,7 @@
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 23:02:52 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/19 16:44:05 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/06/19 18:44:45 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static int	export_key_value_in_arg_zero(t_command *cmd)
 		export(cmd->argv[0], cmd->envp);
 		return (1);
 	}
-	if (cmd->argv[1] == NULL) {
+	if (cmd->argv[1] == NULL)
+	{
 		print_envp(cmd);
 	}
 	return (0);
