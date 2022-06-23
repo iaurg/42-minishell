@@ -7,10 +7,19 @@
    ...
 }
 {
-   <AddHistory>
+   <Readline>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   ...
+   fun:readline
+   ...
+}
+{
+   <Readline/AddHistory>
    Memcheck:Leak
    match-leak-kinds: reachable
-   ...
+   fun:malloc
+   fun:xmalloc
    fun:add_history
    ...
 }
