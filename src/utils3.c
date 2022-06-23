@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/06 19:50:02 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/19 16:35:14 by itaureli         ###   ########.fr       */
+/*   Created: 2022/06/19 16:37:49 by itaureli          #+#    #+#             */
+/*   Updated: 2022/06/19 16:38:58 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_error(char *error_msg)
+int	has_equals(const char *first)
 {
-	ft_putstr_fd("minishell: ", STDERR_FILENO);
-	ft_putstr_fd(error_msg, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
+	if (ft_strchr(first, '=') != NULL)
+		return (1);
+	return (0);
 }
