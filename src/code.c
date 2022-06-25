@@ -6,71 +6,49 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 22:26:51 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/07 18:18:46 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/25 18:38:58 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//char	**parser(char *str)
-//{
-//	char	**tokens;
-//	char	*token;
-//	int		i;
-//	int		j;
-//	int		k;
+void	parse_inner_tokens(char *src, char **dest, int *i, int *n_tokens)
+{
+	int	size;
+	int	start;
 
-//	i = 0;
-//	j = 0;
-//	k = 0;
-//	tokens = (char **)malloc(sizeof(char *) * (ft_count_words(str, " ") + 1));
-//	if (!tokens)
-//		return (NULL);
-//	while (str[i])
-//	{
-//		if (str[i] == ' ')
-//			i++;
-//		if (str[i] == '"' || str[i] == '\'')
-//		{
-//			token = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
-//			if (!token)
-//				return (NULL);
-//			j = 0;
-//			token[j++] = str[i++];
-//			while (str[i] && str[i] != '"')
-//				token[j++] = str[i++];
-//			token[j++] = str[i++];
-//			token[j] = '\0';
-//			tokens[k] = token;
-//			k++;
-//			i++;
-//			continue ;
-//		}
-//		token = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
-//		if (!token)
-//			return (NULL);
-//		while (str[i] && str[i] != ' ')
-//			token[j++] = str[i++];
-//		token[j] = '\0';
-//		tokens[k] = token;
-//		k++;
-//		j = 0;
-//	}
-//	tokens[k] = NULL;
-//	return (tokens);
-//}
+	size = ft_strchr(&src[*i], ' ') - &src[*i];
+	if (size < 0 || size > 300)
+		size = ft_strlen(&src[*i]);
+	start = *i;
+	while (size--)
+	{
+		if (src[*i] == '>' || src[*i] == '<' || src[*i] == '|')
+		{
+			if (*i != start)
+				dest[(*n_tokens)++] = ft_strtok(&src[start], &src[*i]);
+			dest[*n_tokens] = malloc(sizeof(char) * (2));
+			ft_strlcpy(dest[(*n_tokens)++], &src[(*i)++], 2);
+			dest[*n_tokens] = ft_strtok(&src[*i], " ");
+			*i += ft_strlen(dest[(*n_tokens)++]) - 1;
+			return ;
+		}
+		*i += 1;
+	}
+	*i = start;
+	dest[*n_tokens] = ft_strtok(&src[*i], " ");
+	*i += ft_strlen(dest[(*n_tokens)++]) - 1;
+}
 
 static void	_mini_parse(char *src, char **dest, int *i, int *n_tokens)
 {
-	char	c;
 	int		size;
 	char	*end;
 
-	c = src[*i];
 	if (src[*i + 1] && (src[*i] == '\'' || src[*i] == '\"')
 		&& (ft_strchr(&src[*i + 1], '\'') || ft_strchr(&src[*i + 1], '\"')))
 	{
-		end = ft_strchr(&src[*i + 1], c);
+		end = ft_strchr(&src[*i + 1], src[*i]);
 		size = end - &src[*i] + 2;
 		dest[*n_tokens] = (char *)ft_calloc(size, sizeof(char));
 		ft_strlcpy(dest[(*n_tokens)++], &src[*i], size);
@@ -78,8 +56,7 @@ static void	_mini_parse(char *src, char **dest, int *i, int *n_tokens)
 	}
 	else
 	{
-		dest[*n_tokens] = ft_strtok(&src[*i], " ");
-		*i += ft_strlen(dest[(*n_tokens)++]) - 1;
+		parse_inner_tokens(src, dest, i, n_tokens);
 	}
 }
 
