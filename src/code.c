@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 22:26:51 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/26 22:20:33 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:37:04 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,6 @@ void	mini_parse(char *src, char **dest)
 		_mini_parse(src, dest, &i, &n_tokens);
 	}
 	dest[n_tokens] = NULL;
+	while (dest[++n_tokens])
+		free(dest[n_tokens]);
 }
