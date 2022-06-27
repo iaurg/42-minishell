@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 23:01:22 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/07 20:42:50 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/25 18:41:21 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char		*ms_getenv(t_list *envp[], char *key);
 t_list		*ft_lstnew2(char *content);
 int			read_file(char *filename);
 void		print_err_msg(char *command, char *msg);
-
+int			has_equals(const char *first);
 t_list		**to_linked_list(char **envp);
 int			first_char_is_equal(const char *first);
 

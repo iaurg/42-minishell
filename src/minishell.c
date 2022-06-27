@@ -6,41 +6,11 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 23:07:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/07 18:19:23 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:25:13 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	print_token_error(t_command *cmd, char c)
-{
-	write(STDERR_FILENO, "minishell: syntax error: `", 27);
-	write(STDERR_FILENO, &c, 1);
-	write(STDERR_FILENO, "` is not a valid token\n", 23);
-	cmd->status = 127;
-	return (1);
-}
-
-static int	using_prohibited_characters(char *buff, t_command *cmd)
-{
-	int		i;
-
-	i = -1;
-	if (buff == NULL)
-		return (1);
-	while (buff[++i] != '\0')
-	{
-		if (buff[i] == '\'' && ft_strchr(&buff[i + 1], '\''))
-			while (buff[++i] != '\'')
-				;
-		else if (buff[i] == '\"' && ft_strchr(&buff[i + 1], '\"'))
-			while (buff[++i] != '\"')
-				;
-		if (buff[i] == ';' || buff[i] == '\\' || buff[i] == '&')
-			return (print_token_error(cmd, buff[i]));
-	}
-	return (0);
-}
 
 void	destroy_program(t_command *cmd)
 {

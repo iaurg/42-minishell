@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 03:43:27 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/10 08:04:50 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:30:36 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	handle_tokens(char *str, t_command *cmd)
 			STDERR_FILENO);
 		return (1);
 	}
-	n_tokens = ft_count_words(str, " ");
+	n_tokens = ft_count_words(str, " ") + 30;
 	cmd->argv = (char **)ft_calloc(n_tokens + 1, sizeof(char *));
 	mini_parse(str, cmd->argv);
 	i = -1;
