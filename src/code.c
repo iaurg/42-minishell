@@ -6,11 +6,28 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 22:26:51 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/25 18:38:58 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:20:33 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	parse_double_redir(char *src, char **dest, int *i, int *n_tokens)
+{
+	dest[*n_tokens] = malloc(sizeof(char) * (3));
+	ft_strlcpy(dest[(*n_tokens)++], ">>", 3);
+	*i += 2;
+	dest[*n_tokens] = ft_strtok(&src[*i], " ");
+	*i += ft_strlen(dest[(*n_tokens)++]) - 1;
+}
+
+void	parse_single_token(char *src, char **dest, int *i, int *n_tokens)
+{
+	dest[*n_tokens] = malloc(sizeof(char) * (2));
+	ft_strlcpy(dest[(*n_tokens)++], &src[(*i)++], 2);
+	dest[*n_tokens] = ft_strtok(&src[*i], " ");
+	*i += ft_strlen(dest[(*n_tokens)++]) - 1;
+}
 
 void	parse_inner_tokens(char *src, char **dest, int *i, int *n_tokens)
 {
@@ -27,11 +44,9 @@ void	parse_inner_tokens(char *src, char **dest, int *i, int *n_tokens)
 		{
 			if (*i != start)
 				dest[(*n_tokens)++] = ft_strtok(&src[start], &src[*i]);
-			dest[*n_tokens] = malloc(sizeof(char) * (2));
-			ft_strlcpy(dest[(*n_tokens)++], &src[(*i)++], 2);
-			dest[*n_tokens] = ft_strtok(&src[*i], " ");
-			*i += ft_strlen(dest[(*n_tokens)++]) - 1;
-			return ;
+			if (src[*i + 1] && src[*i + 1] == '>' && src[*i + 2] != ' ')
+				return (parse_double_redir(src, dest, i, n_tokens));
+			return (parse_single_token(src, dest, i, n_tokens));
 		}
 		*i += 1;
 	}

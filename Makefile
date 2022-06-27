@@ -6,7 +6,7 @@
 #    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/06/25 18:41:36 by vwildner         ###   ########.fr        #
+#    Updated: 2022/06/26 22:24:05 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SRC		= code.c \
 	signal.c \
 	tokens.c \
 	utils.c \
-	utils2.c
+	utils2.c \
+	prohibited.c
 
 SRC_MAIN = $(SRC)
 SRC_MAIN += main.c # <- the program entrypoint
