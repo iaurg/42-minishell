@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/06/26 22:24:05 by vwildner         ###   ########.fr        #
+#    Updated: 2022/06/27 22:33:47 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ GNL_PATH = $(LIBS_PATH)/get_next_line
 GNL_ARCHIVE = $(ARCHIVES_PATH)/$(GNL)
 
 # commands
-CFLAGS	=	-Wall -Wextra -g -O0 -Og
+CFLAGS	=	-Wall -Wextra -Werror -g -O0 -Og
 CC := $(shell ./set_compiler.sh)
 RM		=	rm -rf
 ARCHIVE = @ar -rc
