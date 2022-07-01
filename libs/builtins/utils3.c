@@ -18,3 +18,11 @@ int	has_equals(const char *first)
 		return (1);
 	return (0);
 }
+
+int	export_strjoin(t_command *cmd, char *tmp, int status)
+{
+	tmp = ft_strjoin(cmd->argv[1], "=");
+	status = export(tmp, cmd->envp);
+	free(tmp);
+	return (status);
+}
