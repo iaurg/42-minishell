@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_export.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 23:02:52 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/19 18:44:45 by itaureli         ###   ########.fr       */
+/*   Updated: 2022/07/01 22:19:41 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ int	builtins_export(t_command *cmd)
 {
 	char	*tmp;
 	int		status;
+	int		i;
 
+	i = 0;
 	if (export_key_value_in_arg_zero(cmd) || cmd->argv[1] == NULL)
 		return (0);
 	if (has_equals(cmd->argv[0]))
@@ -65,17 +67,16 @@ int	builtins_export(t_command *cmd)
 	if (first_char_is_equal(cmd->argv[1]))
 		return (print_export_err(cmd->argv[1], 1));
 	if ((!has_equals(cmd->argv[1])) && (cmd->argv[2] == NULL))
-	{
-		tmp = ft_strjoin(cmd->argv[1], "=");
-		status = export(tmp, cmd->envp);
-		free(tmp);
-		return (status);
-	}
+		return (export_strjoin(cmd, tmp, &status));
 	if ((!has_equals(cmd->argv[1])) && (has_equals(cmd->argv[2])))
 		return (print_export_err(cmd->argv[2], 1));
-	if (has_equals(cmd->argv[1]))
-		return (export(cmd->argv[1], cmd->envp));
-	if (cmd->argv[1] == NULL)
+	while (has_equals(cmd->argv[++i]))
+	{
+		export(cmd->argv[i], cmd->envp);
+		if (cmd->argv[i + 1] == NULL)
+			return (0);
+	}
+	if (cmd->argv[i] == NULL)
 		return (env(cmd->envp, cmd->fd));
 	perror("Unknown error");
 	return (-1);

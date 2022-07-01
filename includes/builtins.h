@@ -78,5 +78,6 @@ void		print_err_msg(char *command, char *msg);
 int			has_equals(const char *first);
 t_list		**to_linked_list(char **envp);
 int			first_char_is_equal(const char *first);
+int			export_strjoin(t_command *cmd, char *tmp, int status);
 
 #endif
