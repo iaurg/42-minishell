@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 20:31:33 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/07 18:17:34 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/27 22:19:51 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static void	print_cd_error(char *argv[])
 	write(STDERR_FILENO, "\n", 1);
 }
 
-// TO-DO: refactor cd
-// TO-DO: test more edge cases and bash comparisons
 int	cd(char *argv[], t_list *envp[])
 {
 	if (!envp || argv[1] == NULL)

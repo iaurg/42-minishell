@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:04:35 by mfrasson          #+#    #+#             */
-/*   Updated: 2022/06/26 22:24:37 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/06/27 22:27:17 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,7 @@
 # include "builtins.h"
 # include "error.h"
 
-/* DELIMITERS */
-# define CHAR_WHITESPACE ' '
-# define CHAR_TAB '\t'
-# define CHAR_NEWLINE '\n'
-
-# define CHAR_PIPE '|'
-# define CHAR_DOLAR '$'
-# define CHAR_EQUAL '='
-# define CHAR_SINGLE_QT '\''
-# define CHAR_DOUBLE_QT '\"'
-# define CHAR_GREATER '>'
-# define CHAR_DBL_GREATER '>>'
-# define CHAR_LESSER '<'
-# define CHAR_DBL_LESSER '<<'
-# define CHAR_NULL 0
-
 /* TOKENIZER */
-# define START_REPR '#'
 # define DQ_REPR 25
 # define SQ_REPR 26
 
@@ -60,7 +43,6 @@
 /* parsers */
 int		take_input(char *input_text, t_command *cmd);
 int		read_input(char *buffer, t_command *cmd);
-char	**parse_input(char *input_text);
 void	expand_args(t_command *cmd);
 char	**parser(char *str);
 void	mini_parse(char *src, char **dest);
@@ -85,7 +67,6 @@ void	newline_hook(int sig);
 
 /* utilities */
 void	print_err_msg(char *command, char *msg);
-char	*get_last_slash_arg(char *arg);
 void	handle_exit(const char *s);
 int		handle_tokens(char *str, t_command *cmd);
 char	*solve_absolute_path(t_command *cmd);
