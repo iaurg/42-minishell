@@ -41,6 +41,49 @@ int	handle_quotes(t_command *cmd, char *arg, int i)
 	return (0);
 }
 
+int	count_n_dollar(const char *str)
+{
+	int i;
+	int n_dollar;
+
+	i = -1;
+	n_dollar = 0;
+	while (str[++i])
+	{
+		if (str[i] == '$')
+			n_dollar++;
+	}
+	printf("n dollar %d\n", n_dollar);
+	return (n_dollar);
+}
+
+char **split_dollar_tokens(t_command *cmd, const char *str)
+{
+	int n_dollar = count_n_dollar(str);
+	int i;
+	char *tmp;
+	int j;
+	char **tokens;
+
+	i = 0;
+	j = 0;
+	tokens = (char **)malloc(sizeof(char *) * (n_dollar + 1));
+	while (str[++i])
+	{
+		tmp = ms_getenv(cmd->envp, &str[i]);
+		if (tmp)
+			tokens[j++] = ft_strdup(tmp);
+		free(tmp);
+		while (str[i] && str[i] != '$' && n_dollar > 1)
+				i++;
+	}
+	tokens[j] = NULL;
+	for (int i=0; tokens[i]; i++)
+		printf("tok[%i] = %s\n", tokens[i]);
+	return (tokens);
+}
+
+
 void	handle_dollar_sign(t_command *cmd, char *tmp, int i)
 {
 	size_t	len;
@@ -50,11 +93,14 @@ void	handle_dollar_sign(t_command *cmd, char *tmp, int i)
 	token = ft_strchr(cmd->argv[i], '$');
 	if (token != NULL)
 	{
+		printf("%s\n", token);
 		if (handle_status(cmd, i))
 			return ;
+		char **tmp = split_dollar_tokens(cmd, token);
 		tmp = ms_getenv(cmd->envp, ++token);
 		if (tmp)
 		{
+			printf("tmp: %s\n", tmp);
 			free(cmd->argv[i]);
 			cmd->argv[i] = ft_strdup(tmp);
 		}
