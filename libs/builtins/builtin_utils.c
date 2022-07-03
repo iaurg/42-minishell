@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:27:35 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/07 18:17:11 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:24:17 by itaureli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	read_file(char *filename)
 	fd = open(filename, O_RDONLY, 0644);
 	if (fd == -1)
 	{
-		fprintf(stderr, "minishell: no such file or directory: %s\n", filename);
+		write(STDERR_FILENO, "minishell: no such file or directory: \n ", 35);
 		return (0);
 	}
 	dup2(fd, 0);
