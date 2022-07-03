@@ -6,7 +6,7 @@
 #    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/07/03 18:44:29 by itaureli         ###   ########.fr        #
+#    Updated: 2022/07/03 18:47:02 by itaureli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ GNL_ARCHIVE = $(ARCHIVES_PATH)/$(GNL)
 
 # commands
 CFLAGS	=	-Wall -Wextra -Werror
-CC := $(shell ./set_compiler.sh)
+CC = gcc
 RM		=	rm -rf
 ARCHIVE = @ar -rc
 SAFE_MKDIR = mkdir -p
