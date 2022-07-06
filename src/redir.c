@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 07:02:18 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/14 23:13:11 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:16:19 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ static int	remove_redirect_args(t_command *cmd)
 	while (redir_count--)
 	{
 		index = (cmd->argc - 2) + redir_count;
+		if (ft_strncmp(cmd->argv[index], "> ", 2) == 0
+			|| ft_strncmp(cmd->argv[index], ">> ", 3) == 0)
+			return (0);
 		if (index < 1)
 			return (0);
 		free(cmd->argv[index]);
