@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 18:54:55 by itaureli          #+#    #+#             */
-/*   Updated: 2022/06/08 00:55:24 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:20:29 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*get_abspath(t_command *cmd, char *command, const char *path)
 			path++;
 	}
 	print_err_msg(command, "No such file or directory");
-	cmd->status = 127;
+	cmd->status = 2;
 	return (NULL);
 }
 

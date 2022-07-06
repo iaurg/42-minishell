@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:26:00 by vwildner          #+#    #+#             */
-/*   Updated: 2022/06/14 22:42:12 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:38:54 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ int	builtins_cd(t_command *cmd)
 	status = cd(cmd->argv, cmd->envp);
 	if (status == 0)
 		return (set_oldpwd(cmd->envp, buf));
-	return (0);
+	return (status);
 }
