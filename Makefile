@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: itaureli <itaureli@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 22:38:45 by itaureli          #+#    #+#              #
-#    Updated: 2022/07/03 18:47:02 by itaureli         ###   ########.fr        #
+#    Updated: 2022/07/05 21:04:27 by vwildner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,13 +96,6 @@ MAKE_EXTERNAL = make -C
 COPY = cp
 MSG1 = @echo "Compiled ✔︎"
 MSG2 = @echo "Cleaned ✔︎"
-VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --tool=memcheck
-
-# tests
-TEST_NAME = test
-TEST_FILES = minunit_example.c
-TEST_PATH = ./tests
-TESTS = $(addprefix $(TEST_PATH)/,$(TEST_FILES))
 
 # ---------------------------------------------------------------------------- #
 #                                COMPILATION                                   #
@@ -145,21 +138,6 @@ $(BUILTINS_OBJECTS): $(BUILTINS_SOURCES) $(BUILTINS_HEADER)
 	@$(SAFE_MKDIR) $(BUILTINS_OBJECTS_PATH)
 	@$(CC) $(CFLAGS) -g -I $(INCLUDES_PATH) -o $@ -c $<
 
-test:
-	@$(CC) tests/test_unit.c \
-	libs/libft/*.c libs/builtins/*.c libs/get_next_line/*.c \
-	$(SRCS_NO_ENTRY) -I $(INCLUDES_PATH) \
-	-lreadline -lrt -lm \
-	-o test_unit && ./test_unit
-	@$(RM) test_unit
-
-test_builtins:
-	python3 -m unittest tests.test_builtins -c
-
-# https://github.com/CleanCut/green
-test_builtins_color:
-	green tests/test_builtins.py
-
 clean:
 	$(RM) $(OBJECTS)
 	$(RM) $(BUILTINS_OBJECTS)
@@ -180,10 +158,6 @@ run:
 	${MAKE} && ./minishell.a
 	${MSG1}
 
-valgrind:
-	${MAKE} && ${VALGRIND} ./minishell
-	${MSG1}
-
 re:			fclean all
 
-.PHONY:		all clean fclean re run git libft builtins get_next_line
+.PHONY:		all clean fclean re run libft builtins get_next_line
