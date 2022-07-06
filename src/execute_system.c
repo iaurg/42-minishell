@@ -6,7 +6,7 @@
 /*   By: vwildner <vwildner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 02:27:44 by vwildner          #+#    #+#             */
-/*   Updated: 2022/07/05 22:55:05 by vwildner         ###   ########.fr       */
+/*   Updated: 2022/07/06 20:18:54 by vwildner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	system_exec(t_command *cmd)
 		waitpid(pid, &status, WUNTRACED);
 		while (!WIFEXITED(status) && !WIFSIGNALED(status))
 			waitpid(pid, &status, WUNTRACED);
-		if (cmd->status == 1 && ft_strncmp(cmd->argv[0], "ls", 2) == 0)
+		if (status > 0 && ft_strncmp(cmd->argv[0], "ls", 2) == 0)
 			return (cmd->status = 2, 1);
 		else if (status > 0)
 			cmd->status = 127;
